@@ -9,6 +9,9 @@ import { ShoesComponent } from './shoes/shoes.component';
 import { RacquetDetailComponent } from './racquets/racquet-detail/racquet-detail.component';
 import { ShoeDetailComponent } from './shoes/shoe-detail/shoe-detail.component';
 import { ApparelDetailComponent } from './apparel/apparel-detail/apparel-detail.component';
+import { RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +21,14 @@ import { ApparelDetailComponent } from './apparel/apparel-detail/apparel-detail.
     ShoesComponent,
     RacquetDetailComponent,
     ShoeDetailComponent,
-    ApparelDetailComponent
+    ApparelDetailComponent,
+    HomeComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
