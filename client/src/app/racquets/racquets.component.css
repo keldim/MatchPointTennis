@@ -1,0 +1,11 @@
+.filter {
+  float: left;
+  width: 16%;
+}
+
+.shopping-items {
+  float: left;
+  width: 83%;
+  padding-left: 1%;
+  padding-top: 1.5%;
+}
