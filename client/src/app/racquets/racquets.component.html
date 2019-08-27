@@ -1,88 +1,113 @@
 <div class="container">
-  <div class="filter">
+  <div class="filter" style="background: rgb(246, 246, 245);">
+    <h3 style="font-size: 16px;">Filters</h3>
     <div style="cursor: pointer;">
-        <h3 (click)="filterExpand1 = !filterExpand1" style="font-size: 16px;">Brand</h3>
-        <ul style="list-style: none;" [ngStyle]="{'display': filterExpand1 ? 'block' : 'none'}">
-            <li>
-              filter 1
-            </li>
-            <li>
-              filter 2
-            </li>
-            <li>
-              filter 3
-            </li>
-          </ul>
+      <h3 (click)="filterExpand1 = !filterExpand1" style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+        Brand
+        <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
+        <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
+      </h3>
+      <ul style="list-style: none;" [ngStyle]="{'display': filterExpand1 ? 'block' : 'none'}">
+        <li>
+          filter 1
+        </li>
+        <li>
+          filter 2
+        </li>
+        <li>
+          filter 3
+        </li>
+      </ul>
     </div>
     <div style="cursor: pointer">
-        <h3 (click)="filterExpand2 = !filterExpand2" style="font-size: 16px;">Head Size</h3>
-        <ul style="list-style: none;" [ngStyle]="{'display': filterExpand2 ? 'block' : 'none'}">
-            <li>
-              filter 1
-            </li>
-            <li>
-              filter 2
-            </li>
-            <li>
-              filter 3
-            </li>
-          </ul>
+      <h3 (click)="filterExpand2 = !filterExpand2" style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+        Head Size
+        <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
+        <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
+      </h3>
+      <ul style="list-style: none;" [ngStyle]="{'display': filterExpand2 ? 'block' : 'none'}">
+        <li>
+          filter 1
+        </li>
+        <li>
+          filter 2
+        </li>
+        <li>
+          filter 3
+        </li>
+      </ul>
     </div>
     <div style="cursor: pointer">
-        <h3 (click)="filterExpand3 = !filterExpand3" style="font-size: 16px;">String Pattern</h3>
-        <ul style="list-style: none;" [ngStyle]="{'display': filterExpand3 ? 'block' : 'none'}">
-            <li>
-              filter 1
-            </li>
-            <li>
-              filter 2
-            </li>
-            <li>
-              filter 3
-            </li>
-          </ul>
+      <h3 (click)="filterExpand3 = !filterExpand3" style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+        String Pattern
+        <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
+        <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
+      </h3>
+      <ul style="list-style: none;" [ngStyle]="{'display': filterExpand3 ? 'block' : 'none'}">
+        <li>
+          filter 1
+        </li>
+        <li>
+          filter 2
+        </li>
+        <li>
+          filter 3
+        </li>
+      </ul>
     </div>
     <div style="cursor: pointer">
-        <h3 (click)="filterExpand4 = !filterExpand4" style="font-size: 16px;">Length</h3>
-        <ul style="list-style: none;" [ngStyle]="{'display': filterExpand4 ? 'block' : 'none'}">
-            <li>
-              filter 1
-            </li>
-            <li>
-              filter 2
-            </li>
-            <li>
-              filter 3
-            </li>
-          </ul>
+      <h3 (click)="filterExpand4 = !filterExpand4" style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+        Length
+        <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
+        <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
+      </h3>
+      <ul style="list-style: none;" [ngStyle]="{'display': filterExpand4 ? 'block' : 'none'}">
+        <li>
+          filter 1
+        </li>
+        <li>
+          filter 2
+        </li>
+        <li>
+          filter 3
+        </li>
+      </ul>
     </div>
     <div style="cursor: pointer">
-        <h3 (click)="filterExpand5 = !filterExpand5" style="font-size: 16px;">Weight</h3>
-        <ul style="list-style: none;" [ngStyle]="{'display': filterExpand5 ? 'block' : 'none'}">
-            <li>
-              filter 1
-            </li>
-            <li>
-              filter 2
-            </li>
-            <li>
-              filter 3
-            </li>
-          </ul>
+      <h3 (click)="filterExpand5 = !filterExpand5" style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+        Weight
+        <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
+        <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
+      </h3>
+      <ul style="list-style: none;" [ngStyle]="{'display': filterExpand5 ? 'block' : 'none'}">
+        <li>
+          filter 1
+        </li>
+        <li>
+          filter 2
+        </li>
+        <li>
+          filter 3
+        </li>
+      </ul>
     </div>
     <div style="cursor: pointer">
-        <h3 (click)="filterExpand6 = !filterExpand6" style="font-size: 16px;">Price</h3>
-        <ul style="list-style: none;" [ngStyle]="{'display': filterExpand6 ? 'block' : 'none'}">
-            <li>
-              filter 1
-            </li>
-            <li>
-              filter 2
-            </li>
-            <li>
-              filter 3
-            </li>
-          </ul>
+      <h3 (click)="filterExpand6 = !filterExpand6" style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+        Price
+        <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
+        <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
+      </h3>
+      <ul style="list-style: none;" [ngStyle]="{'display': filterExpand6 ? 'block' : 'none'}">
+        <li>
+          filter 1
+        </li>
+        <li>
+          filter 2
+        </li>
+        <li>
+          filter 3
+        </li>
+      </ul>
     </div>
   </div>
   <div class="shopping-items">

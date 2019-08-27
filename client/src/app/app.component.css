@@ -25,3 +25,14 @@
 .menu-button-tweak {
   margin-right: 20px;
 }
+
+.dropdown-menu {
+  margin: -0.125rem 0 0;
+}
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown>.dropdown-toggle:active {
+  pointer-events: none;
+}

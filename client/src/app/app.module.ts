@@ -12,6 +12,10 @@ import { ApparelDetailComponent } from './apparel/apparel-detail/apparel-detail.
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
+import { ApparelMenComponent } from './apparel/apparel-men/apparel-men.component';
+import { ApparelWomenComponent } from './apparel/apparel-women/apparel-women.component';
+import { ShoesMenComponent } from './shoes/shoes-men/shoes-men.component';
+import { ShoesWomenComponent } from './shoes/shoes-women/shoes-women.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { CartComponent } from './cart/cart.component';
     ShoeDetailComponent,
     ApparelDetailComponent,
     HomeComponent,
-    CartComponent
+    CartComponent,
+    ApparelMenComponent,
+    ApparelWomenComponent,
+    ShoesMenComponent,
+    ShoesWomenComponent
   ],
   imports: [
     BrowserModule,
