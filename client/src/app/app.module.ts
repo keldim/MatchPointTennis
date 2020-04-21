@@ -16,6 +16,8 @@ import { ApparelMenComponent } from './apparel/apparel-men/apparel-men.component
 import { ApparelWomenComponent } from './apparel/apparel-women/apparel-women.component';
 import { ShoesMenComponent } from './shoes/shoes-men/shoes-men.component';
 import { ShoesWomenComponent } from './shoes/shoes-women/shoes-women.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { ShoesWomenComponent } from './shoes/shoes-women/shoes-women.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    NgxPaginationModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

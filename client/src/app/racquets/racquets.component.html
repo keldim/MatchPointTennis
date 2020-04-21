@@ -1,298 +1,209 @@
 <div class="container">
-  <div class="filter" style="background: rgb(246, 246, 245);">
-    <h3 style="font-size: 16px;">Filters</h3>
-    <div style="cursor: pointer;">
-      <h3 (click)="filterExpand1 = !filterExpand1" style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
-        Brand
-        <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
-        <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
-      </h3>
-      <ul style="list-style: none;" [ngStyle]="{'display': filterExpand1 ? 'block' : 'none'}">
-        <li>
-          filter 1
-        </li>
-        <li>
-          filter 2
-        </li>
-        <li>
-          filter 3
-        </li>
-      </ul>
-    </div>
-    <div style="cursor: pointer">
-      <h3 (click)="filterExpand2 = !filterExpand2" style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
-        Head Size
-        <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
-        <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
-      </h3>
-      <ul style="list-style: none;" [ngStyle]="{'display': filterExpand2 ? 'block' : 'none'}">
-        <li>
-          filter 1
-        </li>
-        <li>
-          filter 2
-        </li>
-        <li>
-          filter 3
-        </li>
-      </ul>
-    </div>
-    <div style="cursor: pointer">
-      <h3 (click)="filterExpand3 = !filterExpand3" style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
-        String Pattern
-        <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
-        <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
-      </h3>
-      <ul style="list-style: none;" [ngStyle]="{'display': filterExpand3 ? 'block' : 'none'}">
-        <li>
-          filter 1
-        </li>
-        <li>
-          filter 2
-        </li>
-        <li>
-          filter 3
-        </li>
-      </ul>
-    </div>
-    <div style="cursor: pointer">
-      <h3 (click)="filterExpand4 = !filterExpand4" style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
-        Length
-        <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
-        <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
-      </h3>
-      <ul style="list-style: none;" [ngStyle]="{'display': filterExpand4 ? 'block' : 'none'}">
-        <li>
-          filter 1
-        </li>
-        <li>
-          filter 2
-        </li>
-        <li>
-          filter 3
-        </li>
-      </ul>
-    </div>
-    <div style="cursor: pointer">
-      <h3 (click)="filterExpand5 = !filterExpand5" style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
-        Weight
-        <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
-        <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
-      </h3>
-      <ul style="list-style: none;" [ngStyle]="{'display': filterExpand5 ? 'block' : 'none'}">
-        <li>
-          filter 1
-        </li>
-        <li>
-          filter 2
-        </li>
-        <li>
-          filter 3
-        </li>
-      </ul>
-    </div>
-    <div style="cursor: pointer">
-      <h3 (click)="filterExpand6 = !filterExpand6" style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
-        Price
-        <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
-        <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
-      </h3>
-      <ul style="list-style: none;" [ngStyle]="{'display': filterExpand6 ? 'block' : 'none'}">
-        <li>
-          filter 1
-        </li>
-        <li>
-          filter 2
-        </li>
-        <li>
-          filter 3
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="shopping-items">
-    <div class="row">
-      <div class="col">
-        <div class="card" style="width: 12rem; text-align: center; border: none;">
-          <a>
-            <img src="../../assets/images/BPAPR-thumb.jpg">
-          </a>
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
+  <div class="row">
+    <div class="filter col-md-3 col-lg-2 border" style="background: rgb(246, 246, 245);">
+      <h3 style="font-size: 16px; padding-top: 10px;">Filters</h3>
+      <div>
+        <h3 (click)="filterExpand1 = !filterExpand1"
+          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+          Brand
+          <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
+        </h3>
+        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand1 ? 'block' : 'none'}">
+          <li class="filter-choice">
+            <a>
+              <input type="checkbox" [(ngModel)]="brandFilter.Babolat" (ngModelChange)="performFilter()">
+              Babolat
+            </a>
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="brandFilter.Head" (ngModelChange)="performFilter()">
+            Head
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="brandFilter.Prince" (ngModelChange)="performFilter()">
+            Prince
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="brandFilter.Wilson" (ngModelChange)="performFilter()">
+            Wilson
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="brandFilter.Yonex" (ngModelChange)="performFilter()">
+            Yonex
+          </li>
+        </ul>
       </div>
-      <div class="col">
-        <div class="card" style="width: 12rem; text-align: center; border: none;">
-          <a>
-            <img src="../../assets/images/BPAR-thumb.jpg">
-          </a>
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
+      <div style="cursor: pointer">
+        <h3 (click)="filterExpand2 = !filterExpand2"
+          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+          Head Size
+          <img style="float: right;" *ngIf="filterExpand2 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img style="float: right;" *ngIf="filterExpand2 == true" src="../../assets/images/icons8-subtract-16.png">
+        </h3>
+        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand2 ? 'block' : 'none'}">
+          <li>
+            <input type="checkbox" [(ngModel)]="headSizeFilter.range1" (ngModelChange)="performFilter()">
+            90 ~ 94 sq in
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="headSizeFilter.range2" (ngModelChange)="performFilter()">
+            95 ~ 99 sq in
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="headSizeFilter.range3" (ngModelChange)="performFilter()">
+            100 ~ 104 sq in
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="headSizeFilter.range4" (ngModelChange)="performFilter()">
+            105 ~ 109 sq in
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="headSizeFilter.range5" (ngModelChange)="performFilter()">
+            110 ~ 114 sq in
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="headSizeFilter.range6" (ngModelChange)="performFilter()">
+            115 ~ 119 sq in
+          </li>
+        </ul>
       </div>
-      <div class="col">
-        <div class="card" style="width: 12rem; text-align: center; border: none;">
-          <a>
-            <img src="../../assets/images/BPARL-thumb.jpg">
-          </a>
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
+      <div style="cursor: pointer">
+        <h3 (click)="filterExpand3 = !filterExpand3"
+          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+          String Pattern
+          <img style="float: right;" *ngIf="filterExpand3 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img style="float: right;" *ngIf="filterExpand3 == true" src="../../assets/images/icons8-subtract-16.png">
+        </h3>
+        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand3 ? 'block' : 'none'}">
+          <li>
+            <input type="checkbox" [(ngModel)]="stringPatternFilter.pattern1" (ngModelChange)="performFilter()">
+            14 x 18
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="stringPatternFilter.pattern2" (ngModelChange)="performFilter()">
+            16 x 18
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="stringPatternFilter.pattern3" (ngModelChange)="performFilter()">
+            16 x 19
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="stringPatternFilter.pattern4" (ngModelChange)="performFilter()">
+            16 x 20
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="stringPatternFilter.pattern5" (ngModelChange)="performFilter()">
+            18 x 19
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="stringPatternFilter.pattern6" (ngModelChange)="performFilter()">
+            18 x 20
+          </li>
+        </ul>
       </div>
-      <div class="col">
-        <div class="card" style="width: 12rem; text-align: center; border: none;">
-          <a>
-            <img src="../../assets/images/BPART-thumb.jpg">
-          </a>
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
+      <div style="cursor: pointer">
+        <h3 (click)="filterExpand4 = !filterExpand4"
+          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+          Length
+          <img style="float: right;" *ngIf="filterExpand4 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img style="float: right;" *ngIf="filterExpand4 == true" src="../../assets/images/icons8-subtract-16.png">
+        </h3>
+        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand4 ? 'block' : 'none'}">
+          <li>
+            <input type="checkbox" [(ngModel)]="lengthFilter.length1" (ngModelChange)="performFilter()">
+            27 in
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="lengthFilter.length2" (ngModelChange)="performFilter()">
+            27.25 in
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="lengthFilter.length3" (ngModelChange)="performFilter()">
+            27.5 in
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="lengthFilter.length4" (ngModelChange)="performFilter()">
+            27.75 in
+          </li>
+        </ul>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="card" style="width: 12rem; text-align: center; border: none;">
-          <a>
-            <img src="../../assets/images/BPATRR-thumb.jpg">
-          </a>
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
+      <div style="cursor: pointer">
+        <h3 (click)="filterExpand5 = !filterExpand5"
+          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+          Strung Weight
+          <img style="float: right;" *ngIf="filterExpand5 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img style="float: right;" *ngIf="filterExpand5 == true" src="../../assets/images/icons8-subtract-16.png">
+        </h3>
+        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand5 ? 'block' : 'none'}">
+          <li>
+            <input type="checkbox" [(ngModel)]="strungWeightFilter.range1" (ngModelChange)="performFilter()">
+            8.0 ~ 8.9 oz
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="strungWeightFilter.range2" (ngModelChange)="performFilter()">
+            9.0 ~ 9.9 oz
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="strungWeightFilter.range3" (ngModelChange)="performFilter()">
+            10.0 ~ 10.9 oz
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="strungWeightFilter.range4" (ngModelChange)="performFilter()">
+            11.0 ~ 11.9 oz
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="strungWeightFilter.range5" (ngModelChange)="performFilter()">
+            12.0 ~ 12.9 oz
+          </li>
+        </ul>
       </div>
-      <div class="col">
-        <div class="card" style="width: 12rem; text-align: center; border: none;">
-          <a>
-            <img src="../../assets/images/BPD1H-thumb.jpg">
-          </a>
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 12rem; text-align: center; border: none;">
-          <a>
-            <img src="../../assets/images/BPDL-thumb.jpg">
-          </a>
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 12rem; text-align: center; border: none;">
-          <a>
-            <img src="../../assets/images/BPDT-thumb.jpg">
-          </a>
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
+      <div style="cursor: pointer">
+        <h3 (click)="filterExpand6 = !filterExpand6"
+          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+          Price
+          <img style="float: right;" *ngIf="filterExpand6 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img style="float: right;" *ngIf="filterExpand6 == true" src="../../assets/images/icons8-subtract-16.png">
+        </h3>
+        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand6 ? 'block' : 'none'}">
+          <li>
+            <input type="checkbox" [(ngModel)]="priceFilter.range1" (ngModelChange)="performFilter()">
+            $50 - $99.99
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="priceFilter.range2" (ngModelChange)="performFilter()">
+            $100 - $149.99
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="priceFilter.range3" (ngModelChange)="performFilter()">
+            $150 - $199.99
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="priceFilter.range4" (ngModelChange)="performFilter()">
+            $200 - $249.99
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <div class="card" style="width: 12rem; text-align: center; border: none;">
-          <a>
-            <img src="../../assets/images/BPDTP-thumb.jpg">
-          </a>
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
+    <div class="shopping-items col-md-9 col-lg-10">
+      <div class="row">
+        <span *ngFor="let product of filteredProducts | paginate: { itemsPerPage: 16, currentPage: p }">
+          <div class="col">
+            <div class="card" style="width: 12rem; text-align: center; border: none;">
+              <a>
+                <img src="{{ product.thumbURL }}">
+              </a>
+              <div class="card-body">
+                <p class="card-text">
+                  {{ product.name }}
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
+        </span>
       </div>
-      <div class="col">
-        <div class="card" style="width: 12rem; text-align: center; border: none;">
-          <a>
-            <img src="../../assets/images/BTPD-thumb.jpg">
-          </a>
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 12rem; text-align: center; border: none;">
-          <a>
-            <img src="../../assets/images/PDP-thumb.jpg">
-          </a>
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 12rem; text-align: center; border: none;">
-          <a>
-            <img src="../../assets/images/BPSTRI-thumb.jpg">
-          </a>
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="card" style="width: 12rem; text-align: center; border: none;">
-          <a>
-            <img src="../../assets/images/BPSTRT-thumb.jpg">
-          </a>
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 12rem; text-align: center; border: none;">
-          <a>
-            <img src="../../assets/images/BPSTTO-thumb.jpg">
-          </a>
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 12rem; text-align: center; border: none;">
-          <a>
-            <img src="../../assets/images/PS1619-thumb.jpg">
-          </a>
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 12rem; text-align: center; border: none;">
-          <a>
-            <img src="../../assets/images/PS182-thumb.jpg">
-          </a>
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-          </div>
-        </div>
+      <div class="pagination">
+        <pagination-controls (pageChange)="p = $event" max-size="10"></pagination-controls>
       </div>
     </div>
   </div>
