@@ -190,12 +190,15 @@
         <span *ngFor="let product of filteredProducts | paginate: { itemsPerPage: 16, currentPage: p }">
           <div class="col">
             <div class="card" style="width: 12rem; text-align: center; border: none;">
-              <a>
+              <a [routerLink]="['/racquets', product.id]">
                 <img src="{{ product.thumbURL }}">
               </a>
               <div class="card-body">
                 <p class="card-text">
-                  {{ product.name }}
+                  <a [routerLink]="['/racquets', product.id]" style="color: black;">
+                    {{ product.name }}
+                  </a>
+                  <br>${{ product.price }}
                 </p>
               </div>
             </div>

@@ -18,6 +18,7 @@ import { ShoesMenComponent } from './shoes/shoes-men/shoes-men.component';
 import { ShoesWomenComponent } from './shoes/shoes-women/shoes-women.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     RouterModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
+    NgxImageZoomModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

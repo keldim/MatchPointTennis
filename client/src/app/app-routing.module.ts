@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { RacquetsComponent } from './racquets/racquets.component';
 import { ShoesComponent } from './shoes/shoes.component';
 import { ApparelComponent } from './apparel/apparel.component';
+import { RacquetDetailComponent } from './racquets/racquet-detail/racquet-detail.component';
 
 const routes: Routes = [];
 
@@ -13,6 +14,7 @@ const routes: Routes = [];
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: 'racquets', component: RacquetsComponent },
+      { path: 'racquets/:id', component: RacquetDetailComponent },
       { path: 'shoes', component: ShoesComponent },
       { path: 'apparel', component: ApparelComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
