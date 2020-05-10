@@ -100,15 +100,15 @@ export class RacquetsComponent implements OnInit {
   priceFilterChange(productList: any[]) {
     let filteredProductList: any[] = [];
     filteredProductList = productList.filter(x =>
-      (this.priceFilter.range1 && (Number(x.price.split(" ")[0]) >= 50.00 && Number(x.price.split(" ")[0]) <= 99.99)) ||
-      (this.priceFilter.range2 && (Number(x.price.split(" ")[0]) >= 100.00 && Number(x.price.split(" ")[0]) <= 149.99)) ||
-      (this.priceFilter.range3 && (Number(x.price.split(" ")[0]) >= 150.00 && Number(x.price.split(" ")[0]) <= 199.99)) ||
-      (this.priceFilter.range4 && (Number(x.price.split(" ")[0]) >= 200.00 && Number(x.price.split(" ")[0]) <= 249.99))
+      (this.priceFilter.range1 && (Number(x.price) >= 50.00 && Number(x.price) <= 99.99)) ||
+      (this.priceFilter.range2 && (Number(x.price) >= 100.00 && Number(x.price) <= 149.99)) ||
+      (this.priceFilter.range3 && (Number(x.price) >= 150.00 && Number(x.price) <= 199.99)) ||
+      (this.priceFilter.range4 && (Number(x.price) >= 200.00 && Number(x.price) <= 249.99))
     );
       return filteredProductList;
   }
 
-  performFilter(filterType: string) {
+  performFilter() {
 
     let temporaryList: any[] = [...this.racquets.racquetList];
 

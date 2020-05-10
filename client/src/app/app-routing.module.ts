@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RacquetsComponent } from './racquets/racquets.component';
-import { ShoesComponent } from './shoes/shoes.component';
-import { ApparelComponent } from './apparel/apparel.component';
 import { RacquetDetailComponent } from './racquets/racquet-detail/racquet-detail.component';
+import { ApparelMenComponent } from './apparel/apparel-men/apparel-men.component';
+import { ApparelDetailComponent } from './apparel/apparel-detail/apparel-detail.component';
 
 const routes: Routes = [];
 
@@ -15,8 +15,8 @@ const routes: Routes = [];
       { path: 'home', component: HomeComponent },
       { path: 'racquets', component: RacquetsComponent },
       { path: 'racquets/:id', component: RacquetDetailComponent },
-      { path: 'shoes', component: ShoesComponent },
-      { path: 'apparel', component: ApparelComponent },
+      { path: 'apparel-men', component: ApparelMenComponent },
+      { path: 'apparel-men/:id', component: ApparelDetailComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ])
