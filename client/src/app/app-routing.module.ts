@@ -5,6 +5,8 @@ import { RacquetsComponent } from './racquets/racquets.component';
 import { RacquetDetailComponent } from './racquets/racquet-detail/racquet-detail.component';
 import { ApparelMenComponent } from './apparel/apparel-men/apparel-men.component';
 import { ApparelDetailComponent } from './apparel/apparel-detail/apparel-detail.component';
+import { ShoeDetailComponent } from './shoes/shoe-detail/shoe-detail.component';
+import { ShoesMenComponent } from './shoes/shoes-men/shoes-men.component';
 
 const routes: Routes = [];
 
@@ -17,6 +19,8 @@ const routes: Routes = [];
       { path: 'racquets/:id', component: RacquetDetailComponent },
       { path: 'apparel-men', component: ApparelMenComponent },
       { path: 'apparel-men/:id', component: ApparelDetailComponent },
+      { path: 'shoe-men', component: ShoesMenComponent },
+      { path: 'shoe-men/:id', component: ShoeDetailComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ])

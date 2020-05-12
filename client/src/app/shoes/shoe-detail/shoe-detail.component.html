@@ -1,3 +1,38 @@
-<p>
-  shoe-detail works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col left-box">
+      <ngx-image-zoom [thumbImage]="currentShoe.zoomThumb" [fullImage]="currentShoe.zoomFull"></ngx-image-zoom>
+      <br>HOVER TO ZOOM
+    </div>
+    <div class="col right-box">
+      {{ currentShoe.name }}<br><br>
+      <form #form="ngForm" ngNativeValidate>
+        <label>Size</label><br>
+        <select name="size" [(ngModel)]="size" pattern="[A-Za-z0-9].*" #input1="ngModel">
+          <option>- Select Size -</option>
+          <option *ngFor="let sizeChoice of currentShoe.size">{{ sizeChoice }}</option>
+        </select>
+        <span *ngIf="input1.invalid">
+          <br><span style="font-size: 12px; color: #b80000">
+            Please Choose Size
+          </span>
+        </span><br><br>
+        Color: {{ currentShoe.color }}<br><br>
+        6-Month Outsole Warranty: {{ currentShoe.outsoleWarranty }}<br><br>
+        <label>Quantity</label><br>
+        <select name="quantity" [(ngModel)]="quantity">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+        </select><br><br>
+      </form>
+      <button type="button" class="btn btn-primary" [disabled]="form.invalid">Add To Cart</button>
+    </div>
+  </div>
+</div>
