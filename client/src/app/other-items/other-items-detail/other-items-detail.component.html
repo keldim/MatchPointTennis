@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col left-box">
+      <ngx-image-zoom [thumbImage]="currentItem.zoomThumb" [fullImage]="currentItem.zoomFull"></ngx-image-zoom>
+      <br>HOVER TO ZOOM
+    </div>
+    <div class="col right-box">
+      {{ currentItem.name }}<br><br>
+      <form #form="ngForm" ngNativeValidate>
+        <label>Quantity</label><br>
+        <select name="quantity" [(ngModel)]="quantity">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+        </select><br><br>
+      </form>
+      <button type="button" class="btn btn-primary" [disabled]="form.invalid">Add To Cart</button>
+    </div>
+  </div>
+</div>

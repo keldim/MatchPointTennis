@@ -16,6 +16,8 @@ import { ShoesWomenComponent } from './shoes/shoes-women/shoes-women.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { OtherItemsComponent } from './other-items/other-items.component';
+import { OtherItemsDetailComponent } from './other-items/other-items-detail/other-items-detail.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
     ApparelMenComponent,
     ApparelWomenComponent,
     ShoesMenComponent,
-    ShoesWomenComponent
+    ShoesWomenComponent,
+    OtherItemsComponent,
+    OtherItemsDetailComponent
   ],
   imports: [
     BrowserModule,

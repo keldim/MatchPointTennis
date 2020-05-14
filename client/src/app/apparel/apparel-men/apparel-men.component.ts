@@ -140,6 +140,7 @@ export class ApparelMenComponent implements OnInit {
       }
     }
       this.filteredProducts = temporaryList;
+      this.p = 1;
   }
 
 }

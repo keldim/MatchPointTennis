@@ -147,6 +147,7 @@ export class ShoesMenComponent implements OnInit {
       }
     }
       this.filteredProducts = temporaryList;
+      this.p = 1;
   }
 
 }
