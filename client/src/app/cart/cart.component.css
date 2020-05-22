@@ -1,0 +1,18 @@
+.cart-table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cart-table td {
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
+}
+
+.delete-item {
+  cursor: pointer;
+}
+
+.delete-item:hover {
+  text-decoration: underline;
+}

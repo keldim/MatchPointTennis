@@ -9,6 +9,7 @@ import { ShoeDetailComponent } from './shoes/shoe-detail/shoe-detail.component';
 import { ShoesMenComponent } from './shoes/shoes-men/shoes-men.component';
 import { OtherItemsComponent } from './other-items/other-items.component';
 import { OtherItemsDetailComponent } from './other-items/other-items-detail/other-items-detail.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [];
 
@@ -25,6 +26,7 @@ const routes: Routes = [];
       { path: 'shoe-men/:id', component: ShoeDetailComponent },
       { path: 'items', component: OtherItemsComponent },
       { path: 'items/:id', component: OtherItemsDetailComponent },
+      { path: 'cart', component: CartComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ])

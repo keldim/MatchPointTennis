@@ -1,3 +1,49 @@
-<p>
-  cart works!
-</p>
+<span class="container">
+  <table class="cart-table">
+    <tr>
+      <th>Photo</th>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+
+    <app-delete-modal></app-delete-modal>
+
+    <tr *ngFor="let racquet of selectedRacquets; let i = index;">
+      <td><img src="{{ racquet.thumbURL }}"></td>
+      <td>{{ racquet.name }}<br>
+        Grip Size: {{ racquet.gripSize }} / String: {{ racquet.racquetString }} <span *ngIf="racquet.racquetString != 'Unstrung'">/ Tension: {{ racquet.tension }}</span>
+      </td>
+      <td>{{ racquet.quantity }}</td>
+      <td>{{ racquet.price }}</td>
+      <td><a [routerLink]="['/racquets', racquet.id]" style="color: black;">edit</a> | <span (click)="openDelete(i, 'racquet')" class="delete-item">delete</span></td>
+    </tr>
+    <tr *ngFor="let shoe of selectedShoes; let i = index;">
+      <td><img src="{{ shoe.thumbURL }}"></td>
+      <td>{{ shoe.name }}<br>
+        Size: {{ shoe.size }} / Color: {{ shoe.color }} / 6-Month Warranty: {{ shoe.outsoleWarranty }}
+      </td>
+      <td>{{ shoe.quantity }}</td>
+      <td>{{ shoe.price }}</td>
+      <td><a [routerLink]="['/shoe-men', shoe.id]" style="color: black;">edit</a> | <span (click)="openDelete(i, 'shoe')" class="delete-item">delete</span></td>
+    </tr>
+    <tr *ngFor="let apparelItem of selectedApparel; let i = index;">
+      <td><img src="{{ apparelItem.thumbURL }}"></td>
+      <td>{{ apparelItem.name }}<br>
+        Size: {{ apparelItem.size }} / Color: {{ apparelItem.color }}
+      </td>
+      <td>{{ apparelItem.quantity }}</td>
+      <td>{{ apparelItem.price }}</td>
+      <td><a [routerLink]="['/apparel-men', apparelItem.id]" style="color: black;">edit</a> | <span (click)="openDelete(i, 'apparelItem')" class="delete-item">delete</span></td>
+    </tr>
+    <tr *ngFor="let item of selectedItems; let i = index;">
+      <td><img src="{{ item.thumbURL }}"></td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.price }}</td>
+      <td><a [routerLink]="['/items', item.id]" style="color: black;">edit</a> | <span (click)="openDelete(i, 'item')" class="delete-item">delete</span></td>
+    </tr>
+  </table>
+</span>
+

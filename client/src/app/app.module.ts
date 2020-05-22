@@ -18,6 +18,8 @@ import { FormsModule } from '@angular/forms';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { OtherItemsComponent } from './other-items/other-items.component';
 import { OtherItemsDetailComponent } from './other-items/other-items-detail/other-items-detail.component';
+import { DeleteModalComponent } from './cart/delete-modal/delete-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { OtherItemsDetailComponent } from './other-items/other-items-detail/othe
     ShoesMenComponent,
     ShoesWomenComponent,
     OtherItemsComponent,
-    OtherItemsDetailComponent
+    OtherItemsDetailComponent,
+    DeleteModalComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { OtherItemsDetailComponent } from './other-items/other-items-detail/othe
     RouterModule,
     NgxPaginationModule,
     FormsModule,
-    NgxImageZoomModule.forRoot()
+    NgxImageZoomModule.forRoot(),
+    NgbModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -92,7 +92,7 @@
           <td>{{ currentRacquet.strungWeight }}</td>
         </tr>
       </table><br><br>
-      <button type="button" class="btn btn-primary" [disabled]="form.invalid">Add To Cart</button>
+      <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="addToCart()">Add To Cart</button>
     </div>
   </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApparelList } from '../apparel-list';
 import { ActivatedRoute } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-apparel-detail',
@@ -8,14 +9,22 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./apparel-detail.component.css']
 })
 export class ApparelDetailComponent implements OnInit {
-
+  selectedApparel: any[] = this.storageService.getSelectedApparel();
+  total: any = this.storageService.getTotal();
   menApparel = ApparelList.men;
   currentApparel: any;
   size: string;
   color: string;
   quantity: string;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private storageService: StorageService) {
+    this.storageService.watchApparel().subscribe(selectedApparel => {
+      this.selectedApparel = selectedApparel;
+    });
+    this.storageService.watchTotal().subscribe(total => {
+      this.total = total;
+    });
+  }
 
   ngOnInit() {
     let apparelId: number = parseInt(this.route.snapshot.params['id']);
@@ -26,4 +35,14 @@ export class ApparelDetailComponent implements OnInit {
     this.quantity = "1";
   }
 
+  addToCart() {
+    const apparel = { ...this.currentApparel };
+    apparel["size"] = this.size;
+    apparel["color"] = this.color;
+    apparel["quantity"] = this.quantity;
+    let newArrayWithAddedItem = this.storageService.getSelectedApparel();
+    newArrayWithAddedItem.push(apparel);
+    this.storageService.updateApparel("selectedApparel", newArrayWithAddedItem);
+    this.storageService.updateTotal("total", this.storageService.calculateTotal());
+  }
 }
