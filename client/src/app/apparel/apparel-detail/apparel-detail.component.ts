@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApparelList } from '../apparel-list';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class ApparelDetailComponent implements OnInit {
   color: string;
   quantity: string;
 
-  constructor(private route: ActivatedRoute, private storageService: StorageService) {
+  constructor(private route: ActivatedRoute, private storageService: StorageService, private router: Router) {
     this.storageService.watchApparel().subscribe(selectedApparel => {
       this.selectedApparel = selectedApparel;
     });
@@ -44,5 +44,6 @@ export class ApparelDetailComponent implements OnInit {
     newArrayWithAddedItem.push(apparel);
     this.storageService.updateApparel("selectedApparel", newArrayWithAddedItem);
     this.storageService.updateTotal("total", this.storageService.calculateTotal());
+    this.router.navigate(['/cart']);
   }
 }

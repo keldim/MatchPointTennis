@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemList } from './item-list';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-other-items',
@@ -14,13 +15,28 @@ export class OtherItemsComponent implements OnInit {
   filteredProducts: any[] = [];
   typeFilter: any;
   priceFilter: any;
+  itemFilter: any = this.storageService.getItemFilter();
 
-  constructor() { }
+  constructor(private storageService: StorageService) {
+    this.storageService.watchItemFilter().subscribe(itemFilter => {
+      this.itemFilter = itemFilter;
+    });
+  }
 
   ngOnInit() {
     this.filteredProducts = [...this.items.itemList];
-    this.typeFilter = { balls: false, towels: false, grips: false, dampeners: false, sunscreen: false };
-    this.priceFilter = { range1: false, range2: false, range3: false, range4: false, range5: false, range6: false, range7: false, range8: false, range9: false, range10: false };
+
+    this.typeFilter = this.itemFilter.typeFilter;
+    this.priceFilter = this.itemFilter.priceFilter;
+
+    if (Object.values(this.typeFilter).includes(true)) {
+      this.filterExpand1 = true;
+    }
+    if (Object.values(this.priceFilter).includes(true)) {
+      this.filterExpand2 = true;
+    }
+
+    this.performFilter();
   }
 
   typeFilterChange(productList: any[]) {
@@ -53,11 +69,12 @@ export class OtherItemsComponent implements OnInit {
   }
 
   performFilter() {
+    this.storageService.updateItemFilter("itemFilter", this.itemFilter);
     let temporaryList: any[] = [...this.items.itemList];
     for (var key of Object.keys(this.typeFilter)) {
       if (this.typeFilter[key]) {
-          temporaryList = this.typeFilterChange(temporaryList);
-          break;
+        temporaryList = this.typeFilterChange(temporaryList);
+        break;
       }
     }
     for (var key of Object.keys(this.priceFilter)) {
@@ -66,8 +83,8 @@ export class OtherItemsComponent implements OnInit {
         break;
       }
     }
-      this.filteredProducts = temporaryList;
-      this.p = 1;
+    this.filteredProducts = temporaryList;
+    this.p = 1;
   }
 
 }

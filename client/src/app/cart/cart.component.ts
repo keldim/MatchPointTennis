@@ -14,6 +14,8 @@ export class CartComponent implements OnInit {
   selectedApparel: any[] = this.storageService.getSelectedApparel();
   selectedItems: any[] = this.storageService.getSelectedItems();
 
+  // for quantity update, use [(ngModel)], use update method of storageService in "proceed to checkout" button
+
   constructor(private storageService: StorageService) {
     this.storageService.watchRacquets().subscribe(selectedRacquets => {
       this.selectedRacquets = selectedRacquets;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RacquetList } from '../../racquets/racquet-list';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -18,7 +18,7 @@ export class RacquetDetailComponent implements OnInit {
   tension: string;
   quantity: string;
 
-  constructor(private route: ActivatedRoute, private storageService: StorageService) {
+  constructor(private route: ActivatedRoute, private storageService: StorageService, private router: Router) {
     this.storageService.watchRacquets().subscribe(selectedRacquets => {
       this.selectedRacquets = selectedRacquets;
     });
@@ -47,6 +47,7 @@ export class RacquetDetailComponent implements OnInit {
     newArrayWithAddedItem.push(racquet);
     this.storageService.updateRacquets("selectedRacquets", newArrayWithAddedItem);
     this.storageService.updateTotal("total", this.storageService.calculateTotal());
+    this.router.navigate(['/cart']);
   }
 
 }

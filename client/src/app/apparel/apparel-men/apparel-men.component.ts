@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApparelList } from '../apparel-list';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-apparel-men',
@@ -20,16 +21,40 @@ export class ApparelMenComponent implements OnInit {
   sizeFilter: any;
   colorFilter: any;
   priceFilter: any;
+  apparelFilter: any = this.storageService.getApparelFilter();
 
-  constructor() { }
+  constructor(private storageService: StorageService) {
+    this.storageService.watchApparelFilter().subscribe(apparelFilter => {
+      this.apparelFilter = apparelFilter;
+    });
+  }
 
   ngOnInit() {
     this.filteredProducts = [...this.menApparel.apparelList];
-    this.brandFilter = { Adidas: false, Asics: false, Fila: false, Lacoste: false, Nike: false };
-    this.styleFilter = { style1: false, style2: false, style3: false, style4: false, style5: false, style6: false };
-    this.sizeFilter = { size1: false, size2: false, size3: false, size4: false, size5: false, size6: false };
-    this.colorFilter = { color1: false, color2: false, color3: false, color4: false, color5: false, color6: false, color7: false, color8: false };
-    this.priceFilter = { range1: false, range2: false, range3: false, range4: false, range5: false, range6: false };
+
+    this.brandFilter = this.apparelFilter.brandFilter;
+    this.styleFilter = this.apparelFilter.styleFilter;
+    this.sizeFilter = this.apparelFilter.sizeFilter;
+    this.colorFilter = this.apparelFilter.colorFilter;
+    this.priceFilter = this.apparelFilter.priceFilter;
+
+    if (Object.values(this.brandFilter).includes(true)) {
+      this.filterExpand1 = true;
+    }
+    if (Object.values(this.styleFilter).includes(true)) {
+      this.filterExpand2 = true;
+    }
+    if (Object.values(this.sizeFilter).includes(true)) {
+      this.filterExpand3 = true;
+    }
+    if (Object.values(this.colorFilter).includes(true)) {
+      this.filterExpand4 = true;
+    }
+    if (Object.values(this.priceFilter).includes(true)) {
+      this.filterExpand5 = true;
+    }
+
+    this.performFilter();
   }
 
   brandFilterChange(productList: any[]) {
@@ -108,6 +133,7 @@ export class ApparelMenComponent implements OnInit {
   }
 
   performFilter() {
+    this.storageService.updateApparelFilter("apparelFilter", this.apparelFilter);
     let temporaryList: any[] = [...this.menApparel.apparelList];
     for (var key of Object.keys(this.brandFilter)) {
       if (this.brandFilter[key]) {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoeList } from '../shoe-list';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-shoes-men',
@@ -20,20 +21,40 @@ export class ShoesMenComponent implements OnInit {
   colorFilter: any;
   outsoleWarrantyFilter: any;
   priceFilter: any;
+  shoeFilter: any = this.storageService.getShoeFilter();
 
-  constructor() { }
+  constructor(private storageService: StorageService) {
+    this.storageService.watchShoeFilter().subscribe(shoeFilter => {
+      this.shoeFilter = shoeFilter;
+    });
+  }
 
   ngOnInit() {
     this.filteredProducts = [...this.menShoe.shoeList];
-    this.brandFilter = { Adidas: false, Asics: false, Fila: false, NewBalance: false, Nike: false };
-    this.sizeFilter = {
-      size1: false, size2: false, size3: false, size4: false, size5: false, size6: false, size7: false,
-      size8: false, size9: false, size10: false, size11: false, size12: false, size13: false, size14: false, size15: false,
-      size16: false, size17: false
-    };
-    this.colorFilter = { color1: false, color2: false, color3: false, color4: false, color5: false, color6: false, color7: false, color8: false };
-    this.outsoleWarrantyFilter = { warranty1: false, warranty2: false };
-    this.priceFilter = { range1: false, range2: false, range3: false, range4: false, range5: false, range6: false, range7: false, range8: false, range9: false };
+
+    this.brandFilter = this.shoeFilter.brandFilter;
+    this.sizeFilter = this.shoeFilter.sizeFilter;
+    this.colorFilter = this.shoeFilter.colorFilter;
+    this.outsoleWarrantyFilter = this.shoeFilter.outsoleWarrantyFilter;
+    this.priceFilter = this.shoeFilter.priceFilter;
+
+    if (Object.values(this.brandFilter).includes(true)) {
+      this.filterExpand1 = true;
+    }
+    if (Object.values(this.sizeFilter).includes(true)) {
+      this.filterExpand2 = true;
+    }
+    if (Object.values(this.colorFilter).includes(true)) {
+      this.filterExpand3 = true;
+    }
+    if (Object.values(this.outsoleWarrantyFilter).includes(true)) {
+      this.filterExpand4 = true;
+    }
+    if (Object.values(this.priceFilter).includes(true)) {
+      this.filterExpand5 = true;
+    }
+
+    this.performFilter();
   }
 
 
@@ -115,6 +136,7 @@ export class ShoesMenComponent implements OnInit {
   }
 
   performFilter() {
+    this.storageService.updateShoeFilter("shoeFilter", this.shoeFilter);
     let temporaryList: any[] = [...this.menShoe.shoeList];
     for (var key of Object.keys(this.brandFilter)) {
       if (this.brandFilter[key]) {

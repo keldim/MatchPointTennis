@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { RacquetList } from '../racquets/racquet-list';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-racquets',
@@ -23,17 +24,44 @@ export class RacquetsComponent implements OnInit {
   lengthFilter: any;
   strungWeightFilter: any;
   priceFilter: any;
+  racquetFilter: any = this.storageService.getRacquetFilter();
 
-  constructor() { }
+  constructor(private storageService: StorageService) {
+    this.storageService.watchRacquetFilter().subscribe(racquetFilter => {
+      this.racquetFilter = racquetFilter;
+    });
+  }
 
   ngOnInit() {
     this.filteredProducts = [...this.racquets.racquetList];
-    this.brandFilter = { Babolat: false, Head: false, Prince: false, Wilson: false, Yonex: false };
-    this.headSizeFilter = { range1: false, range2: false, range3: false, range4: false, range5: false, range6: false };
-    this.stringPatternFilter = { pattern1: false, pattern2: false, pattern3: false, pattern4: false, pattern5: false, pattern6: false };
-    this.lengthFilter = { length1: false, length2: false, length3: false, length4: false };
-    this.strungWeightFilter = { range1: false, range2: false, range3: false, range4: false, range5: false };
-    this.priceFilter = { range1: false, range2: false, range3: false, range4: false };
+
+    this.brandFilter = this.racquetFilter.brandFilter;
+    this.headSizeFilter = this.racquetFilter.headSizeFilter;
+    this.stringPatternFilter = this.racquetFilter.stringPatternFilter;
+    this.lengthFilter = this.racquetFilter.lengthFilter;
+    this.strungWeightFilter = this.racquetFilter.strungWeightFilter;
+    this.priceFilter = this.racquetFilter.priceFilter;
+
+    if (Object.values(this.brandFilter).includes(true)) {
+      this.filterExpand1 = true;
+    }
+    if (Object.values(this.headSizeFilter).includes(true)) {
+      this.filterExpand2 = true;
+    }
+    if (Object.values(this.stringPatternFilter).includes(true)) {
+      this.filterExpand3 = true;
+    }
+    if (Object.values(this.lengthFilter).includes(true)) {
+      this.filterExpand4 = true;
+    }
+    if (Object.values(this.strungWeightFilter).includes(true)) {
+      this.filterExpand5 = true;
+    }
+    if (Object.values(this.priceFilter).includes(true)) {
+      this.filterExpand6 = true;
+    }
+
+    this.performFilter();
   }
 
   brandFilterChange(productList: any[]) {
@@ -109,54 +137,46 @@ export class RacquetsComponent implements OnInit {
   }
 
   performFilter() {
-
+    this.storageService.updateRacquetFilter("racquetFilter", this.racquetFilter);
     let temporaryList: any[] = [...this.racquets.racquetList];
-
     for (var key of Object.keys(this.brandFilter)) {
       if (this.brandFilter[key]) {
           temporaryList = this.brandFilterChange(temporaryList);
           break;
       }
     }
-
     for (var key of Object.keys(this.headSizeFilter)) {
       if (this.headSizeFilter[key]) {
           temporaryList = this.headSizeFilterChange(temporaryList);
           break;
       }
     }
-
     for (var key of Object.keys(this.stringPatternFilter)) {
       if (this.stringPatternFilter[key]) {
         temporaryList = this.stringPatternFilterChange(temporaryList);
         break;
       }
     }
-
     for (var key of Object.keys(this.lengthFilter)) {
       if (this.lengthFilter[key]) {
         temporaryList = this.lengthFilterChange(temporaryList);
         break;
       }
     }
-
     for (var key of Object.keys(this.strungWeightFilter)) {
       if (this.strungWeightFilter[key]) {
         temporaryList = this.strungWeightFilterChange(temporaryList);
         break;
       }
     }
-
     for (var key of Object.keys(this.priceFilter)) {
       if (this.priceFilter[key]) {
         temporaryList = this.priceFilterChange(temporaryList);
         break;
       }
     }
-
       this.filteredProducts = temporaryList;
       this.p = 1;
-
   }
 
 }
