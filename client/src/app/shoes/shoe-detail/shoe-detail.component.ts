@@ -27,7 +27,6 @@ export class ShoeDetailComponent implements OnInit {
 
   ngOnInit() {
     let shoeId: number = parseInt(this.route.snapshot.params['id']);
-    console.log(shoeId);
     this.currentShoe  = this.menShoe.shoeList[shoeId - 1];
     this.size = "- Select Size -";
     this.quantity = "1";
@@ -42,5 +41,11 @@ export class ShoeDetailComponent implements OnInit {
     this.storageService.updateShoes("selectedShoes", newArrayWithAddedItem);
     this.storageService.updateTotal("total", this.storageService.calculateTotal());
     this.router.navigate(['/cart']);
+  }
+
+  backToShoes() {
+    if (this.router.url.includes("shoe-men")) {
+      this.router.navigate(['/shoe-men']);
+    }
   }
 }

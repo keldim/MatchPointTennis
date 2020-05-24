@@ -29,7 +29,6 @@ export class RacquetDetailComponent implements OnInit {
 
   ngOnInit() {
     let racquetId: number = parseInt(this.route.snapshot.params['id']);
-    console.log(racquetId);
     this.currentRacquet  = this.racquets.racquetList[racquetId - 1];
     this.gripSize = "- Select Grip Size -";
     this.racquetString = "- Select String -";
@@ -50,4 +49,7 @@ export class RacquetDetailComponent implements OnInit {
     this.router.navigate(['/cart']);
   }
 
+  backToRacquets() {
+    this.router.navigate(['/racquets']);
+  }
 }

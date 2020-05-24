@@ -40,4 +40,8 @@ export class OtherItemsDetailComponent implements OnInit {
     this.storageService.updateTotal("total", this.storageService.calculateTotal());
     this.router.navigate(['/cart']);
   }
+
+  backToItems() {
+      this.router.navigate(['/items']);
+  }
 }

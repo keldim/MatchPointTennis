@@ -15,3 +15,11 @@
 .right-box {
   padding-left: 110px;
 }
+
+.previous-page {
+  cursor: pointer;
+}
+
+.previous-page:hover {
+  text-decoration: underline;
+}

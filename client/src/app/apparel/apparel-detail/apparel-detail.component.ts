@@ -46,4 +46,10 @@ export class ApparelDetailComponent implements OnInit {
     this.storageService.updateTotal("total", this.storageService.calculateTotal());
     this.router.navigate(['/cart']);
   }
+
+  backToApparel() {
+    if (this.router.url.includes("apparel-men")) {
+      this.router.navigate(['/apparel-men']);
+    }
+  }
 }
