@@ -20,6 +20,8 @@ import { OtherItemsComponent } from './other-items/other-items.component';
 import { OtherItemsDetailComponent } from './other-items/other-items-detail/other-items-detail.component';
 import { DeleteModalComponent } from './cart/delete-modal/delete-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ShippingAndPaymentComponent } from './shipping-and-payment/shipping-and-payment.component';
+import { ReviewAndOrderComponent } from './review-and-order/review-and-order.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ShoesWomenComponent,
     OtherItemsComponent,
     OtherItemsDetailComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    ShippingAndPaymentComponent,
+    ReviewAndOrderComponent
   ],
   imports: [
     BrowserModule,

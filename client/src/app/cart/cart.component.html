@@ -1,49 +1,172 @@
-<span class="container">
-  <table class="cart-table">
-    <tr>
-      <th>Photo</th>
-      <th>Name</th>
-      <th>Quantity</th>
-      <th>Price</th>
-      <th>Action</th>
-    </tr>
+<app-delete-modal></app-delete-modal>
+<div class="container">
+  <div *ngFor="let racquet of selectedRacquets; let i = index;" class="row cart-row">
+    <div class="col-12 col-sm-2">
+      <img src="{{ racquet.thumbURL }}" class="img-size">
+    </div>
+    <div class="col-12 col-sm-4">
+      {{ racquet.name }}<br>
+      <small>Grip Size: {{ racquet.gripSize }}</small><br>
+      <small>String: {{ racquet.racquetString }}</small><br>
+      <small *ngIf="racquet.racquetString != 'Unstrung'">Tension: {{ racquet.tension }}</small>
+    </div>
+    <div class="col-6 col-sm-2">
+      ${{ racquet.price }}<br>
+      <small>each</small>
+    </div>
+    <div class="col-6 col-sm-1">
+      <select (change)="this.quantityChange($event, 'racquet', i)" value="{{ racquet.quantity }}">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select><br>
+      <small>quantity</small>
+    </div>
+    <div class="col-12 col-sm-2">
+      ${{ calculateTotalForItem(racquet.price, racquet.quantity) }}<br>
+      <small>total</small>
+    </div>
+    <div class="col-12 col-sm-1">
+      <button type="button" class="btn btn-outline-danger" (click)="openDelete(i, 'racquet')">Remove</button>
+    </div>
+  </div>
 
-    <app-delete-modal></app-delete-modal>
+  <div *ngFor="let shoe of selectedShoes; let i = index;" class="row cart-row">
+    <div class="col-12 col-sm-2">
+      <img src="{{ shoe.thumbURL }}" class="img-size">
+    </div>
+    <div class="col-12 col-sm-4">
+      {{ shoe.name }}<br>
+      <small>Size: {{ shoe.size }}</small><br>
+      <small>Color: {{ shoe.color }}</small><br>
+      <small>6-Month Warranty: {{ shoe.outsoleWarranty }}</small>
+    </div>
+    <div class="col-6 col-sm-2">
+      ${{ shoe.price }}<br>
+      <small>each</small>
+    </div>
+    <div class="col-6 col-sm-1">
+      <select (change)="this.quantityChange($event, 'shoe', i)" value="{{ shoe.quantity }}">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select><br>
+      <small>quantity</small>
+    </div>
+    <div class="col-12 col-sm-2">
+      ${{ calculateTotalForItem(shoe.price, shoe.quantity) }}<br>
+      <small>total</small>
+    </div>
+    <div class="col-12 col-sm-1">
+      <button type="button" class="btn btn-outline-danger" (click)="openDelete(i, 'shoe')">Remove</button>
+    </div>
+  </div>
 
-    <tr *ngFor="let racquet of selectedRacquets; let i = index;">
-      <td><img src="{{ racquet.thumbURL }}"></td>
-      <td>{{ racquet.name }}<br>
-        Grip Size: {{ racquet.gripSize }} / String: {{ racquet.racquetString }} <span *ngIf="racquet.racquetString != 'Unstrung'">/ Tension: {{ racquet.tension }}</span>
-      </td>
-      <td>{{ racquet.quantity }}</td>
-      <td>{{ racquet.price }}</td>
-      <td><span (click)="openDelete(i, 'racquet')" class="delete-item">delete</span></td>
-    </tr>
-    <tr *ngFor="let shoe of selectedShoes; let i = index;">
-      <td><img src="{{ shoe.thumbURL }}"></td>
-      <td>{{ shoe.name }}<br>
-        Size: {{ shoe.size }} / Color: {{ shoe.color }} / 6-Month Warranty: {{ shoe.outsoleWarranty }}
-      </td>
-      <td>{{ shoe.quantity }}</td>
-      <td>{{ shoe.price }}</td>
-      <td><span (click)="openDelete(i, 'shoe')" class="delete-item">delete</span></td>
-    </tr>
-    <tr *ngFor="let apparelItem of selectedApparel; let i = index;">
-      <td><img src="{{ apparelItem.thumbURL }}"></td>
-      <td>{{ apparelItem.name }}<br>
-        Size: {{ apparelItem.size }} / Color: {{ apparelItem.color }}
-      </td>
-      <td>{{ apparelItem.quantity }}</td>
-      <td>{{ apparelItem.price }}</td>
-      <td><span (click)="openDelete(i, 'apparelItem')" class="delete-item">delete</span></td>
-    </tr>
-    <tr *ngFor="let item of selectedItems; let i = index;">
-      <td><img src="{{ item.thumbURL }}"></td>
-      <td>{{ item.name }}</td>
-      <td>{{ item.quantity }}</td>
-      <td>{{ item.price }}</td>
-      <td><span (click)="openDelete(i, 'item')" class="delete-item">delete</span></td>
-    </tr>
-  </table>
-</span>
+  <div *ngFor="let apparelItem of selectedApparel; let i = index;" class="row cart-row">
+    <div class="col-12 col-sm-2">
+      <img src="{{ apparelItem.thumbURL }}" class="img-size">
+    </div>
+    <div class="col-12 col-sm-4">
+      {{ apparelItem.name }}<br>
+      <small>Size: {{ apparelItem.size }}</small><br>
+      <small>Color: {{ apparelItem.color }}</small>
+    </div>
+    <div class="col-6 col-sm-2">
+      ${{ apparelItem.price }}<br>
+      <small>each</small>
+    </div>
+    <div class="col-6 col-sm-1">
+      <select (change)="this.quantityChange($event, 'apparelItem', i)" value="{{ apparelItem.quantity }}">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select><br>
+      <small>quantity</small>
+    </div>
+    <div class="col-12 col-sm-2">
+      ${{ calculateTotalForItem(apparelItem.price, apparelItem.quantity) }}<br>
+      <small>total</small>
+    </div>
+    <div class="col-12 col-sm-1">
+      <button type="button" class="btn btn-outline-danger" (click)="openDelete(i, 'apparelItem')">Remove</button>
+    </div>
+  </div>
 
+  <div *ngFor="let item of selectedItems; let i = index;" class="row cart-row">
+    <div class="col-12 col-sm-2">
+      <img src="{{ item.thumbURL }}" class="img-size">
+    </div>
+    <div class="col-12 col-sm-4">
+      {{ item.name }}
+    </div>
+    <div class="col-6 col-sm-2">
+      ${{ item.price }}<br>
+      <small>each</small>
+    </div>
+    <div class="col-6 col-sm-1">
+      <select (change)="this.quantityChange($event, 'item', i)" value="{{ item.quantity }}">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select><br>
+      <small>quantity</small>
+    </div>
+    <div class="col-12 col-sm-2">
+      ${{ calculateTotalForItem(item.price, item.quantity) }}<br>
+      <small>total</small>
+    </div>
+    <div class="col-12 col-sm-1">
+      <button type="button" class="btn btn-outline-danger" (click)="openDelete(i, 'item')">Remove</button>
+    </div>
+  </div>
+
+
+  <!-- <div class="totals"> -->
+    <div class="totals-item">
+      <label>Subtotal</label>
+      <div class="totals-value" id="cart-subtotal">${{ showSubtotal() }}</div>
+    </div>
+    <div class="totals-item">
+      <label>Tax</label>
+      <div class="totals-value" id="cart-tax">$0.00</div>
+    </div>
+    <div class="totals-item">
+      <label>Shipping</label>
+      <div class="totals-value" id="cart-shipping">
+        <span *ngIf="this.calculateSubtotal() > 0.00 && this.calculateSubtotal() < 50.00 ">$5.75</span>
+        <span *ngIf="this.calculateSubtotal() >= 50.00 || this.calculateSubtotal() == 0.00">$0.00</span>
+      </div>
+    </div>
+    <div class="totals-item totals-item-total">
+      <label>Grand Total</label>
+      <div class="totals-value" id="cart-total">${{ showGrandTotal() }}</div>
+    </div>
+  <!-- </div> -->
+
+      <!-- <button class="checkout">Checkout</button> -->
+      <button type="button" class="btn btn-success checkout">Checkout</button>
+</div>

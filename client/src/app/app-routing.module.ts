@@ -10,6 +10,8 @@ import { ShoesMenComponent } from './shoes/shoes-men/shoes-men.component';
 import { OtherItemsComponent } from './other-items/other-items.component';
 import { OtherItemsDetailComponent } from './other-items/other-items-detail/other-items-detail.component';
 import { CartComponent } from './cart/cart.component';
+import { ShippingAndPaymentComponent } from './shipping-and-payment/shipping-and-payment.component';
+import { ReviewAndOrderComponent } from './review-and-order/review-and-order.component';
 
 const routes: Routes = [];
 
@@ -27,6 +29,8 @@ const routes: Routes = [];
       { path: 'items', component: OtherItemsComponent },
       { path: 'items/:id', component: OtherItemsDetailComponent },
       { path: 'cart', component: CartComponent },
+      { path: 'shipping-and-payment', component: ShippingAndPaymentComponent },
+      { path: 'review-and-order', component: ReviewAndOrderComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ])
