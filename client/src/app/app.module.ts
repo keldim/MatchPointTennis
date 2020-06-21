@@ -14,7 +14,7 @@ import { ApparelWomenComponent } from './apparel/apparel-women/apparel-women.com
 import { ShoesMenComponent } from './shoes/shoes-men/shoes-men.component';
 import { ShoesWomenComponent } from './shoes/shoes-women/shoes-women.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { OtherItemsComponent } from './other-items/other-items.component';
 import { OtherItemsDetailComponent } from './other-items/other-items-detail/other-items-detail.component';
@@ -22,6 +22,7 @@ import { DeleteModalComponent } from './cart/delete-modal/delete-modal.component
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShippingAndPaymentComponent } from './shipping-and-payment/shipping-and-payment.component';
 import { ReviewAndOrderComponent } from './review-and-order/review-and-order.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,8 @@ import { ReviewAndOrderComponent } from './review-and-order/review-and-order.com
     FormsModule,
     NgxImageZoomModule.forRoot(),
     NgbModule.forRoot(),
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -115,6 +115,7 @@ export class StorageService {
     return this.onSubjectForItemFilter.asObservable();
   }
 
+
   public getSelectedRacquets() {
     return JSON.parse(localStorage.getItem("selectedRacquets"));
   }
@@ -204,6 +205,9 @@ export class StorageService {
     localStorage.setItem(key, JSON.stringify(data));
     this.onSubjectForItemFilter.next(data);
   }
+
+
+
 
   public clear() {
     let emptyArray: any[] = [];
