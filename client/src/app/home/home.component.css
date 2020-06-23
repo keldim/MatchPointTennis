@@ -1,9 +1,40 @@
-.homePageCarouselSize {
-  /* width: 1110px;
-  height: auto; */
-  /* max-width: 100%;
-  max-height: 100%; */
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 120;
+.marketing h2 {
+  font-weight: 400;
 }
+
+.left-button {
+  margin-right: 2px;
+}
+
+.right-button {
+  margin-left: 2px;
+}
+
+.featurette-content {
+  text-align: center;
+}
+
+.featurette-divider {
+  margin: 5rem 0;
+}
+
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.05rem;
+}
+
+@media (min-width: 40em) {
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 7rem;
+  }
+}
+
+
+

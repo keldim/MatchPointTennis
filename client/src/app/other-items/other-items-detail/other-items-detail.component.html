@@ -1,13 +1,15 @@
 <div class="container">
-  <span (click)="backToItems()" class="previous-page">&larr; Back to items</span>
   <div class="row">
     <div class="col left-box">
-      <ngx-image-zoom [thumbImage]="currentItem.zoomThumb" [fullImage]="currentItem.zoomFull"></ngx-image-zoom>
-      <br>HOVER TO ZOOM
+      <ngx-image-zoom [thumbImage]="currentItem.zoomThumb" [fullImage]="currentItem.zoomFull"></ngx-image-zoom><br>
+      HOVER TO ZOOM<br><br>
+      <button type="button" class="btn btn-secondary" (click)="backToItems()">&larr; Back to items</button>
     </div>
     <div class="col right-box">
       {{ currentItem.name }}<br><br>
       <form #form="ngForm" ngNativeValidate>
+        <label>Price</label><br>
+        ${{ currentItem.price }}<br><br>
         <label>Quantity</label><br>
         <select name="quantity" [(ngModel)]="quantity">
           <option>1</option>

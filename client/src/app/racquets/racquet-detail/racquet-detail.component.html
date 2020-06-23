@@ -1,9 +1,9 @@
 <div class="container">
-  <span (click)="backToRacquets()" class="previous-page">&larr; Back to racquets</span>
   <div class="row">
     <div class="col left-box">
-      <ngx-image-zoom [thumbImage]="currentRacquet.zoomThumb" [fullImage]="currentRacquet.zoomFull"></ngx-image-zoom>
-      <br>HOVER TO ZOOM
+      <ngx-image-zoom [thumbImage]="currentRacquet.zoomThumb" [fullImage]="currentRacquet.zoomFull"></ngx-image-zoom><br>
+      HOVER TO ZOOM<br><br>
+      <button type="button" class="btn btn-secondary" (click)="backToRacquets()">&larr; Back to racquets</button>
       <!-- <br><img src="" style="height: 600px; width: 350px;"> -->
       <!-- small fixed size <div> for image list, <a> for choosing the image, fixed size <div> for thumbnail image and zoom on hover -->
       <!-- mimic tennis express for layout and mobile-responsiveness, use pictures from tennis warehouse-->
@@ -13,6 +13,8 @@
     <div class="col right-box">
       {{ currentRacquet.name }}<br><br>
       <form #form="ngForm" ngNativeValidate>
+        <label>Price</label><br>
+        ${{ currentRacquet.price }}<br><br>
         <label>Grip Size</label><br>
         <select name="gripSize" [(ngModel)]="gripSize" pattern="[A-Za-z0-9].*" #input1="ngModel">
           <option>- Select Grip Size -</option>

@@ -64,6 +64,18 @@ export class CartComponent implements OnInit {
     }
   }
 
+  calculatePriceForRacquet(string, mainItem) {
+    if (string.includes("$17.95")) {
+      return (17.95 + Number(mainItem)).toFixed(2);
+    } else if (string.includes("$18.95")) {
+      return (18.95 + Number(mainItem)).toFixed(2);
+    } else if (string.includes("$20.95")) {
+      return (20.95 + Number(mainItem)).toFixed(2);
+    } else {
+      return mainItem;
+    }
+  }
+
   calculateTotalForItem(price, quantity) {
     return (Number(price) * Number(quantity)).toFixed(2);
   }
@@ -71,7 +83,7 @@ export class CartComponent implements OnInit {
   calculateSubtotal() {
     let subtotal = 0;
     for(let racquet of this.selectedRacquets) {
-      subtotal += racquet.quantity * racquet.price;
+      subtotal += racquet.quantity * this.calculatePriceForRacquet(racquet.racquetString, racquet.price);
     }
     for(let shoe of this.selectedShoes) {
       subtotal += shoe.quantity * shoe.price;

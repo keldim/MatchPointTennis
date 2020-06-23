@@ -10,16 +10,9 @@
 
 .left-box {
   padding-right: 110px;
+  text-align: center;
 }
 
 .right-box {
   padding-left: 110px;
-}
-
-.previous-page {
-  cursor: pointer;
-}
-
-.previous-page:hover {
-  text-decoration: underline;
 }

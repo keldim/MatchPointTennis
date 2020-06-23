@@ -6,12 +6,13 @@
     </div>
     <div class="col-12 col-sm-4">
       {{ racquet.name }}<br>
+      <small>Main Item - ${{ racquet.price }}</small><br>
       <small>Grip Size: {{ racquet.gripSize }}</small><br>
       <small>String: {{ racquet.racquetString }}</small><br>
       <small *ngIf="racquet.racquetString != 'Unstrung'">Tension: {{ racquet.tension }}</small>
     </div>
     <div class="col-6 col-sm-2">
-      ${{ racquet.price }}<br>
+      ${{ calculatePriceForRacquet(racquet.racquetString, racquet.price) }}<br>
       <small>each</small>
     </div>
     <div class="col-6 col-sm-1">
@@ -29,7 +30,7 @@
       <small>quantity</small>
     </div>
     <div class="col-12 col-sm-2">
-      ${{ calculateTotalForItem(racquet.price, racquet.quantity) }}<br>
+      ${{ calculateTotalForItem(calculatePriceForRacquet(racquet.racquetString, racquet.price), racquet.quantity) }}<br>
       <small>total</small>
     </div>
     <div class="col-12 col-sm-1">
