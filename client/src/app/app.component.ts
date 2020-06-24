@@ -25,4 +25,14 @@ export class AppComponent {
     }
   }
 
+  mainContentTopMargin() {
+    if (this.router.url.includes("home")) {
+      return 'type1';
+    } else if (this.router.url.includes("shipping-and-payment") || this.router.url.includes("review-and-order")) {
+      return 'type2';
+    } else {
+      return 'type3';
+    }
+  }
+
 }

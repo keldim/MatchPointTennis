@@ -4,11 +4,23 @@
   padding: 0;
 }
 
-.mainArea {
+.mainArea1 {
   margin-top: 121px;
   /* 201px; */
   /* 101px */
 }
+
+.mainArea2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.mainArea3 {
+  margin-top: 151px;
+  margin-bottom: 30px;
+}
+
+.mai
 
 /* .navbar-nav li {
   padding-top: 5px;

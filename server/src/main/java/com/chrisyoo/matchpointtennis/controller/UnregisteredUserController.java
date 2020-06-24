@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.chrisyoo.matchpointtennis.entity.StripeClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stripe.model.Charge;
 
@@ -30,11 +31,11 @@ import com.stripe.model.Charge;
 @RequestMapping("/unregistered-user")
 public class UnregisteredUserController {
 
-	// private StripeClient stripeClient;
+	private StripeClient stripeClient;
 	// private OpenIdUserService openIdUserService;
 	// private PastOrderService pastOrderService;
 
-	// StripeClient stripeClient, OpenIdUserService openIdUserService,
+	// OpenIdUserService openIdUserService
 	// PastOrderService pastOrderService
 
 	private Thread cleanUpThread = new Thread() {
@@ -67,23 +68,23 @@ public class UnregisteredUserController {
 	private String cvc = "";
 
 	@Autowired
-	UnregisteredUserController() {
-		// this.stripeClient = stripeClient;
+	UnregisteredUserController(StripeClient stripeClient) {
+		this.stripeClient = stripeClient;
 		// this.openIdUserService = openIdUserService;
 		// this.pastOrderService = pastOrderService;
 	}
 
-	// @PostMapping("/charge")
-	// public Charge chargeCard(HttpServletRequest request, Model theModel) {
-	// try {
-	// String token = request.getHeader("token");
-	// Double amount = Double.parseDouble(request.getHeader("amount"));
-	// return this.stripeClient.chargeCreditCard(token, amount, request);
-	// } catch (Exception e) {
-	// System.out.println("Error in unregistered-user, /charge: " + e);
-	// return null;
-	// }
-	// }
+	@PostMapping("/charge")
+	public Charge chargeCard(HttpServletRequest request, Model theModel) {
+		try {
+			String token = request.getHeader("token");
+			Double amount = Double.parseDouble(request.getHeader("amount"));
+			return this.stripeClient.chargeCreditCard(token, amount, request);
+		} catch (Exception e) {
+			System.out.println("Error in unregistered-user, /charge: " + e);
+			return null;
+		}
+	}
 
 	@PostMapping("/shipping-and-payment")
 	public @ResponseBody String shippingAndPayment(HttpServletRequest request, Model theModel) {
@@ -152,8 +153,8 @@ public class UnregisteredUserController {
 	@PostMapping("/cancel")
 	public void cancelOrder() {
 		if (this.cleanUpThread.isAlive()) {
-				this.cleanUpThread.interrupt();
-				variableCleanUp();
+			this.cleanUpThread.interrupt();
+			variableCleanUp();
 		} else {
 			variableCleanUp();
 		}

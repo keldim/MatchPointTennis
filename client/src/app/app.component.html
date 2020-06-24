@@ -52,7 +52,7 @@
 </nav>
 
 
-<div class="mainArea">
+<div [ngClass]="{'mainArea1': mainContentTopMargin() === 'type1', 'mainArea2': mainContentTopMargin() === 'type2', 'mainArea3': mainContentTopMargin() === 'type3'}">
   <router-outlet></router-outlet>
 </div>
 

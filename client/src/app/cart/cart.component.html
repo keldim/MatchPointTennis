@@ -1,5 +1,12 @@
 <app-delete-modal></app-delete-modal>
-<div class="container">
+<div class="container" *ngIf="total != 0">
+  <span style="text-align: center;">
+    <p>
+      <strong>
+        *Free Shipping Over $50 / Shipping To USA Only
+      </strong>
+    </p>
+  </span>
   <div *ngFor="let racquet of selectedRacquets; let i = index;" class="row cart-row">
     <div class="col-12 col-sm-2">
       <img src="{{ racquet.thumbURL }}" class="img-size">
@@ -146,7 +153,6 @@
   </div>
 
 
-  <!-- <div class="totals"> -->
     <div class="totals-item" style="margin-top: 10px;">
       <label>Subtotal</label>
       <div class="totals-value" id="cart-subtotal">${{ showSubtotal() }}</div>
@@ -169,5 +175,10 @@
   <!-- </div> -->
 
       <!-- <button class="checkout">Checkout</button> -->
-      <button type="button" class="btn btn-success checkout">Checkout</button>
+      <button type="button" class="btn btn-success checkout" [routerLink]="['/shipping-and-payment']">Checkout</button>
 </div>
+  <span class="page-text" *ngIf="total == 0">
+    <p style="font-size: 2em;">
+      Cart is empty
+    </p>
+  </span>

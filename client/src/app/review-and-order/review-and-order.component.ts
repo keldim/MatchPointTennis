@@ -48,6 +48,18 @@ export class ReviewAndOrderComponent implements OnInit {
     return this.http.get('http://localhost:8080/unregistered-user/shipping-and-payment-info');
   }
 
+  calculatePriceForRacquet(string, mainItem) {
+    if (string.includes("$17.95")) {
+      return (17.95 + Number(mainItem)).toFixed(2);
+    } else if (string.includes("$18.95")) {
+      return (18.95 + Number(mainItem)).toFixed(2);
+    } else if (string.includes("$20.95")) {
+      return (20.95 + Number(mainItem)).toFixed(2);
+    } else {
+      return mainItem;
+    }
+  }
+
   calculateTotalForItem(price, quantity) {
     return (Number(price) * Number(quantity)).toFixed(2);
   }
@@ -55,7 +67,7 @@ export class ReviewAndOrderComponent implements OnInit {
   calculateSubtotal() {
     let subtotal = 0;
     for(let racquet of this.selectedRacquets) {
-      subtotal += racquet.quantity * racquet.price;
+      subtotal += racquet.quantity * this.calculatePriceForRacquet(racquet.racquetString, racquet.price);
     }
     for(let shoe of this.selectedShoes) {
       subtotal += shoe.quantity * shoe.price;
@@ -85,10 +97,17 @@ export class ReviewAndOrderComponent implements OnInit {
   }
 
   showOnlyLastFourNumbers(creditCardNumber) {
+    if (creditCardNumber == '') {
+      return "";
+    }
     return "**** **** **** " + creditCardNumber.slice(12);
   }
 
   getCreditCardType(creditCardNumber) {
+    if (creditCardNumber == '') {
+      return "";
+    }
+
     let amex_regex = new RegExp('^3[47][0-9]{0,}$'); //34, 37
     let visa_regex = new RegExp('^4[0-9]{0,}$'); //4
     let mastercard_regex = new RegExp('^(5[1-5]|222[1-9]|22[3-9]|2[3-6]|27[01]|2720)[0-9]{0,}$'); //2221-2720, 51-55
@@ -109,7 +128,24 @@ export class ReviewAndOrderComponent implements OnInit {
   }
 
   formatPhoneNumber(phoneNumber) {
+    if (phoneNumber == '') {
+      return "";
+    }
     return "(" + phoneNumber.slice(0,3) + ") " + phoneNumber.slice(3,6) + " - " + phoneNumber.slice(6,11);
+  }
+
+  formatCityStateZipcode(city, state, zipcode) {
+    if (city == '' || state == '' || zipcode == '') {
+      return "";
+    }
+    return city + ', ' + state + ' ' + zipcode;
+  }
+
+  cancelAndCleanUp() {
+    this.http.post('http://localhost:8080/unregistered-user/cancel', {}).subscribe(resp => {
+      console.log(resp);
+    });
+    this.router.navigate(['/cart']);
   }
 
 }
