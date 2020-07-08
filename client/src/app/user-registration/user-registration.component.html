@@ -1,0 +1,84 @@
+<div class="container">
+  <h4 class="mb-3">New User</h4>
+
+  <div *ngIf="failAlert" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>The username you typed in already exists. Please try a different username.</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="resetFailAlert()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div *ngIf="successAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Thank you for signing up! Login with your new account!</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="resetSuccessAlert()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <form [formGroup]="newUserInfo">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="username">Username</label>
+
+        <input type="text" class="form-control" id="username" formControlName="username">
+        <span *ngIf="newUserInfo.get('username').hasError('required')"
+          style="font-size: 12px; color: #b80000; margin-left: 10px">
+          This field is required
+        </span>
+        <span *ngIf="newUserInfo.get('username').hasError('pattern')"
+          style="font-size: 12px; color: #b80000; margin-left: 10px">
+          The username must be between 4 and 15 characters long, the first character must be a letter, and
+          no characters other than letters, numbers, and the underscore may be used.
+        </span>
+
+
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="email">Email</label>
+        <!-- placeholder="" value="" ^[a-zA-Z]{2,} -->
+        <input type="text" class="form-control" id="email" formControlName="email">
+        <span *ngIf="newUserInfo.get('email').hasError('required')"
+          style="font-size: 12px; color: #b80000; margin-left: 10px">
+          This field is required
+        </span>
+        <span *ngIf="newUserInfo.get('email').hasError('pattern')"
+          style="font-size: 12px; color: #b80000; margin-left: 10px">
+          Enter valid email address
+        </span>
+      </div>
+    </div>
+
+    <div class="row" formGroupName="passwordGroup">
+      <div class="col-md-6 mb-3">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" formControlName="password">
+        <span *ngIf="newUserInfo.get('passwordGroup').get('password').hasError('required')"
+          style="font-size: 12px; color: #b80000; margin-left: 10px">
+          This field is required
+        </span>
+        <span *ngIf="newUserInfo.get('passwordGroup').get('password').hasError('pattern')"
+          style="font-size: 12px; color: #b80000; margin-left: 10px">
+          Password must be between 4 and 8 digits long and include at least one numeric digit.
+        </span>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="passwordConfirmation">Password Confirmation</label>
+        <!-- placeholder="" -->
+        <input type="password" class="form-control" id="passwordConfirmation" formControlName="passwordConfirmation">
+        <span *ngIf="newUserInfo.get('passwordGroup').get('passwordConfirmation').hasError('required')"
+           style="font-size: 12px; color: #b80000; margin-left: 10px">
+          This field is required
+        </span>
+        <span *ngIf="newUserInfo.get('passwordGroup').hasError('match')"
+          style="font-size: 12px; color: #b80000; margin-left: 10px">
+          Password does not match
+        </span>
+      </div>
+    </div>
+    <hr class="mb-4">
+    <span class="d-flex justify-content-center">
+      <button type="button" class="btn btn-success" (click)="addNewUser()" [disabled]="!newUserInfo.valid">Sign
+        Up</button>
+      <!-- place navigation inside the method, not need to worry about click, it is used for both <button> and <a> -->
+    </span>
+  </form>
+</div>

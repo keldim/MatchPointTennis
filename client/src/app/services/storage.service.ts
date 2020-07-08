@@ -221,5 +221,7 @@ export class StorageService {
     this.onSubjectForShoes.next(emptyArray);
     this.onSubjectForApparel.next(emptyArray);
     this.onSubjectForItems.next(emptyArray);
+
+    this.updateTotal("total", 0);
   }
 }

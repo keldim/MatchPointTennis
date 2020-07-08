@@ -42,7 +42,6 @@
       <li *ngFor="let item of selectedItems" class="list-group-item d-flex justify-content-between lh-condensed">
         <div>
           <h6 class="my-0">{{ item.name }}</h6>
-          <small class="text-muted">Brief description</small>
         </div>
         <span class="text-muted">${{ item.price }} x {{ item.quantity }} = ${{ calculateTotalForItem(item.price, item.quantity) }}</span>
       </li>
@@ -120,7 +119,9 @@
   <span class="d-flex justify-content-center" *ngIf="shoppingAndPaymentInfo != null">
     <!-- (click)="sendInfo()" [disabled]="!shippingAndPaymentForm.valid" -->
     <button class="btn btn-danger btn-lg left-button" type="submit" (click)="cancelAndCleanUp()">Cancel</button>
-    <button class="btn btn-primary btn-lg right-button" type="submit" [disabled]="shoppingAndPaymentInfo['cardNumber'] == '' || shoppingAndPaymentInfo['address1'] == '' || total == 0">Place Order</button>
+    <button class="btn btn-primary btn-lg right-button" type="submit"
+    [disabled]="shoppingAndPaymentInfo['cardNumber'] == '' || shoppingAndPaymentInfo['address1'] == '' || total == 0"
+    (click)="chargeCreditCard()">Place Order</button>
   </span>
 
 

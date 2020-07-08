@@ -46,6 +46,14 @@
             Cart {{ total }}
           </a>
         </li>
+
+        <li class="nav-item menu-button-tweak">
+          <button type="button" class="btn btn-outline-danger" *ngIf="!isLoggedIn" (click)="login()">Login</button>
+          <button type="button" class="btn btn-outline-danger" *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+        </li>
+        <li class="nav-item menu-button-tweak">
+          <button type="button" class="btn btn-outline-danger" *ngIf="!isLoggedIn" [routerLink]="['/new-user']">Sign Up</button>
+        </li>
       </ul>
     </div>
   </div>

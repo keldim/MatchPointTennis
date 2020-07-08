@@ -11,6 +11,8 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.SimpleMailMessage;
@@ -55,6 +57,20 @@ public class StripeClient {
  
         Map<String, Object> model = new HashMap();
         
+        JSONParser parser = new JSONParser();
+        
+        JSONArray selectedRacquets = (JSONArray) parser.parse(request.getHeader("selectedRacquets"));
+		JSONArray selectedShoes = (JSONArray) parser.parse(request.getHeader("selectedShoes"));
+		JSONArray selectedApparel = (JSONArray) parser.parse(request.getHeader("selectedApparel"));
+		JSONArray selectedItems = (JSONArray) parser.parse(request.getHeader("selectedItems"));
+        
+		model.put("amount", request.getHeader("amount"));
+		model.put("subtotal", request.getHeader("subtotal"));
+		
+        model.put("selectedRacquets", selectedRacquets);
+        model.put("selectedShoes", selectedShoes);
+        model.put("selectedApparel", selectedApparel);
+        model.put("selectedItems", selectedItems);
         
         model.put("firstName", request.getHeader("firstName"));
         model.put("lastName", request.getHeader("lastName"));
@@ -67,10 +83,11 @@ public class StripeClient {
         model.put("state", request.getHeader("state"));
         model.put("zipcode", request.getHeader("zipcode"));
         
-        model.put("cardNumber", request.getHeader("cardNumber"));
-        model.put("expMonth", request.getHeader("expMonth"));
-        model.put("expYear", request.getHeader("expYear"));
-        model.put("cvc", request.getHeader("cvc"));
+        model.put("cardLastFourNumbers", request.getHeader("cardLastFourNumbers"));
+        model.put("cardType", request.getHeader("cardType"));
+//        model.put("expMonth", request.getHeader("expMonth"));
+//        model.put("expYear", request.getHeader("expYear"));
+//        model.put("cvc", request.getHeader("cvc"));
         
         
          

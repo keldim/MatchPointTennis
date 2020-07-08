@@ -142,7 +142,7 @@ public class UnregisteredUserController {
 						variableCleanUp();
 						System.out.println("cleanUpThread stopped");
 					} catch (InterruptedException e) {
-						System.out.println("order canceled, variables are cleaned, cleanUpThread stopped");
+						System.out.println("variables are cleaned, cleanUpThread no longer needed and stopped");
 					}
 				}
 			};

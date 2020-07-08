@@ -23,6 +23,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShippingAndPaymentComponent } from './shipping-and-payment/shipping-and-payment.component';
 import { ReviewAndOrderComponent } from './review-and-order/review-and-order.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SigninRedirectCallbackComponent } from './signin-redirect-callback.component';
+import { SignoutRedirectCallbackComponent } from './signout-redirect-callback.component';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { HttpClientModule } from '@angular/common/http';
     OtherItemsDetailComponent,
     DeleteModalComponent,
     ShippingAndPaymentComponent,
-    ReviewAndOrderComponent
+    ReviewAndOrderComponent,
+    SigninRedirectCallbackComponent,
+    SignoutRedirectCallbackComponent,
+    UserRegistrationComponent
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,9 @@ import { OtherItemsDetailComponent } from './other-items/other-items-detail/othe
 import { CartComponent } from './cart/cart.component';
 import { ShippingAndPaymentComponent } from './shipping-and-payment/shipping-and-payment.component';
 import { ReviewAndOrderComponent } from './review-and-order/review-and-order.component';
+import { SigninRedirectCallbackComponent } from './signin-redirect-callback.component';
+import { SignoutRedirectCallbackComponent } from './signout-redirect-callback.component';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
 
 const routes: Routes = [];
 
@@ -31,6 +34,9 @@ const routes: Routes = [];
       { path: 'cart', component: CartComponent },
       { path: 'shipping-and-payment', component: ShippingAndPaymentComponent },
       { path: 'review-and-order', component: ReviewAndOrderComponent },
+      { path: 'signin-callback', component: SigninRedirectCallbackComponent },
+      { path: 'signout-callback', component: SignoutRedirectCallbackComponent },
+      { path: 'new-user', component: UserRegistrationComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ])

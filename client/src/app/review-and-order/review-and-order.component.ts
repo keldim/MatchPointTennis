@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 import { FormBuilder } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -18,7 +18,7 @@ export class ReviewAndOrderComponent implements OnInit {
   total: any = this.storageService.getTotal();
   shoppingAndPaymentInfo: Object;
 
-  constructor(private storageService: StorageService, private fb: FormBuilder, private http: HttpClient, private router: Router) {
+  constructor(private storageService: StorageService, private fb: FormBuilder, private http: HttpClient, private router: Router, private zone: NgZone) {
     this.storageService.watchRacquets().subscribe(selectedRacquets => {
       this.selectedRacquets = selectedRacquets;
     });
@@ -147,5 +147,96 @@ export class ReviewAndOrderComponent implements OnInit {
     });
     this.router.navigate(['/cart']);
   }
+
+  chargeCreditCard() {
+    (<any>window).Stripe.card.createToken({
+      number: this.shoppingAndPaymentInfo['cardNumber'],
+      exp_month: this.shoppingAndPaymentInfo['expMonth'],
+      exp_year: this.shoppingAndPaymentInfo['expYear'],
+      cvc: this.shoppingAndPaymentInfo['cvc']
+    }, (status: number, response: any) => {
+      if (status === 200) {
+        let token = response.id;
+        this.chargeCard(token);
+
+        this.zone.run(() => {
+          this.router.navigate(['/cart']);
+        });
+        // this.router.navigate(['/thank-you']);
+      } else {
+        console.log(response.error.message);
+      }
+    });
+  }
+
+  chargeCard(token: string) {
+    // if (this.currentOrderComponent.isLoggedIn()) {
+    //   const headers = new HttpHeaders({
+    //     'Authorization': `Bearer ` + this._authService.getAccessToken(),
+    //     'token': token,
+    //     'amount': this.orderOnlineComponent.showTotal().toString(),
+    //     'pickupLocation': this.pickupLocation,
+    //     'firstName': this.contactInfo.controls.firstName.value.trim(),
+    //     'lastName': this.contactInfo.controls.lastName.value.trim(),
+    //     'email': this.contactInfo.controls.email.value,
+    //     'phoneNumber': this.contactInfo.controls.phoneNumber.value,
+    //     'invoiceImg': this.inoviceImg,
+    //     'pizzaItems': localStorage.getItem("pizzaItems"),
+    //     'saladItems': localStorage.getItem("saladItems"),
+    //     'drinkItems': localStorage.getItem("drinkItems"),
+    //     'dessertItems': localStorage.getItem("dessertItems")
+    //   });
+    //   console.log(headers);
+
+    //   this.http.post('http://new-campania-server-env.eba-igwhis5n.us-east-2.elasticbeanstalk.com/registered-user/charge', {}, { headers: headers }).subscribe(resp => {
+    //     console.log(resp);
+    //     if (resp == null) {
+    //       this.router.navigate(['/error-page']);
+    //     }
+    //   });
+    // } else {
+      const headers = new HttpHeaders({
+        'token': token,
+        'amount': this.showGrandTotal().toString(),
+        'subtotal': this.showSubtotal().toString(),
+        'selectedRacquets': localStorage.getItem("selectedRacquets"),
+        'selectedShoes': localStorage.getItem("selectedShoes"),
+        'selectedApparel': localStorage.getItem("selectedApparel"),
+        'selectedItems': localStorage.getItem("selectedItems"),
+        'firstName': this.shoppingAndPaymentInfo['firstName'],
+        'lastName': this.shoppingAndPaymentInfo['lastName'],
+        'email': this.shoppingAndPaymentInfo['email'],
+        'phoneNumber': this.formatPhoneNumber(this.shoppingAndPaymentInfo['phoneNumber']),
+        'address1': this.shoppingAndPaymentInfo['address1'],
+        'address2': this.shoppingAndPaymentInfo['address2'],
+        'city': this.shoppingAndPaymentInfo['city'],
+        'state': this.shoppingAndPaymentInfo['state'],
+        'zipcode': this.shoppingAndPaymentInfo['zipcode'],
+        'cardLastFourNumbers': this.showOnlyLastFourNumbers(this.shoppingAndPaymentInfo['cardNumber']),
+        'cardType': this.getCreditCardType(this.shoppingAndPaymentInfo['cardNumber'])
+
+
+
+        // clear shoppingandpaymentinfo after placing order?
+
+
+      });
+      console.log(headers);
+
+      this.http.post('http://localhost:8080/unregistered-user/charge', {}, { headers: headers }).subscribe(resp => {
+        console.log(resp);
+        if (resp == null) {
+          // this.router.navigate(['/error-page']);
+          console.log("error");
+        }
+      });
+    // }
+
+    this.http.post('http://localhost:8080/unregistered-user/cancel', {}).subscribe(resp => {
+      console.log(resp);
+    });
+    this.storageService.clear();
+  }
+
 
 }
