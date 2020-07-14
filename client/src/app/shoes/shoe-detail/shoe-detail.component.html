@@ -3,7 +3,8 @@
     <div class="col left-box">
       <ngx-image-zoom [thumbImage]="currentShoe.zoomThumb" [fullImage]="currentShoe.zoomFull"></ngx-image-zoom><br>
       HOVER TO ZOOM<br><br>
-      <button type="button" class="btn btn-secondary" (click)="backToShoes()">&larr; Back to men's shoes</button>
+      <button type="button" class="btn btn-secondary" *ngIf="isMen()" (click)="backToShoes()">&larr; Back to men's shoes</button>
+      <button type="button" class="btn btn-secondary" *ngIf="!isMen()" (click)="backToShoes()">&larr; Back to women's shoes</button>
     </div>
     <div class="col right-box">
       {{ currentShoe.name }}<br><br>

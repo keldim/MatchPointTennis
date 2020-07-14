@@ -12,6 +12,7 @@ export class ShoeDetailComponent implements OnInit {
   selectedShoes: any[] = this.storageService.getSelectedShoes();
   total: any = this.storageService.getTotal();
   menShoe = ShoeList.men;
+  womenShoe = ShoeList.women;
   currentShoe: any;
   size: string;
   quantity: string;
@@ -27,7 +28,11 @@ export class ShoeDetailComponent implements OnInit {
 
   ngOnInit() {
     let shoeId: number = parseInt(this.route.snapshot.params['id']);
-    this.currentShoe  = this.menShoe.shoeList[shoeId - 1];
+    if (this.isMen()) {
+      this.currentShoe  = this.menShoe.shoeList[shoeId - 1];
+    } else {
+      this.currentShoe  = this.womenShoe.shoeList[shoeId - 1];
+    }
     this.size = "- Select Size -";
     this.quantity = "1";
   }
@@ -44,8 +49,18 @@ export class ShoeDetailComponent implements OnInit {
   }
 
   backToShoes() {
-    if (this.router.url.includes("shoe-men")) {
+    if (this.isMen()) {
       this.router.navigate(['/shoe-men']);
+    } else {
+      this.router.navigate(['/shoe-women']);
+    }
+  }
+
+  isMen() {
+    if (this.router.url.includes("shoe-men")) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

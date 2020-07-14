@@ -15,6 +15,8 @@ import { ReviewAndOrderComponent } from './review-and-order/review-and-order.com
 import { SigninRedirectCallbackComponent } from './signin-redirect-callback.component';
 import { SignoutRedirectCallbackComponent } from './signout-redirect-callback.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { ApparelWomenComponent } from './apparel/apparel-women/apparel-women.component';
+import { ShoesWomenComponent } from './shoes/shoes-women/shoes-women.component';
 
 const routes: Routes = [];
 
@@ -27,8 +29,12 @@ const routes: Routes = [];
       { path: 'racquets/:id', component: RacquetDetailComponent },
       { path: 'apparel-men', component: ApparelMenComponent },
       { path: 'apparel-men/:id', component: ApparelDetailComponent },
+      { path: 'apparel-women', component: ApparelWomenComponent },
+      { path: 'apparel-women/:id', component: ApparelDetailComponent },
       { path: 'shoe-men', component: ShoesMenComponent },
       { path: 'shoe-men/:id', component: ShoeDetailComponent },
+      { path: 'shoe-women', component: ShoesWomenComponent },
+      { path: 'shoe-women/:id', component: ShoeDetailComponent },
       { path: 'items', component: OtherItemsComponent },
       { path: 'items/:id', component: OtherItemsDetailComponent },
       { path: 'cart', component: CartComponent },

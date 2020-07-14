@@ -15,6 +15,9 @@ export class StorageService {
   onSubjectForApparelFilter = new Subject<any[]>();
   onSubjectForItemFilter = new Subject<any[]>();
 
+  onSubjectForWomenShoeFilter = new Subject<any[]>();
+  onSubjectForWomenApparelFilter = new Subject<any[]>();
+
   constructor() {
     if (localStorage.getItem("selectedRacquets") == null) {
       let emptyArray: any[] = [];
@@ -60,6 +63,28 @@ export class StorageService {
       };
       localStorage.setItem("shoeFilter", JSON.stringify(shoeFilter));
     }
+
+    if (localStorage.getItem("womenShoeFilter") == null) {
+      const shoeFilter = {
+        brandFilter: { Adidas: false, Asics: false, Fila: false, NewBalance: false, Nike: false },
+        sizeFilter: {
+          size1: false, size2: false, size3: false, size4: false, size5: false, size6: false, size7: false,
+          size8: false, size9: false, size10: false, size11: false, size12: false, size13: false, size14: false, size15: false,
+          size16: false, size17: false
+        },
+        colorFilter: { color1: false, color2: false, color3: false, color4: false, color5: false, color6: false, color7: false, color8: false },
+        outsoleWarrantyFilter: { warranty1: false, warranty2: false },
+        priceFilter: { range1: false, range2: false, range3: false, range4: false, range5: false, range6: false, range7: false, range8: false, range9: false }
+      };
+      localStorage.setItem("womenShoeFilter", JSON.stringify(shoeFilter));
+    }
+
+
+
+
+
+
+
     if (localStorage.getItem("apparelFilter") == null) {
       const apparelFilter = {
         brandFilter: { Adidas: false, Asics: false, Fila: false, Lacoste: false, Nike: false },
@@ -70,6 +95,24 @@ export class StorageService {
       };
       localStorage.setItem("apparelFilter", JSON.stringify(apparelFilter));
     }
+
+    if (localStorage.getItem("womenApparelFilter") == null) {
+      const apparelFilter = {
+        brandFilter: { Adidas: false, Asics: false, Fila: false, Lacoste: false, Nike: false },
+        styleFilter: { style1: false, style2: false, style3: false, style4: false, style5: false, style6: false, style7: false },
+        sizeFilter: { size1: false, size2: false, size3: false, size4: false, size5: false, size6: false },
+        colorFilter: { color1: false, color2: false, color3: false, color4: false, color5: false, color6: false, color7: false, color8: false },
+        priceFilter: { range1: false, range2: false, range3: false, range4: false, range5: false, range6: false }
+      };
+      localStorage.setItem("womenApparelFilter", JSON.stringify(apparelFilter));
+    }
+
+
+
+
+
+
+
     if (localStorage.getItem("itemFilter") == null) {
       const itemFilter = {
         typeFilter: { balls: false, towels: false, grips: false, dampeners: false, sunscreen: false },
@@ -103,13 +146,26 @@ export class StorageService {
     return this.onSubjectForRacquetFilter.asObservable();
   }
 
+
+
   watchShoeFilter(): Observable<any[]> {
     return this.onSubjectForShoeFilter.asObservable();
   }
 
+  watchWomenShoeFilter(): Observable<any[]> {
+    return this.onSubjectForWomenShoeFilter.asObservable();
+  }
+
+
+
   watchApparelFilter(): Observable<any[]> {
     return this.onSubjectForApparelFilter.asObservable();
   }
+  watchWomenApparelFilter(): Observable<any[]> {
+    return this.onSubjectForWomenApparelFilter.asObservable();
+  }
+
+
 
   watchItemFilter(): Observable<any[]> {
     return this.onSubjectForItemFilter.asObservable();
@@ -140,13 +196,26 @@ export class StorageService {
     return JSON.parse(localStorage.getItem("racquetFilter"));
   }
 
+
+
   public getShoeFilter() {
     return JSON.parse(localStorage.getItem("shoeFilter"));
   }
+  public getWomenShoeFilter() {
+    return JSON.parse(localStorage.getItem("womenShoeFilter"));
+  }
+
+
 
   public getApparelFilter() {
     return JSON.parse(localStorage.getItem("apparelFilter"));
   }
+
+  public getWomenApparelFilter() {
+    return JSON.parse(localStorage.getItem("womenApparelFilter"));
+  }
+
+
 
   public getItemFilter() {
     return JSON.parse(localStorage.getItem("itemFilter"));
@@ -193,14 +262,30 @@ export class StorageService {
     localStorage.setItem(key, JSON.stringify(data));
     this.onSubjectForRacquetFilter.next(data);
   }
+
+
   public updateShoeFilter(key: string, data: any): void {
     localStorage.setItem(key, JSON.stringify(data));
     this.onSubjectForShoeFilter.next(data);
   }
+  public updateWomenShoeFilter(key: string, data: any): void {
+    localStorage.setItem(key, JSON.stringify(data));
+    this.onSubjectForWomenShoeFilter.next(data);
+  }
+
+
+
   public updateApparelFilter(key: string, data: any): void {
     localStorage.setItem(key, JSON.stringify(data));
     this.onSubjectForApparelFilter.next(data);
   }
+  public updateWomenApparelFilter(key: string, data: any): void {
+    localStorage.setItem(key, JSON.stringify(data));
+    this.onSubjectForWomenApparelFilter.next(data);
+  }
+
+
+
   public updateItemFilter(key: string, data: any): void {
     localStorage.setItem(key, JSON.stringify(data));
     this.onSubjectForItemFilter.next(data);

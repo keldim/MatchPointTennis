@@ -1,3 +1,211 @@
-<p>
-  apparel-women works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="filter col-md-3 col-lg-2 border" style="background: rgb(246, 246, 245);">
+      <h3 style="font-size: 16px; padding-top: 10px;">Filters</h3>
+      <div>
+        <h3 (click)="filterExpand1 = !filterExpand1"
+          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+          Brand
+          <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
+        </h3>
+        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand1 ? 'block' : 'none'}">
+          <li class="filter-choice">
+            <a>
+              <input type="checkbox" [(ngModel)]="brandFilter.Adidas" (ngModelChange)="performFilter()">
+              Adidas
+            </a>
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="brandFilter.Asics" (ngModelChange)="performFilter()">
+            Asics
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="brandFilter.Fila" (ngModelChange)="performFilter()">
+            Fila
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="brandFilter.Lacoste" (ngModelChange)="performFilter()">
+            Lacoste
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="brandFilter.Nike" (ngModelChange)="performFilter()">
+            Nike
+          </li>
+        </ul>
+      </div>
+      <div style="cursor: pointer">
+        <h3 (click)="filterExpand2 = !filterExpand2"
+          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+          Style
+          <img style="float: right;" *ngIf="filterExpand2 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img style="float: right;" *ngIf="filterExpand2 == true" src="../../assets/images/icons8-subtract-16.png">
+        </h3>
+        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand2 ? 'block' : 'none'}">
+          <li>
+            <input type="checkbox" [(ngModel)]="styleFilter.style1" (ngModelChange)="performFilter()">
+            Jackets
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="styleFilter.style2" (ngModelChange)="performFilter()">
+            Long Sleeves
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="styleFilter.style3" (ngModelChange)="performFilter()">
+            Pants
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="styleFilter.style4" (ngModelChange)="performFilter()">
+            Dress
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="styleFilter.style5" (ngModelChange)="performFilter()">
+            Shirts
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="styleFilter.style6" (ngModelChange)="performFilter()">
+            Bras
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="styleFilter.style7" (ngModelChange)="performFilter()">
+            Shorts
+          </li>
+        </ul>
+      </div>
+      <div style="cursor: pointer">
+        <h3 (click)="filterExpand3 = !filterExpand3"
+          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+          Size
+          <img style="float: right;" *ngIf="filterExpand3 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img style="float: right;" *ngIf="filterExpand3 == true" src="../../assets/images/icons8-subtract-16.png">
+        </h3>
+        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand3 ? 'block' : 'none'}">
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size1" (ngModelChange)="performFilter()">
+            XS
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size2" (ngModelChange)="performFilter()">
+            S
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size3" (ngModelChange)="performFilter()">
+            M
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size4" (ngModelChange)="performFilter()">
+            L
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size5" (ngModelChange)="performFilter()">
+            XL
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size6" (ngModelChange)="performFilter()">
+            XXL
+          </li>
+        </ul>
+      </div>
+      <div style="cursor: pointer">
+        <h3 (click)="filterExpand4 = !filterExpand4"
+          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+          Color
+          <img style="float: right;" *ngIf="filterExpand4 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img style="float: right;" *ngIf="filterExpand4 == true" src="../../assets/images/icons8-subtract-16.png">
+        </h3>
+        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand4 ? 'block' : 'none'}">
+          <li>
+            <input type="checkbox" [(ngModel)]="colorFilter.color1" (ngModelChange)="performFilter()">
+            Black
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="colorFilter.color2" (ngModelChange)="performFilter()">
+            Blue
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="colorFilter.color3" (ngModelChange)="performFilter()">
+            Green
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="colorFilter.color4" (ngModelChange)="performFilter()">
+            Gray
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="colorFilter.color5" (ngModelChange)="performFilter()">
+            Purple
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="colorFilter.color6" (ngModelChange)="performFilter()">
+            Red
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="colorFilter.color7" (ngModelChange)="performFilter()">
+            White
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="colorFilter.color8" (ngModelChange)="performFilter()">
+            Yellow
+          </li>
+        </ul>
+      </div>
+      <div style="cursor: pointer">
+        <h3 (click)="filterExpand5 = !filterExpand5"
+          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+          Price
+          <img style="float: right;" *ngIf="filterExpand5 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img style="float: right;" *ngIf="filterExpand5 == true" src="../../assets/images/icons8-subtract-16.png">
+        </h3>
+        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand5 ? 'block' : 'none'}">
+          <li>
+            <input type="checkbox" [(ngModel)]="priceFilter.range1" (ngModelChange)="performFilter()">
+            $10 - $19.99
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="priceFilter.range2" (ngModelChange)="performFilter()">
+            $20 - $29.99
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="priceFilter.range3" (ngModelChange)="performFilter()">
+            $30 - $39.99
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="priceFilter.range4" (ngModelChange)="performFilter()">
+            $40 - $49.99
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="priceFilter.range5" (ngModelChange)="performFilter()">
+            $50 - $59.99
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="priceFilter.range6" (ngModelChange)="performFilter()">
+            $60+
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="shopping-items col-md-9 col-lg-10">
+      <div class="row">
+        <span *ngFor="let product of filteredProducts | paginate: { itemsPerPage: 16, currentPage: p }">
+          <div class="col">
+            <div class="card" style="width: 12rem; text-align: center; border: none;">
+              <a [routerLink]="['/apparel-women', product.id]">
+                <img src="{{ product.thumbURL }}" style="max-width: 100%; max-height: 100%;">
+              </a>
+              <div class="card-body">
+                <p class="card-text">
+                  <a [routerLink]="['/apparel-women', product.id]" style="color: black;">
+                    {{ product.name }}
+                  </a>
+                  <br>${{ product.price }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </span>
+      </div>
+      <div class="pagination">
+        <pagination-controls (pageChange)="p = $event" max-size="10"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

@@ -89,7 +89,89 @@ export class ShoeList {
   }
   static women = {
     shoeList: [
+      { id: "1", brand: "Nike", name: "Nike Women's Air Zoom Vapor X Knit Tennis Shoes Laser Crimson and Pink",
+      size: ["5.5", "6", "6.5", "7", "8", "8.5", "9.5", "10", "10.5", "11", "11.5", "12"], color: "Red", price: "127.50",
+      outsoleWarranty: "No",
+      thumbURL: "../../assets/images/91531-DEFAULT-m.jpg",
+      zoomThumb: "../../../assets/images/91531-zoomThumb.png",
+      zoomFull: "../../../assets/images/91531-DEFAULT-l.jpg" },
 
+      { id: "2", brand: "Nike", name: "Nike Women's Air Zoom Vapor X Tennis Shoes Royal Pulse and Obsidian",
+      size: ["5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12"], color: "Blue", price: "112.50",
+      outsoleWarranty: "No",
+      thumbURL: "../../assets/images/91505-DEFAULT-m.jpg",
+      zoomThumb: "../../../assets/images/91505-zoomThumb.png",
+      zoomFull: "../../../assets/images/91505-DEFAULT-l.jpg" },
+
+      { id: "3", brand: "Nike", name: "Nike Women's Air Zoom Vapor X Knit Tennis Shoes Opti Yellow and Bright Citron",
+      size: ["5", "6"], color: "Yellow", price: "110.50",
+      outsoleWarranty: "No",
+      thumbURL: "../../assets/images/90293-DEFAULT-m.jpg",
+      zoomThumb: "../../../assets/images/90293-zoomThumb.png",
+      zoomFull: "../../../assets/images/90293-DEFAULT-l.jpg" },
+
+      { id: "4", brand: "Nike", name: "Nike Women's Zoom Cage 3 Tennis Shoes Bordeaux and White",
+      size: ["5"], color: "Purple", price: "91.00",
+      outsoleWarranty: "Yes",
+      thumbURL: "../../assets/images/87242-DEFAULT-m.jpg",
+      zoomThumb: "../../../assets/images/87242-zoomThumb.png",
+      zoomFull: "../../../assets/images/87242-DEFAULT-l.jpg" },
+
+      { id: "5", brand: "Nike", name: "Nike Women's Zoom Cage 3 Tennis Shoes Pure Platinum and Racer Blue",
+      size: ["5", "6"], color: "Gray", price: "91.00",
+      outsoleWarranty: "Yes",
+      thumbURL: "../../assets/images/84793-DEFAULT-m.jpg",
+      zoomThumb: "../../../assets/images/84793-zoomThumb.png",
+      zoomFull: "../../../assets/images/84793-DEFAULT-l.jpg" },
+
+      { id: "6", brand: "Nike", name: "Nike Women's Flare 2 HC Tennis Shoes Royal Pulse and Obsidian",
+      size: ["5", "5.5", "6", "6.5", "7", "7.5", "8.5", "9", "10", "10.5", "11", "11.5"], color: "Blue", price: "82.50",
+      outsoleWarranty: "No",
+      thumbURL: "../../assets/images/91449-DEFAULT-m.jpg",
+      zoomThumb: "../../../assets/images/91449-zoomThumb.png",
+      zoomFull: "../../../assets/images/91449-DEFAULT-l.jpg" },
+
+      { id: "7", brand: "Nike", name: "Nike Women's Flare 2 HC Tennis Shoes Laser Crimson and Pink",
+      size: ["5.5", "6", "6.5", "7", "7.5", "8.5"], color: "Red", price: "82.50",
+      outsoleWarranty: "No",
+      thumbURL: "../../assets/images/91537-DEFAULT-m.jpg",
+      zoomThumb: "../../../assets/images/91537-zoomThumb.png",
+      zoomFull: "../../../assets/images/91537-DEFAULT-l.jpg" },
+
+      { id: "8", brand: "Nike", name: "Nike Women's Air Zoom Ultra Tennis Shoes White and Mega Blue",
+      size: ["5"], color: "White / Blue", price: "75.00",
+      outsoleWarranty: "No",
+      thumbURL: "../../assets/images/68492-DEFAULT-m.jpg",
+      zoomThumb: "../../../assets/images/68492-zoomThumb.png",
+      zoomFull: "../../../assets/images/68492-DEFAULT-l.jpg" },
+
+      { id: "9", brand: "Nike", name: "Nike Women's Air Zoom Prestige Tennis Shoes White and Laser Fuchsia",
+      size: ["5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12"], color: "White", price: "75.00",
+      outsoleWarranty: "No",
+      thumbURL: "../../assets/images/92542-DEFAULT-m.jpg",
+      zoomThumb: "../../../assets/images/92542-zoomThumb.png",
+      zoomFull: "../../../assets/images/92542-DEFAULT-l.jpg" },
+
+      { id: "10", brand: "Nike", name: "Nike Women's Air Max Vapor Wing MS Tennis Shoes White",
+      size: ["5", "5.5", "6", "6.5", "7", "7.5", "9", "10", "11", "11.5", "12"], color: "White", price: "60.00",
+      outsoleWarranty: "No",
+      thumbURL: "../../assets/images/90345-DEFAULT-m.jpg",
+      zoomThumb: "../../../assets/images/90345-zoomThumb.png",
+      zoomFull: "../../../assets/images/90345-DEFAULT-l.jpg" },
+
+      { id: "11", brand: "Nike", name: "Nike Women's Air Max Wildcard Tennis Shoes Bordeaux and White",
+      size: ["5", "5.5", "11.5"], color: "Purple", price: "58.50",
+      outsoleWarranty: "No",
+      thumbURL: "../../assets/images/87284-DEFAULT-m.jpg",
+      zoomThumb: "../../../assets/images/87284-zoomThumb.png",
+      zoomFull: "../../../assets/images/87284-DEFAULT-l.jpg" },
+
+      { id: "12", brand: "Nike", name: "Nike Women's Air Max Wildcard Tennis Shoes Metallic Blue Dusk and Bright Mango",
+      size: ["5"], color: "Gray", price: "49.97",
+      outsoleWarranty: "No",
+      thumbURL: "../../assets/images/83616-DEFAULT-m.jpg",
+      zoomThumb: "../../../assets/images/83616-zoomThumb.png",
+      zoomFull: "../../../assets/images/83616-DEFAULT-l.jpg" },
     ]
   }
 }

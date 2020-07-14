@@ -12,6 +12,7 @@ export class ApparelDetailComponent implements OnInit {
   selectedApparel: any[] = this.storageService.getSelectedApparel();
   total: any = this.storageService.getTotal();
   menApparel = ApparelList.men;
+  womenApparel = ApparelList.women;
   currentApparel: any;
   size: string;
   color: string;
@@ -29,7 +30,11 @@ export class ApparelDetailComponent implements OnInit {
   ngOnInit() {
     let apparelId: number = parseInt(this.route.snapshot.params['id']);
     console.log(apparelId);
-    this.currentApparel  = this.menApparel.apparelList[apparelId - 1];
+    if (this.isMen()) {
+      this.currentApparel  = this.menApparel.apparelList[apparelId - 1];
+    } else {
+      this.currentApparel  = this.womenApparel.apparelList[apparelId - 1];
+    }
     this.size = "- Select Size -";
     this.color = "- Select Color -";
     this.quantity = "1";
@@ -48,8 +53,18 @@ export class ApparelDetailComponent implements OnInit {
   }
 
   backToApparel() {
-    if (this.router.url.includes("apparel-men")) {
+    if (this.isMen()) {
       this.router.navigate(['/apparel-men']);
+    } else {
+      this.router.navigate(['/apparel-women']);
+    }
+  }
+
+  isMen() {
+    if (this.router.url.includes("apparel-men")) {
+      return true;
+    } else {
+      return false;
     }
   }
 }
