@@ -34,7 +34,42 @@
           </li>
         </ul>
       </div>
-      <div style="cursor: pointer">
+
+      <div *ngIf="isMen()" style="cursor: pointer">
+        <h3 (click)="filterExpand2 = !filterExpand2"
+          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+          Style
+          <img style="float: right;" *ngIf="filterExpand2 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img style="float: right;" *ngIf="filterExpand2 == true" src="../../assets/images/icons8-subtract-16.png">
+        </h3>
+        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand2 ? 'block' : 'none'}">
+          <li>
+            <input type="checkbox" [(ngModel)]="styleFilter.style1" (ngModelChange)="performFilter()">
+            Jackets
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="styleFilter.style2" (ngModelChange)="performFilter()">
+            Long Sleeves
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="styleFilter.style3" (ngModelChange)="performFilter()">
+            Pants
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="styleFilter.style4" (ngModelChange)="performFilter()">
+            Polos
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="styleFilter.style5" (ngModelChange)="performFilter()">
+            Shirts
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="styleFilter.style6" (ngModelChange)="performFilter()">
+            Shorts
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="!isMen()" style="cursor: pointer">
         <h3 (click)="filterExpand2 = !filterExpand2"
           style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
           Style
@@ -72,6 +107,8 @@
           </li>
         </ul>
       </div>
+
+
       <div style="cursor: pointer">
         <h3 (click)="filterExpand3 = !filterExpand3"
           style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
@@ -188,12 +225,18 @@
         <span *ngFor="let product of filteredProducts | paginate: { itemsPerPage: 16, currentPage: p }">
           <div class="col">
             <div class="card" style="width: 12rem; text-align: center; border: none;">
-              <a [routerLink]="['/apparel-women', product.id]">
+              <a *ngIf="isMen()" [routerLink]="['/apparel-men', product.id]">
+                <img src="{{ product.thumbURL }}" style="max-width: 100%; max-height: 100%;">
+              </a>
+              <a *ngIf="!isMen()" [routerLink]="['/apparel-women', product.id]">
                 <img src="{{ product.thumbURL }}" style="max-width: 100%; max-height: 100%;">
               </a>
               <div class="card-body">
                 <p class="card-text">
-                  <a [routerLink]="['/apparel-women', product.id]" style="color: black;">
+                  <a *ngIf="isMen()" [routerLink]="['/apparel-men', product.id]" style="color: black;">
+                    {{ product.name }}
+                  </a>
+                  <a *ngIf="!isMen()" [routerLink]="['/apparel-women', product.id]" style="color: black;">
                     {{ product.name }}
                   </a>
                   <br>${{ product.price }}

@@ -9,10 +9,6 @@ import { ApparelDetailComponent } from './apparel/apparel-detail/apparel-detail.
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
-import { ApparelMenComponent } from './apparel/apparel-men/apparel-men.component';
-import { ApparelWomenComponent } from './apparel/apparel-women/apparel-women.component';
-import { ShoesMenComponent } from './shoes/shoes-men/shoes-men.component';
-import { ShoesWomenComponent } from './shoes/shoes-women/shoes-women.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
@@ -26,6 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { SigninRedirectCallbackComponent } from './signin-redirect-callback.component';
 import { SignoutRedirectCallbackComponent } from './signout-redirect-callback.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { ShoesComponent } from './shoes/shoes.component';
+import { ApparelComponent } from './apparel/apparel.component';
 
 @NgModule({
   declarations: [
@@ -36,10 +34,8 @@ import { UserRegistrationComponent } from './user-registration/user-registration
     ApparelDetailComponent,
     HomeComponent,
     CartComponent,
-    ApparelMenComponent,
-    ApparelWomenComponent,
-    ShoesMenComponent,
-    ShoesWomenComponent,
+    ApparelComponent,
+    ShoesComponent,
     OtherItemsComponent,
     OtherItemsDetailComponent,
     DeleteModalComponent,

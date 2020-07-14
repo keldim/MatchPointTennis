@@ -34,7 +34,8 @@
           </li>
         </ul>
       </div>
-      <div style="cursor: pointer">
+
+      <div *ngIf="isMen()" style="cursor: pointer">
         <h3 (click)="filterExpand2 = !filterExpand2"
           style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
           Size
@@ -112,6 +113,77 @@
           </li>
         </ul>
       </div>
+      <div *ngIf="!isMen()" style="cursor: pointer">
+        <h3 (click)="filterExpand2 = !filterExpand2"
+          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+          Size
+          <img style="float: right;" *ngIf="filterExpand2 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img style="float: right;" *ngIf="filterExpand2 == true" src="../../assets/images/icons8-subtract-16.png">
+        </h3>
+        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand2 ? 'block' : 'none'}">
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size1" (ngModelChange)="performFilter()">
+            5
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size2" (ngModelChange)="performFilter()">
+            5.5
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size3" (ngModelChange)="performFilter()">
+            6
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size4" (ngModelChange)="performFilter()">
+            6.5
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size5" (ngModelChange)="performFilter()">
+            7
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size6" (ngModelChange)="performFilter()">
+            7.5
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size7" (ngModelChange)="performFilter()">
+            8
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size8" (ngModelChange)="performFilter()">
+            8.5
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size9" (ngModelChange)="performFilter()">
+            9
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size10" (ngModelChange)="performFilter()">
+            9.5
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size11" (ngModelChange)="performFilter()">
+            10
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size12" (ngModelChange)="performFilter()">
+            10.5
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size13" (ngModelChange)="performFilter()">
+            11
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size14" (ngModelChange)="performFilter()">
+            11.5
+          </li>
+          <li>
+            <input type="checkbox" [(ngModel)]="sizeFilter.size15" (ngModelChange)="performFilter()">
+            12
+          </li>
+        </ul>
+      </div>
+
       <div style="cursor: pointer">
         <h3 (click)="filterExpand3 = !filterExpand3"
           style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
@@ -224,12 +296,18 @@
         <span *ngFor="let product of filteredProducts | paginate: { itemsPerPage: 16, currentPage: p }">
           <div class="col">
             <div class="card" style="width: 12rem; text-align: center; border: none;">
-              <a [routerLink]="['/shoe-men', product.id]">
+              <a *ngIf="isMen()" [routerLink]="['/shoe-men', product.id]">
+                <img src="{{ product.thumbURL }}" style="max-width: 100%; max-height: 100%;">
+              </a>
+              <a *ngIf="!isMen()" [routerLink]="['/shoe-women', product.id]">
                 <img src="{{ product.thumbURL }}" style="max-width: 100%; max-height: 100%;">
               </a>
               <div class="card-body">
                 <p class="card-text">
-                  <a [routerLink]="['/shoe-men', product.id]" style="color: black;">
+                  <a *ngIf="isMen()" [routerLink]="['/shoe-men', product.id]" style="color: black;">
+                    {{ product.name }}
+                  </a>
+                  <a *ngIf="!isMen()" [routerLink]="['/shoe-women', product.id]" style="color: black;">
                     {{ product.name }}
                   </a>
                   <br>${{ product.price }}

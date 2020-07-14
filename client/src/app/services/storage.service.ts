@@ -69,8 +69,7 @@ export class StorageService {
         brandFilter: { Adidas: false, Asics: false, Fila: false, NewBalance: false, Nike: false },
         sizeFilter: {
           size1: false, size2: false, size3: false, size4: false, size5: false, size6: false, size7: false,
-          size8: false, size9: false, size10: false, size11: false, size12: false, size13: false, size14: false, size15: false,
-          size16: false, size17: false
+          size8: false, size9: false, size10: false, size11: false, size12: false, size13: false, size14: false, size15: false
         },
         colorFilter: { color1: false, color2: false, color3: false, color4: false, color5: false, color6: false, color7: false, color8: false },
         outsoleWarrantyFilter: { warranty1: false, warranty2: false },

@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoeList } from '../shoe-list';
 import { StorageService } from 'src/app/services/storage.service';
+import { ShoeList } from './shoe-list';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-shoes-men',
-  templateUrl: './shoes-men.component.html',
-  styleUrls: ['./shoes-men.component.css']
+  selector: 'app-shoes',
+  templateUrl: './shoes.component.html',
+  styleUrls: ['./shoes.component.css']
 })
-export class ShoesMenComponent implements OnInit {
+export class ShoesComponent implements OnInit {
   filterExpand1: boolean = false;
   filterExpand2: boolean = false;
   filterExpand3: boolean = false;
   filterExpand4: boolean = false;
   filterExpand5: boolean = false;
-  menShoe = ShoeList.men;
+  shoes: any;
   p: number = 1;
   filteredProducts: any[] = [];
   brandFilter: any;
@@ -21,16 +22,24 @@ export class ShoesMenComponent implements OnInit {
   colorFilter: any;
   outsoleWarrantyFilter: any;
   priceFilter: any;
-  shoeFilter: any = this.storageService.getShoeFilter();
+  shoeFilter: any = this.setShoeFilter();
 
-  constructor(private storageService: StorageService) {
-    this.storageService.watchShoeFilter().subscribe(shoeFilter => {
+
+
+  constructor(private storageService: StorageService, private router: Router) {
+    this.setWatchShoeFilter().subscribe(shoeFilter => {
       this.shoeFilter = shoeFilter;
     });
   }
 
   ngOnInit() {
-    this.filteredProducts = [...this.menShoe.shoeList];
+    if (this.isMen()) {
+      this.shoes = ShoeList.men;
+    } else {
+      this.shoes = ShoeList.women;
+    }
+
+    this.filteredProducts = [...this.shoes.shoeList];
 
     this.brandFilter = this.shoeFilter.brandFilter;
     this.sizeFilter = this.shoeFilter.sizeFilter;
@@ -94,6 +103,29 @@ export class ShoesMenComponent implements OnInit {
     return filteredProductList;
   }
 
+  womenSizeFilterChange(productList: any[]) {
+    let filteredProductList: any[] = [];
+    filteredProductList = productList.filter(x =>
+      (this.sizeFilter.size1 && x.size.includes("5")) ||
+      (this.sizeFilter.size2 && x.size.includes("5.5")) ||
+      (this.sizeFilter.size3 && x.size.includes("6")) ||
+      (this.sizeFilter.size4 && x.size.includes("6.5")) ||
+      (this.sizeFilter.size5 && x.size.includes("7")) ||
+      (this.sizeFilter.size6 && x.size.includes("7.5")) ||
+      (this.sizeFilter.size7 && x.size.includes("8")) ||
+      (this.sizeFilter.size8 && x.size.includes("8.5")) ||
+      (this.sizeFilter.size9 && x.size.includes("9")) ||
+      (this.sizeFilter.size10 && x.size.includes("9.5")) ||
+      (this.sizeFilter.size11 && x.size.includes("10")) ||
+      (this.sizeFilter.size12 && x.size.includes("10.5")) ||
+      (this.sizeFilter.size13 && x.size.includes("11")) ||
+      (this.sizeFilter.size14 && x.size.includes("11.5")) ||
+      (this.sizeFilter.size15 && x.size.includes("12"))
+    );
+    return filteredProductList;
+  }
+
+
   colorFilterChange(productList: any[]) {
     let filteredProductList: any[] = [];
     filteredProductList = productList.filter(x =>
@@ -136,20 +168,31 @@ export class ShoesMenComponent implements OnInit {
   }
 
   performFilter() {
-    this.storageService.updateShoeFilter("shoeFilter", this.shoeFilter);
-    let temporaryList: any[] = [...this.menShoe.shoeList];
+    this.runUpdateShoeFilter();
+    let temporaryList: any[] = [...this.shoes.shoeList];
     for (var key of Object.keys(this.brandFilter)) {
       if (this.brandFilter[key]) {
           temporaryList = this.brandFilterChange(temporaryList);
           break;
       }
     }
-    for (var key of Object.keys(this.sizeFilter)) {
-      if (this.sizeFilter[key]) {
-        temporaryList = this.sizeFilterChange(temporaryList);
-        break;
+
+    if (this.isMen()) {
+      for (var key of Object.keys(this.sizeFilter)) {
+        if (this.sizeFilter[key]) {
+          temporaryList = this.sizeFilterChange(temporaryList);
+          break;
+        }
+      }
+    } else {
+      for (var key of Object.keys(this.sizeFilter)) {
+        if (this.sizeFilter[key]) {
+          temporaryList = this.womenSizeFilterChange(temporaryList);
+          break;
+        }
       }
     }
+
     for (var key of Object.keys(this.colorFilter)) {
       if (this.colorFilter[key]) {
         temporaryList = this.colorFilterChange(temporaryList);
@@ -172,4 +215,36 @@ export class ShoesMenComponent implements OnInit {
       this.p = 1;
   }
 
+
+  setShoeFilter() {
+    if (this.isMen()) {
+      return this.storageService.getShoeFilter();
+    } else {
+      return this.storageService.getWomenShoeFilter();
+    }
+  }
+
+  setWatchShoeFilter() {
+    if (this.isMen()) {
+      return this.storageService.watchShoeFilter();
+    } else {
+      return this.storageService.watchWomenShoeFilter();
+    }
+  }
+
+  runUpdateShoeFilter() {
+    if (this.isMen()) {
+      this.storageService.updateShoeFilter("shoeFilter", this.shoeFilter);
+    } else {
+      this.storageService.updateWomenShoeFilter("womenShoeFilter", this.shoeFilter);
+    }
+  }
+
+  isMen() {
+    if (this.router.url.includes("shoe-men")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ApparelList } from '../apparel-list';
 import { StorageService } from 'src/app/services/storage.service';
+import { Router } from '@angular/router';
+import { ApparelList } from './apparel-list';
 
 @Component({
-  selector: 'app-apparel-men',
-  templateUrl: './apparel-men.component.html',
-  styleUrls: ['./apparel-men.component.css']
+  selector: 'app-apparel',
+  templateUrl: './apparel.component.html',
+  styleUrls: ['./apparel.component.css']
 })
-export class ApparelMenComponent implements OnInit {
+export class ApparelComponent implements OnInit {
   filterExpand1: boolean = false;
   filterExpand2: boolean = false;
   filterExpand3: boolean = false;
   filterExpand4: boolean = false;
   filterExpand5: boolean = false;
-  menApparel = ApparelList.men;
+  apparel: any;
   p: number = 1;
   filteredProducts: any[] = [];
   brandFilter: any;
@@ -21,16 +22,22 @@ export class ApparelMenComponent implements OnInit {
   sizeFilter: any;
   colorFilter: any;
   priceFilter: any;
-  apparelFilter: any = this.storageService.getApparelFilter();
+  apparelFilter: any = this.setApparelFilter();
 
-  constructor(private storageService: StorageService) {
-    this.storageService.watchApparelFilter().subscribe(apparelFilter => {
+  constructor(private storageService: StorageService, private router: Router) {
+    this.setWatchApparelFilter().subscribe(apparelFilter => {
       this.apparelFilter = apparelFilter;
     });
   }
 
   ngOnInit() {
-    this.filteredProducts = [...this.menApparel.apparelList];
+    if (this.isMen()) {
+      this.apparel = ApparelList.men;
+    } else {
+      this.apparel = ApparelList.women;
+    }
+
+    this.filteredProducts = [...this.apparel.apparelList];
 
     this.brandFilter = this.apparelFilter.brandFilter;
     this.styleFilter = this.apparelFilter.styleFilter;
@@ -78,6 +85,20 @@ export class ApparelMenComponent implements OnInit {
       (this.styleFilter.style4 && x.style == "Polo") ||
       (this.styleFilter.style5 && x.style == "Shirt") ||
       (this.styleFilter.style6 && x.style == "Short")
+    );
+      return filteredProductList;
+  }
+
+  womenStyleFilterChange(productList: any[]) {
+    let filteredProductList: any[] = [];
+    filteredProductList = productList.filter(x =>
+      (this.styleFilter.style1 && x.style == "Jacket") ||
+      (this.styleFilter.style2 && x.style == "Long Sleeve") ||
+      (this.styleFilter.style3 && x.style == "Pant") ||
+      (this.styleFilter.style4 && x.style == "Dress") ||
+      (this.styleFilter.style5 && x.style == "Shirt") ||
+      (this.styleFilter.style6 && x.style == "Bra") ||
+      (this.styleFilter.style7 && x.style == "Short")
     );
       return filteredProductList;
   }
@@ -133,20 +154,31 @@ export class ApparelMenComponent implements OnInit {
   }
 
   performFilter() {
-    this.storageService.updateApparelFilter("apparelFilter", this.apparelFilter);
-    let temporaryList: any[] = [...this.menApparel.apparelList];
+    this.runUpdateApparelFilter();
+    let temporaryList: any[] = [...this.apparel.apparelList];
     for (var key of Object.keys(this.brandFilter)) {
       if (this.brandFilter[key]) {
           temporaryList = this.brandFilterChange(temporaryList);
           break;
       }
     }
-    for (var key of Object.keys(this.styleFilter)) {
-      if (this.styleFilter[key]) {
-          temporaryList = this.styleFilterChange(temporaryList);
-          break;
+
+    if (this.isMen()) {
+      for (var key of Object.keys(this.styleFilter)) {
+        if (this.styleFilter[key]) {
+            temporaryList = this.styleFilterChange(temporaryList);
+            break;
+        }
+      }
+    } else {
+      for (var key of Object.keys(this.styleFilter)) {
+        if (this.styleFilter[key]) {
+            temporaryList = this.womenStyleFilterChange(temporaryList);
+            break;
+        }
       }
     }
+
     for (var key of Object.keys(this.sizeFilter)) {
       if (this.sizeFilter[key]) {
         temporaryList = this.sizeFilterChange(temporaryList);
@@ -167,6 +199,38 @@ export class ApparelMenComponent implements OnInit {
     }
       this.filteredProducts = temporaryList;
       this.p = 1;
+  }
+
+  setApparelFilter() {
+    if (this.isMen()) {
+      return this.storageService.getApparelFilter();
+    } else {
+      return this.storageService.getWomenApparelFilter();
+    }
+  }
+
+  setWatchApparelFilter() {
+    if (this.isMen()) {
+      return this.storageService.watchApparelFilter();
+    } else {
+      return this.storageService.watchWomenApparelFilter();
+    }
+  }
+
+  runUpdateApparelFilter() {
+    if (this.isMen()) {
+      this.storageService.updateApparelFilter("apparelFilter", this.apparelFilter);
+    } else {
+      this.storageService.updateWomenApparelFilter("womenApparelFilter", this.apparelFilter);
+    }
+  }
+
+  isMen() {
+    if (this.router.url.includes("apparel-men")) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }
