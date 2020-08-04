@@ -66,6 +66,20 @@ export class ShoesComponent implements OnInit {
     this.performFilter();
   }
 
+  changeCheckbox(filter, key) {
+    if (filter == "brandFilter") {
+      this.brandFilter[key] = !this.brandFilter[key];
+    } else if (filter == "sizeFilter") {
+      this.sizeFilter[key] = !this.sizeFilter[key];
+    } else if (filter == "colorFilter") {
+      this.colorFilter[key] = !this.colorFilter[key];
+    } else if (filter == "outsoleWarrantyFilter") {
+      this.outsoleWarrantyFilter[key] = !this.outsoleWarrantyFilter[key];
+    } else {
+      this.priceFilter[key] = !this.priceFilter[key];
+    }
+    this.performFilter();
+  }
 
   brandFilterChange(productList: any[]) {
     let filteredProductList: any[] = [];

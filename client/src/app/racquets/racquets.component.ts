@@ -64,6 +64,23 @@ export class RacquetsComponent implements OnInit {
     this.performFilter();
   }
 
+  changeCheckbox(filter, key) {
+    if (filter == "brandFilter") {
+      this.brandFilter[key] = !this.brandFilter[key];
+    } else if (filter == "headSizeFilter") {
+      this.headSizeFilter[key] = !this.headSizeFilter[key];
+    } else if (filter == "stringPatternFilter") {
+      this.stringPatternFilter[key] = !this.stringPatternFilter[key];
+    } else if (filter == "lengthFilter") {
+      this.lengthFilter[key] = !this.lengthFilter[key];
+    } else if (filter == "strungWeightFilter") {
+      this.strungWeightFilter[key] = !this.strungWeightFilter[key];
+    } else {
+      this.priceFilter[key] = !this.priceFilter[key];
+    }
+    this.performFilter();
+  }
+
   brandFilterChange(productList: any[]) {
     let filteredProductList: any[] = [];
     filteredProductList = productList.filter(x =>

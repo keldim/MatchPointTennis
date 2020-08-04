@@ -1,0 +1,21 @@
+.page-text {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.header {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.subheader {
+  font-size: 14px;
+}
+
+.homePageButton {
+  margin-top: 10px;
+}

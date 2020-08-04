@@ -19,19 +19,21 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     const config = {
-      authority: 'http://localhost:8080/openid-connect-server-webapp/',
+      authority: 'http://mitre-id-server.eba-qjffpfif.us-east-2.elasticbeanstalk.com/',
+      // http://localhost:8080/openid-connect-server-webapp/
       // http://new-mitreid-env.eba-ppwpqerk.us-east-2.elasticbeanstalk.com/
       client_id: 'matchpointtennis',
-      redirect_uri: 'http://localhost:4200/signin-callback',
+      redirect_uri: 'http://match-point-tennis-client.s3-website.us-east-2.amazonaws.com/signin-callback',
       // http://campania-pizza-client.s3-website.us-east-2.amazonaws.com/assets/oidc-login-redirect.html
-      // http://localhost:4200/
+      // http://localhost:4200/signin-callback
       scope: 'openid',
       response_type: 'id_token token',
       // projects-api profile
       // prompt: 'none',
-      post_logout_redirect_uri: 'http://localhost:4200/signout-callback'
+      post_logout_redirect_uri: 'http://match-point-tennis-client.s3-website.us-east-2.amazonaws.com/signout-callback'
       // http://campania-pizza-client.s3-website.us-east-2.amazonaws.com/?postLogout=true
       // http://localhost:4200/
+      // http://localhost:4200/signout-callback
       // userStore: new WebStorageStateStore({ store: window.localStorage })
     };
 

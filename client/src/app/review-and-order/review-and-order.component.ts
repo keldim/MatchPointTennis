@@ -3,6 +3,7 @@ import { StorageService } from '../services/storage.service';
 import { FormBuilder } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-review-and-order',
@@ -17,8 +18,10 @@ export class ReviewAndOrderComponent implements OnInit {
   selectedItems: any[] = this.storageService.getSelectedItems();
   total: any = this.storageService.getTotal();
   shoppingAndPaymentInfo: Object;
+  isLoggedIn = false;
+  loading = false;
 
-  constructor(private storageService: StorageService, private fb: FormBuilder, private http: HttpClient, private router: Router, private zone: NgZone) {
+  constructor(private storageService: StorageService, private fb: FormBuilder, private http: HttpClient, private router: Router, private zone: NgZone, private _authService: AuthService) {
     this.storageService.watchRacquets().subscribe(selectedRacquets => {
       this.selectedRacquets = selectedRacquets;
     });
@@ -34,6 +37,9 @@ export class ReviewAndOrderComponent implements OnInit {
     this.storageService.watchTotal().subscribe(total => {
       this.total = total;
     });
+    this._authService.loginChanged.subscribe(loggedIn => {
+      this.isLoggedIn = loggedIn;
+    });
   }
 
   ngOnInit() {
@@ -42,10 +48,14 @@ export class ReviewAndOrderComponent implements OnInit {
       (err: any) => console.log(err),
       () => console.log("received response from the server 2")
     );
+    this._authService.isLoggedIn().then(loggedIn => {
+      this.isLoggedIn = loggedIn;
+    });
   }
 
   getShoppingAndPaymentInfo() {
-    return this.http.get('http://localhost:8080/unregistered-user/shipping-and-payment-info');
+    return this.http.get('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/form-input/ephemeral-data');
+    // http://localhost:5000/
   }
 
   calculatePriceForRacquet(string, mainItem) {
@@ -66,16 +76,16 @@ export class ReviewAndOrderComponent implements OnInit {
 
   calculateSubtotal() {
     let subtotal = 0;
-    for(let racquet of this.selectedRacquets) {
+    for (let racquet of this.selectedRacquets) {
       subtotal += racquet.quantity * this.calculatePriceForRacquet(racquet.racquetString, racquet.price);
     }
-    for(let shoe of this.selectedShoes) {
+    for (let shoe of this.selectedShoes) {
       subtotal += shoe.quantity * shoe.price;
     }
-    for(let apparelItem of this.selectedApparel) {
+    for (let apparelItem of this.selectedApparel) {
       subtotal += apparelItem.quantity * apparelItem.price;
     }
-    for(let item of this.selectedItems) {
+    for (let item of this.selectedItems) {
       subtotal += item.quantity * item.price;
     }
     return subtotal;
@@ -89,7 +99,7 @@ export class ReviewAndOrderComponent implements OnInit {
     if (this.calculateSubtotal() > 0.00 && this.calculateSubtotal() < 50.00) {
       return (this.calculateSubtotal() + 5.75).toFixed(2);
     }
-      return this.calculateSubtotal().toFixed(2);
+    return this.calculateSubtotal().toFixed(2);
   }
 
   backToShippingAndPayment() {
@@ -131,7 +141,7 @@ export class ReviewAndOrderComponent implements OnInit {
     if (phoneNumber == '') {
       return "";
     }
-    return "(" + phoneNumber.slice(0,3) + ") " + phoneNumber.slice(3,6) + " - " + phoneNumber.slice(6,11);
+    return "(" + phoneNumber.slice(0, 3) + ") " + phoneNumber.slice(3, 6) + " - " + phoneNumber.slice(6, 11);
   }
 
   formatCityStateZipcode(city, state, zipcode) {
@@ -142,13 +152,14 @@ export class ReviewAndOrderComponent implements OnInit {
   }
 
   cancelAndCleanUp() {
-    this.http.post('http://localhost:8080/unregistered-user/cancel', {}).subscribe(resp => {
+    this.http.post('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/form-input/cancel', {}).subscribe(resp => {
       console.log(resp);
     });
     this.router.navigate(['/cart']);
   }
 
   chargeCreditCard() {
+    this.loading = true;
     (<any>window).Stripe.card.createToken({
       number: this.shoppingAndPaymentInfo['cardNumber'],
       exp_month: this.shoppingAndPaymentInfo['expMonth'],
@@ -160,9 +171,8 @@ export class ReviewAndOrderComponent implements OnInit {
         this.chargeCard(token);
 
         this.zone.run(() => {
-          this.router.navigate(['/cart']);
+          this.router.navigate(['/thank-you']);
         });
-        // this.router.navigate(['/thank-you']);
       } else {
         console.log(response.error.message);
       }
@@ -170,31 +180,47 @@ export class ReviewAndOrderComponent implements OnInit {
   }
 
   chargeCard(token: string) {
-    // if (this.currentOrderComponent.isLoggedIn()) {
-    //   const headers = new HttpHeaders({
-    //     'Authorization': `Bearer ` + this._authService.getAccessToken(),
-    //     'token': token,
-    //     'amount': this.orderOnlineComponent.showTotal().toString(),
-    //     'pickupLocation': this.pickupLocation,
-    //     'firstName': this.contactInfo.controls.firstName.value.trim(),
-    //     'lastName': this.contactInfo.controls.lastName.value.trim(),
-    //     'email': this.contactInfo.controls.email.value,
-    //     'phoneNumber': this.contactInfo.controls.phoneNumber.value,
-    //     'invoiceImg': this.inoviceImg,
-    //     'pizzaItems': localStorage.getItem("pizzaItems"),
-    //     'saladItems': localStorage.getItem("saladItems"),
-    //     'drinkItems': localStorage.getItem("drinkItems"),
-    //     'dessertItems': localStorage.getItem("dessertItems")
-    //   });
-    //   console.log(headers);
+    if (this.isLoggedIn) {
+      this._authService.getAccessToken().then(accessToken => {
+        console.log(accessToken);
 
-    //   this.http.post('http://new-campania-server-env.eba-igwhis5n.us-east-2.elasticbeanstalk.com/registered-user/charge', {}, { headers: headers }).subscribe(resp => {
-    //     console.log(resp);
-    //     if (resp == null) {
-    //       this.router.navigate(['/error-page']);
-    //     }
-    //   });
-    // } else {
+        const headers = new HttpHeaders({
+          'Authorization': `Bearer ` + accessToken,
+          'token': token,
+          'amount': this.showGrandTotal().toString(),
+          'subtotal': this.showSubtotal().toString(),
+          'selectedRacquets': localStorage.getItem("selectedRacquets"),
+          'selectedShoes': localStorage.getItem("selectedShoes"),
+          'selectedApparel': localStorage.getItem("selectedApparel"),
+          'selectedItems': localStorage.getItem("selectedItems"),
+          'firstName': this.shoppingAndPaymentInfo['firstName'],
+          'lastName': this.shoppingAndPaymentInfo['lastName'],
+          'email': this.shoppingAndPaymentInfo['email'],
+          'phoneNumber': this.formatPhoneNumber(this.shoppingAndPaymentInfo['phoneNumber']),
+          'address1': this.shoppingAndPaymentInfo['address1'],
+          'address2': this.shoppingAndPaymentInfo['address2'],
+          'city': this.shoppingAndPaymentInfo['city'],
+          'state': this.shoppingAndPaymentInfo['state'],
+          'zipcode': this.shoppingAndPaymentInfo['zipcode'],
+          'cardLastFourNumbers': this.showOnlyLastFourNumbers(this.shoppingAndPaymentInfo['cardNumber']),
+          'cardType': this.getCreditCardType(this.shoppingAndPaymentInfo['cardNumber'])
+        });
+
+        console.log(headers);
+
+        this.http.post('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/registered-user/charge', {}, { headers: headers }).subscribe(resp => {
+          console.log(resp);
+          if (resp == null) {
+            this.router.navigate(['/error-page']);
+          }
+        });
+
+        this.http.post('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/form-input/cancel', {}).subscribe(resp => {
+          console.log(resp);
+        });
+        this.storageService.clear();
+      });
+    } else {
       const headers = new HttpHeaders({
         'token': token,
         'amount': this.showGrandTotal().toString(),
@@ -223,19 +249,20 @@ export class ReviewAndOrderComponent implements OnInit {
       });
       console.log(headers);
 
-      this.http.post('http://localhost:8080/unregistered-user/charge', {}, { headers: headers }).subscribe(resp => {
+      this.http.post('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/unregistered-user/charge', {}, { headers: headers }).subscribe(resp => {
         console.log(resp);
         if (resp == null) {
-          // this.router.navigate(['/error-page']);
-          console.log("error");
+          this.router.navigate(['/error-page']);
         }
       });
-    // }
 
-    this.http.post('http://localhost:8080/unregistered-user/cancel', {}).subscribe(resp => {
-      console.log(resp);
-    });
-    this.storageService.clear();
+      this.http.post('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/form-input/cancel', {}).subscribe(resp => {
+        console.log(resp);
+      });
+      this.storageService.clear();
+    }
+
+
   }
 
 

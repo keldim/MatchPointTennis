@@ -135,25 +135,31 @@
             </span>
           </div>
         </div>
-        <div class="row">
+        <div class="row" formGroupName="expGroup">
           <div class="col-md-6 mb-3">
             <label for="cc-month">Expiration Month</label>
             <input type="text" class="form-control" id="cc-month" formControlName="expMonth">
-            <span *ngIf="shippingAndPaymentForm.get('expMonth').hasError('required')" style="font-size: 12px; color: #b80000; margin-left: 10px">
+            <span *ngIf="shippingAndPaymentForm.get('expGroup').get('expMonth').hasError('required')" style="font-size: 12px; color: #b80000; margin-left: 10px">
               This field is required
             </span>
-            <span *ngIf="shippingAndPaymentForm.get('expMonth').hasError('pattern')" style="font-size: 12px; color: #b80000; margin-left: 10px">
+            <span *ngIf="shippingAndPaymentForm.get('expGroup').get('expMonth').hasError('pattern')" style="font-size: 12px; color: #b80000; margin-left: 10px">
               Enter valid month: 01, 02, 03... 12
+            </span>
+            <span *ngIf="shippingAndPaymentForm.get('expGroup').hasError('expired')" style="font-size: 12px; color: #b80000; margin-left: 10px">
+              The card is expired
             </span>
           </div>
           <div class="col-md-6 mb-3">
             <label for="cc-year">Expiration Year</label>
             <input type="text" class="form-control" id="cc-year" formControlName="expYear">
-            <span *ngIf="shippingAndPaymentForm.get('expYear').hasError('required')" style="font-size: 12px; color: #b80000; margin-left: 10px">
+            <span *ngIf="shippingAndPaymentForm.get('expGroup').get('expYear').hasError('required')" style="font-size: 12px; color: #b80000; margin-left: 10px">
               This field is required
             </span>
-            <span *ngIf="shippingAndPaymentForm.get('expYear').hasError('pattern')" style="font-size: 12px; color: #b80000; margin-left: 10px">
+            <span *ngIf="shippingAndPaymentForm.get('expGroup').get('expYear').hasError('pattern')" style="font-size: 12px; color: #b80000; margin-left: 10px">
               Enter valid four digit year
+            </span>
+            <span *ngIf="shippingAndPaymentForm.get('expGroup').hasError('expired')" style="font-size: 12px; color: #b80000; margin-left: 10px">
+              The card is expired
             </span>
           </div>
         </div>

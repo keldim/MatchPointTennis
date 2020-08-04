@@ -24,6 +24,11 @@ import { SignoutRedirectCallbackComponent } from './signout-redirect-callback.co
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { ShoesComponent } from './shoes/shoes.component';
 import { ApparelComponent } from './apparel/apparel.component';
+import { ThankYouComponent } from './thank-you/thank-you.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PastOrdersComponent } from './past-orders/past-orders.component';
+import { PastOrderDetailComponent } from './past-orders/past-order-detail/past-order-detail.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,12 @@ import { ApparelComponent } from './apparel/apparel.component';
     ReviewAndOrderComponent,
     SigninRedirectCallbackComponent,
     SignoutRedirectCallbackComponent,
-    UserRegistrationComponent
+    UserRegistrationComponent,
+    ThankYouComponent,
+    PageNotFoundComponent,
+    PastOrdersComponent,
+    PastOrderDetailComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,

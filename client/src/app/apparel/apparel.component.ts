@@ -64,6 +64,21 @@ export class ApparelComponent implements OnInit {
     this.performFilter();
   }
 
+  changeCheckbox(filter, key) {
+    if (filter == "brandFilter") {
+      this.brandFilter[key] = !this.brandFilter[key];
+    } else if (filter == "styleFilter") {
+      this.styleFilter[key] = !this.styleFilter[key];
+    } else if (filter == "sizeFilter") {
+      this.sizeFilter[key] = !this.sizeFilter[key];
+    } else if (filter == "colorFilter") {
+      this.colorFilter[key] = !this.colorFilter[key];
+    } else {
+      this.priceFilter[key] = !this.priceFilter[key];
+    }
+    this.performFilter();
+  }
+
   brandFilterChange(productList: any[]) {
     let filteredProductList: any[] = [];
     filteredProductList = productList.filter(x =>

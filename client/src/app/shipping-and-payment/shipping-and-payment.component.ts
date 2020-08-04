@@ -2,9 +2,21 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { StateList } from './state-list';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+function expiredMonthYear(c: AbstractControl): { [key: string]: boolean } | null {
+  let today = new Date();
+  let someday = new Date();
+  someday.setFullYear(c.get('expYear').value, c.get('expMonth').value - 1, someday.getDate());
+
+  if (someday < today) {
+    return { 'expired': true };
+  } else {
+    return null;
+  }
+}
 
 @Component({
   selector: 'app-shipping-and-payment',
@@ -26,7 +38,7 @@ export class ShippingAndPaymentComponent implements OnInit {
   cardNumberPattern = /^\d{4}\d{4}\d{4}\d{4}$/;
   monthPattern = /^0[1-9]$|^1[0-2]$/;
   cvcPattern = /^[0-9]{3,4}$/;
-  yearPattern = /^20[2-9][0-9]$/;
+  yearPattern = /^[0-9][0-9][0-9][0-9]$/;
   zipcodePattern = /^\d{5}(?:[-\s]\d{4})?$/;
   addressAndCityPattern = /^(?!\s*$).+/;
 
@@ -49,8 +61,10 @@ export class ShippingAndPaymentComponent implements OnInit {
           zipcode: [this.shoppingAndPaymentInfo['zipcode'], [Validators.required, Validators.pattern(this.zipcodePattern)]],
 
           cardNumber: [this.shoppingAndPaymentInfo['cardNumber'], [Validators.required, Validators.pattern(this.cardNumberPattern)]],
-          expMonth: [this.shoppingAndPaymentInfo['expMonth'], [Validators.required, Validators.pattern(this.monthPattern)]],
-          expYear: [this.shoppingAndPaymentInfo['expYear'], [Validators.required, Validators.pattern(this.yearPattern)]],
+          expGroup: this.fb.group({
+            expMonth: [this.shoppingAndPaymentInfo['expMonth'], [Validators.required, Validators.pattern(this.monthPattern)]],
+            expYear: [this.shoppingAndPaymentInfo['expYear'], [Validators.required, Validators.pattern(this.yearPattern)]]
+          }, { validator: expiredMonthYear }),
           cvc: [this.shoppingAndPaymentInfo['cvc'], [Validators.required, Validators.pattern(this.cvcPattern)]]
         });
       }
@@ -60,7 +74,8 @@ export class ShippingAndPaymentComponent implements OnInit {
 
 
   getShoppingAndPaymentInfo() {
-    return this.http.get('http://localhost:8080/unregistered-user/shipping-and-payment-info');
+    return this.http.get('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/form-input/ephemeral-data');
+    // http://localhost:5000/
   }
 
 
@@ -78,18 +93,15 @@ export class ShippingAndPaymentComponent implements OnInit {
       'zipcode': this.shippingAndPaymentForm.controls.zipcode.value,
 
       'cardNumber': this.shippingAndPaymentForm.controls.cardNumber.value,
-      'expMonth': this.shippingAndPaymentForm.controls.expMonth.value,
-      'expYear': this.shippingAndPaymentForm.controls.expYear.value,
+      'expMonth': this.shippingAndPaymentForm.controls.expGroup.get('expMonth').value,
+      'expYear': this.shippingAndPaymentForm.controls.expGroup.get('expYear').value,
       'cvc': this.shippingAndPaymentForm.controls.cvc.value
 
     });
     console.log(headers);
 
-    this.http.post('http://localhost:8080/unregistered-user/shipping-and-payment', {}, { headers: headers }).subscribe(resp => {
+    this.http.post('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/form-input/data', {}, { headers: headers }).subscribe(resp => {
       console.log(resp);
-      // if (resp == null) {
-      //   this.router.navigate(['/error-page']);
-      // }
       this.router.navigate(['/review-and-order']);
     });
   }
@@ -97,13 +109,13 @@ export class ShippingAndPaymentComponent implements OnInit {
   @HostListener('window:beforeunload', ['$event'])
   canLeavePage($event: any) {
     console.log("beforeunload reached");
-    this.http.post('http://localhost:8080/unregistered-user/clean-up', {}).subscribe(resp => {
+    this.http.post('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/form-input/clean-up', {}).subscribe(resp => {
       console.log(resp);
     });
   }
 
   cancelAndCleanUp() {
-    this.http.post('http://localhost:8080/unregistered-user/cancel', {}).subscribe(resp => {
+    this.http.post('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/form-input/cancel', {}).subscribe(resp => {
       console.log(resp);
     });
     this.router.navigate(['/cart']);

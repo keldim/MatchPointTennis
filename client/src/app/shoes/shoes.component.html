@@ -3,288 +3,280 @@
     <div class="filter col-md-3 col-lg-2 border" style="background: rgb(246, 246, 245);">
       <h3 style="font-size: 16px; padding-top: 10px;">Filters</h3>
       <div>
-        <h3 (click)="filterExpand1 = !filterExpand1"
-          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+        <h3 (click)="filterExpand1 = !filterExpand1" class="filter-type">
           Brand
           <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
           <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
         </h3>
         <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand1 ? 'block' : 'none'}">
-          <li class="filter-choice">
-            <a>
-              <input type="checkbox" [(ngModel)]="brandFilter.Adidas" (ngModelChange)="performFilter()">
-              Adidas
-            </a>
+          <li class="filter-choice" (click)="changeCheckbox('brandFilter', 'Adidas')">
+            <input type="checkbox" [(ngModel)]="brandFilter.Adidas" (ngModelChange)="performFilter()">
+            Adidas
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('brandFilter', 'Asics')">
             <input type="checkbox" [(ngModel)]="brandFilter.Asics" (ngModelChange)="performFilter()">
             Asics
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('brandFilter', 'Fila')">
             <input type="checkbox" [(ngModel)]="brandFilter.Fila" (ngModelChange)="performFilter()">
             Fila
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('brandFilter', 'NewBalance')">
             <input type="checkbox" [(ngModel)]="brandFilter.NewBalance" (ngModelChange)="performFilter()">
             New Balance
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('brandFilter', 'Nike')">
             <input type="checkbox" [(ngModel)]="brandFilter.Nike" (ngModelChange)="performFilter()">
             Nike
           </li>
         </ul>
       </div>
 
-      <div *ngIf="isMen()" style="cursor: pointer">
-        <h3 (click)="filterExpand2 = !filterExpand2"
-          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+      <div *ngIf="isMen()">
+        <h3 (click)="filterExpand2 = !filterExpand2" class="filter-type">
           Size
           <img style="float: right;" *ngIf="filterExpand2 == false" src="../../assets/images/icons8-plus-math-16.png">
           <img style="float: right;" *ngIf="filterExpand2 == true" src="../../assets/images/icons8-subtract-16.png">
         </h3>
         <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand2 ? 'block' : 'none'}">
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size1')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size1" (ngModelChange)="performFilter()">
             6
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size2')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size2" (ngModelChange)="performFilter()">
             6.5
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size3')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size3" (ngModelChange)="performFilter()">
             7
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size4')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size4" (ngModelChange)="performFilter()">
             7.5
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size5')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size5" (ngModelChange)="performFilter()">
             8
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size6')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size6" (ngModelChange)="performFilter()">
             8.5
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size7')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size7" (ngModelChange)="performFilter()">
             9
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size8')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size8" (ngModelChange)="performFilter()">
             9.5
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size9')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size9" (ngModelChange)="performFilter()">
             10
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size10')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size10" (ngModelChange)="performFilter()">
             10.5
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size11')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size11" (ngModelChange)="performFilter()">
             11
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size12')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size12" (ngModelChange)="performFilter()">
             11.5
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size13')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size13" (ngModelChange)="performFilter()">
             12
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size14')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size14" (ngModelChange)="performFilter()">
             12.5
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size15')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size15" (ngModelChange)="performFilter()">
             13
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size16')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size16" (ngModelChange)="performFilter()">
             14
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size17')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size17" (ngModelChange)="performFilter()">
             15
           </li>
         </ul>
       </div>
-      <div *ngIf="!isMen()" style="cursor: pointer">
-        <h3 (click)="filterExpand2 = !filterExpand2"
-          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+      <div *ngIf="!isMen()">
+        <h3 (click)="filterExpand2 = !filterExpand2" class="filter-type">
           Size
           <img style="float: right;" *ngIf="filterExpand2 == false" src="../../assets/images/icons8-plus-math-16.png">
           <img style="float: right;" *ngIf="filterExpand2 == true" src="../../assets/images/icons8-subtract-16.png">
         </h3>
         <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand2 ? 'block' : 'none'}">
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size1')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size1" (ngModelChange)="performFilter()">
             5
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size2')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size2" (ngModelChange)="performFilter()">
             5.5
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size3')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size3" (ngModelChange)="performFilter()">
             6
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size4')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size4" (ngModelChange)="performFilter()">
             6.5
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size5')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size5" (ngModelChange)="performFilter()">
             7
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size6')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size6" (ngModelChange)="performFilter()">
             7.5
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size7')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size7" (ngModelChange)="performFilter()">
             8
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size8')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size8" (ngModelChange)="performFilter()">
             8.5
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size9')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size9" (ngModelChange)="performFilter()">
             9
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size10')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size10" (ngModelChange)="performFilter()">
             9.5
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size11')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size11" (ngModelChange)="performFilter()">
             10
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size12')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size12" (ngModelChange)="performFilter()">
             10.5
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size13')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size13" (ngModelChange)="performFilter()">
             11
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size14')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size14" (ngModelChange)="performFilter()">
             11.5
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('sizeFilter', 'size15')">
             <input type="checkbox" [(ngModel)]="sizeFilter.size15" (ngModelChange)="performFilter()">
             12
           </li>
         </ul>
       </div>
 
-      <div style="cursor: pointer">
-        <h3 (click)="filterExpand3 = !filterExpand3"
-          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+      <div>
+        <h3 (click)="filterExpand3 = !filterExpand3" class="filter-type">
           Color
           <img style="float: right;" *ngIf="filterExpand3 == false" src="../../assets/images/icons8-plus-math-16.png">
           <img style="float: right;" *ngIf="filterExpand3 == true" src="../../assets/images/icons8-subtract-16.png">
         </h3>
         <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand3 ? 'block' : 'none'}">
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('colorFilter', 'color1')">
             <input type="checkbox" [(ngModel)]="colorFilter.color1" (ngModelChange)="performFilter()">
             Black
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('colorFilter', 'color2')">
             <input type="checkbox" [(ngModel)]="colorFilter.color2" (ngModelChange)="performFilter()">
             Blue
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('colorFilter', 'color3')">
             <input type="checkbox" [(ngModel)]="colorFilter.color3" (ngModelChange)="performFilter()">
             Green
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('colorFilter', 'color4')">
             <input type="checkbox" [(ngModel)]="colorFilter.color4" (ngModelChange)="performFilter()">
             Gray
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('colorFilter', 'color5')">
             <input type="checkbox" [(ngModel)]="colorFilter.color5" (ngModelChange)="performFilter()">
             Purple
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('colorFilter', 'color6')">
             <input type="checkbox" [(ngModel)]="colorFilter.color6" (ngModelChange)="performFilter()">
             Red
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('colorFilter', 'color7')">
             <input type="checkbox" [(ngModel)]="colorFilter.color7" (ngModelChange)="performFilter()">
             White
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('colorFilter', 'color8')">
             <input type="checkbox" [(ngModel)]="colorFilter.color8" (ngModelChange)="performFilter()">
             Yellow
           </li>
         </ul>
       </div>
-      <div style="cursor: pointer">
-        <h3 (click)="filterExpand4 = !filterExpand4"
-          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+      <div>
+        <h3 (click)="filterExpand4 = !filterExpand4" class="filter-type">
           Outsole Warranty
           <img style="float: right;" *ngIf="filterExpand4 == false" src="../../assets/images/icons8-plus-math-16.png">
           <img style="float: right;" *ngIf="filterExpand4 == true" src="../../assets/images/icons8-subtract-16.png">
         </h3>
         <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand4 ? 'block' : 'none'}">
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('outsoleWarrantyFilter', 'warranty1')">
             <input type="checkbox" [(ngModel)]="outsoleWarrantyFilter.warranty1" (ngModelChange)="performFilter()">
             Yes
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('outsoleWarrantyFilter', 'warranty2')">
             <input type="checkbox" [(ngModel)]="outsoleWarrantyFilter.warranty2" (ngModelChange)="performFilter()">
             No
           </li>
         </ul>
       </div>
-      <div style="cursor: pointer">
-        <h3 (click)="filterExpand5 = !filterExpand5"
-          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+      <div>
+        <h3 (click)="filterExpand5 = !filterExpand5" class="filter-type">
           Price
           <img style="float: right;" *ngIf="filterExpand5 == false" src="../../assets/images/icons8-plus-math-16.png">
           <img style="float: right;" *ngIf="filterExpand5 == true" src="../../assets/images/icons8-subtract-16.png">
         </h3>
         <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand5 ? 'block' : 'none'}">
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range1')">
             <input type="checkbox" [(ngModel)]="priceFilter.range1" (ngModelChange)="performFilter()">
             $40 - $49.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range2')">
             <input type="checkbox" [(ngModel)]="priceFilter.range2" (ngModelChange)="performFilter()">
             $50 - $59.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range3')">
             <input type="checkbox" [(ngModel)]="priceFilter.range3" (ngModelChange)="performFilter()">
             $60 - $69.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range4')">
             <input type="checkbox" [(ngModel)]="priceFilter.range4" (ngModelChange)="performFilter()">
             $70 - $79.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range5')">
             <input type="checkbox" [(ngModel)]="priceFilter.range5" (ngModelChange)="performFilter()">
             $80 - $89.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range6')">
             <input type="checkbox" [(ngModel)]="priceFilter.range6" (ngModelChange)="performFilter()">
             $90 - $99.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range7')">
             <input type="checkbox" [(ngModel)]="priceFilter.range7" (ngModelChange)="performFilter()">
             $100 - $109.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range8')">
             <input type="checkbox" [(ngModel)]="priceFilter.range8" (ngModelChange)="performFilter()">
             $110 - $119.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range9')">
             <input type="checkbox" [(ngModel)]="priceFilter.range9" (ngModelChange)="performFilter()">
             $120 - $129.99
           </li>

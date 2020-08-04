@@ -1,0 +1,16 @@
+.page-text {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  font-size: 6rem;
+}
+
+.home-button {
+  margin-top: 20px;
+}

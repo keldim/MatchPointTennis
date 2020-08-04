@@ -86,8 +86,6 @@
 				<td data-title="Detail" style="border-bottom: 1px solid #ddd;">
       				<small>
             			Size: ${shoe.size}<br>
-            			Color: ${shoe.color}<br>
-            			6-Month Warranty: ${shoe.outsoleWarranty}<br>
           			</small>
 				</td>
 				<td data-title="Total" style="border-bottom: 1px solid #ddd;">

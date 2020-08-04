@@ -9,3 +9,16 @@
 .right-button {
   margin-left: 2px;
 }
+
+.page-text {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.subheader {
+  font-weight: normal;
+}

@@ -3,82 +3,78 @@
     <div class="filter col-md-3 col-lg-2 border" style="background: rgb(246, 246, 245);">
       <h3 style="font-size: 16px; padding-top: 10px;">Filters</h3>
       <div>
-        <h3 (click)="filterExpand1 = !filterExpand1"
-          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+        <h3 (click)="filterExpand1 = !filterExpand1" class="filter-type">
           Type
           <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
           <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
         </h3>
         <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand1 ? 'block' : 'none'}">
-          <li class="filter-choice">
-            <a>
-              <input type="checkbox" [(ngModel)]="typeFilter.balls" (ngModelChange)="performFilter()">
-              Tennis Balls
-            </a>
+          <li class="filter-choice" (click)="changeCheckbox('typeFilter', 'balls')">
+            <input type="checkbox" [(ngModel)]="typeFilter.balls" (ngModelChange)="performFilter()">
+            Tennis Balls
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('typeFilter', 'towels')">
             <input type="checkbox" [(ngModel)]="typeFilter.towels" (ngModelChange)="performFilter()">
             Tennis Towels
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('typeFilter', 'grips')">
             <input type="checkbox" [(ngModel)]="typeFilter.grips" (ngModelChange)="performFilter()">
             Over Grips
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('typeFilter', 'dampeners')">
             <input type="checkbox" [(ngModel)]="typeFilter.dampeners" (ngModelChange)="performFilter()">
             Vibration Dampeners
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('typeFilter', 'sunscreen')">
             <input type="checkbox" [(ngModel)]="typeFilter.sunscreen" (ngModelChange)="performFilter()">
             Sunscreen
           </li>
         </ul>
       </div>
-      <div style="cursor: pointer">
-        <h3 (click)="filterExpand2 = !filterExpand2"
-          style="font-size: 16px; border-top: solid 1px black; padding-top: 10px;">
+      <div>
+        <h3 (click)="filterExpand2 = !filterExpand2" class="filter-type">
           Price
           <img style="float: right;" *ngIf="filterExpand2 == false" src="../../assets/images/icons8-plus-math-16.png">
           <img style="float: right;" *ngIf="filterExpand2 == true" src="../../assets/images/icons8-subtract-16.png">
         </h3>
         <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand2 ? 'block' : 'none'}">
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range1')">
             <input type="checkbox" [(ngModel)]="priceFilter.range1" (ngModelChange)="performFilter()">
             $0 - $9.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range2')">
             <input type="checkbox" [(ngModel)]="priceFilter.range2" (ngModelChange)="performFilter()">
             $10 - $19.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range3')">
             <input type="checkbox" [(ngModel)]="priceFilter.range3" (ngModelChange)="performFilter()">
             $20 - $29.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range4')">
             <input type="checkbox" [(ngModel)]="priceFilter.range4" (ngModelChange)="performFilter()">
             $30 - $39.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range5')">
             <input type="checkbox" [(ngModel)]="priceFilter.range5" (ngModelChange)="performFilter()">
             $40 - $49.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range6')">
             <input type="checkbox" [(ngModel)]="priceFilter.range6" (ngModelChange)="performFilter()">
             $50 - $59.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range7')">
             <input type="checkbox" [(ngModel)]="priceFilter.range7" (ngModelChange)="performFilter()">
             $60 - $69.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range8')">
             <input type="checkbox" [(ngModel)]="priceFilter.range8" (ngModelChange)="performFilter()">
             $70 - $79.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range9')">
             <input type="checkbox" [(ngModel)]="priceFilter.range9" (ngModelChange)="performFilter()">
             $80 - $89.99
           </li>
-          <li>
+          <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range10')">
             <input type="checkbox" [(ngModel)]="priceFilter.range10" (ngModelChange)="performFilter()">
             $90 - $99.99
           </li>

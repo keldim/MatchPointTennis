@@ -37,7 +37,7 @@ export class UserRegistrationComponent implements OnInit {
     console.log(header1);
 
     // this.http.post('http://localhost:8080/openid-connect-server-webapp/username-duplicate', {}, { headers: header1 }).subscribe
-    this.http.get('http://localhost:8080/openid-connect-server-webapp/username-duplicate', { headers: header1 }).subscribe((response: boolean) => {
+    this.http.get('http://mitre-id-server.eba-qjffpfif.us-east-2.elasticbeanstalk.com/username-duplicate', { headers: header1 }).subscribe((response: boolean) => {
       // http://new-mitreid-env.eba-ppwpqerk.us-east-2.elasticbeanstalk.com/username-duplicate
       if (response === true) {
         console.log("reached");
@@ -57,7 +57,7 @@ export class UserRegistrationComponent implements OnInit {
         console.log(header2);
 
         // this.http.post('http://localhost:8080/openid-connect-server-webapp/add-user', {}, { headers: header2 }).subscribe
-        this.http.get('http://localhost:8080/openid-connect-server-webapp/add-user', { headers: header2 }).subscribe(resp => {
+        this.http.get('http://mitre-id-server.eba-qjffpfif.us-east-2.elasticbeanstalk.com/add-user', { headers: header2 }).subscribe(resp => {
           // http://new-mitreid-env.eba-ppwpqerk.us-east-2.elasticbeanstalk.com/add-user
           console.log(resp);
         });

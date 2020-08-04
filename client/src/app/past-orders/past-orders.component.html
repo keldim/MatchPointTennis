@@ -1,0 +1,24 @@
+<span *ngIf="pastOrders.length == 0" class="page-text">
+  <h1>
+    There are no past orders
+  </h1>
+</span>
+
+
+
+<div class="container" *ngIf="pastOrders != null">
+  <div *ngFor="let pastOrder of pastOrders" class="row cart-row">
+    <div class="col-6 col-sm-4">
+      {{ pastOrder['ordered_at'] | date: 'mediumDate' }}<br>
+      <small>date</small>
+    </div>
+    <div class="col-6 col-sm-4">
+      {{ pastOrder['ordered_at'] | date: 'mediumTime' }}<br>
+      <small>time</small>
+    </div>
+    <div class="col-12 col-sm-4">
+      <a [routerLink]="['/past-orders', pastOrder['id']]">View Order</a><br>
+      <small>action</small>
+    </div>
+  </div>
+</div>

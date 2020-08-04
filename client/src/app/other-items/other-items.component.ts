@@ -39,6 +39,15 @@ export class OtherItemsComponent implements OnInit {
     this.performFilter();
   }
 
+  changeCheckbox(filter, key) {
+    if (filter == "typeFilter") {
+      this.typeFilter[key] = !this.typeFilter[key];
+    } else {
+      this.priceFilter[key] = !this.priceFilter[key];
+    }
+    this.performFilter();
+  }
+
   typeFilterChange(productList: any[]) {
     let filteredProductList: any[] = [];
     filteredProductList = productList.filter(x =>

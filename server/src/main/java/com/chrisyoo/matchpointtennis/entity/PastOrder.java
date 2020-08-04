@@ -31,8 +31,27 @@ public class PastOrder {
 	@Column(name="ordered_at")
 	private Timestamp ordered_at;
 	
-	@Column(name="location")
-	private String location;
+	// add address1, address2, city, state, zipcode, cardLastFourNumbers, cardType
+	@Column(name="address1")
+	private String address1;
+	
+	@Column(name="address2")
+	private String address2;
+	
+	@Column(name="city")
+	private String city;
+	
+	@Column(name="state")
+	private String state;
+	
+	@Column(name="zipcode")
+	private String zipcode;
+	
+	@Column(name="card_last_four_numbers")
+	private String cardLastFourNumbers;
+	
+	@Column(name="card_type")
+	private String cardType;
 	
 //	@ManyToOne(cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 //	@JoinColumn(name="openiduser_id")
@@ -42,30 +61,37 @@ public class PastOrder {
 //	mappedBy="pastOrder", 
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="past_order_id")
-	private List<Pizza> PizzaItems;
+	private List<Racquet> racquets;
 	
 //	mappedBy="past_orders", 
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="past_order_id")
-	private List<Salad> SaladItems;
+	private List<Shoe> shoes;
 	
 //	mappedBy="past_orders", 
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="past_order_id")
-	private List<Drink> DrinkItems;
+	private List<ApparelItem> apparel;
 	
 //	mappedBy="past_orders", 
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="past_order_id")
-	private List<Dessert> DessertItems;		
+	private List<Item> items;		
 	
 	public PastOrder() {
 		
 	}
 
-	public PastOrder(Timestamp ordered_at, String location) {
+	public PastOrder(Timestamp ordered_at, String address1, String address2, String city, String state, String zipcode,
+			String cardLastFourNumbers, String cardType) {
 		this.ordered_at = ordered_at;
-		this.location = location;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.city = city;
+		this.state = state;
+		this.zipcode = zipcode;
+		this.cardLastFourNumbers = cardLastFourNumbers;
+		this.cardType = cardType;
 	}
 
 	public int getId() {
@@ -83,92 +109,132 @@ public class PastOrder {
 	public void setOrdered_at(Timestamp ordered_at) {
 		this.ordered_at = ordered_at;
 	}
-	
-//	public OpenIdUser getOpenIdUser() {
-//		return openIdUser;
-//	}
-//
-//	public void setOpenIdUser(OpenIdUser openIdUser) {
-//		this.openIdUser = openIdUser;
-//	}
 
-	public List<Pizza> getPizzaItems() {
-		return PizzaItems;
+	public String getAddress1() {
+		return address1;
 	}
 
-	public void setPizzaItems(List<Pizza> pizzaItems) {
-		PizzaItems = pizzaItems;
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+
+	public String getAddress2() {
+		return address2;
+	}
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public String getCardLastFourNumbers() {
+		return cardLastFourNumbers;
+	}
+
+	public void setCardLastFourNumbers(String cardLastFourNumbers) {
+		this.cardLastFourNumbers = cardLastFourNumbers;
+	}
+
+	public String getCardType() {
+		return cardType;
+	}
+
+	public void setCardType(String cardType) {
+		this.cardType = cardType;
+	}
+
+	public List<Racquet> getRacquets() {
+		return racquets;
+	}
+
+	public void setRacquets(List<Racquet> racquets) {
+		this.racquets = racquets;
 	}
 	
-	public void addPizza(Pizza pizza) {
+	public void addRacquet(Racquet racquet) {
 
-		if (PizzaItems == null) {
-			PizzaItems = new ArrayList<>();
+		if (racquets == null) {
+			racquets = new ArrayList<>();
 		}
 
-		PizzaItems.add(pizza);
+		racquets.add(racquet);
+//		pizza.setPastOrder(this);
+	}
+	
+	public List<Shoe> getShoes() {
+		return shoes;
+	}
+
+	public void setShoes(List<Shoe> shoes) {
+		this.shoes = shoes;
+	}
+	
+	public void addShoe(Shoe shoe) {
+
+		if (shoes == null) {
+			shoes = new ArrayList<>();
+		}
+
+		shoes.add(shoe);
 //		pizza.setPastOrder(this);
 	}
 
-	public String getLocation() {
-		return location;
+	public List<ApparelItem> getApparel() {
+		return apparel;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
-	
-	public List<Salad> getSaladItems() {
-		return SaladItems;
+	public void setApparel(List<ApparelItem> apparel) {
+		this.apparel = apparel;
 	}
 
-	public void setSaladItems(List<Salad> saladItems) {
-		SaladItems = saladItems;
-	}
-	
-	public void addSalad(Salad salad) {
+	public void addApparelItem(ApparelItem apparelItem) {
 
-		if (SaladItems == null) {
-			SaladItems = new ArrayList<>();
+		if (apparel == null) {
+			apparel = new ArrayList<>();
 		}
 
-		SaladItems.add(salad);
-//		pizza.setPastOrder(this);
-	}
-
-	public List<Drink> getDrinkItems() {
-		return DrinkItems;
-	}
-
-	public void setDrinkItems(List<Drink> drinkItems) {
-		DrinkItems = drinkItems;
-	}
-
-	public void addDrink(Drink drink) {
-
-		if (DrinkItems == null) {
-			DrinkItems = new ArrayList<>();
-		}
-
-		DrinkItems.add(drink);
+		apparel.add(apparelItem);
 //		pizza.setPastOrder(this);
 	}
 	
-	public List<Dessert> getDessertItems() {
-		return DessertItems;
+	public List<Item> getItems() {
+		return items;
 	}
 
-	public void setDessertItems(List<Dessert> dessertItems) {
-		DessertItems = dessertItems;
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
-	public void addDessert(Dessert dessert) {
+	public void addItem(Item item) {
 
-		if (DessertItems == null) {
-			DessertItems = new ArrayList<>();
+		if (items == null) {
+			items = new ArrayList<>();
 		}
 
-		DessertItems.add(dessert);
+		items.add(item);
 //		pizza.setPastOrder(this);
 	}
 	

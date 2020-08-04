@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand-sm navbar-light navbarTweaks" style="text-align: center;" *ngIf="hideNavBar()">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light navbarTweaks" style="text-align: center;" *ngIf="hideNavBar()">
   <div class="container">
 
     <a class="navbar-brand" href="#" [routerLink]="['/home']">
@@ -45,6 +45,10 @@
             <img src="../assets/images/icons8-buy-20.png">
             Cart {{ total }}
           </a>
+        </li>
+
+        <li class="nav-item active menu-button-tweak" *ngIf="isLoggedIn">
+          <a class="nav-link" [routerLink]="['/past-orders']" routerLinkActive="clicked-link">Past Orders</a>
         </li>
 
         <li class="nav-item menu-button-tweak">

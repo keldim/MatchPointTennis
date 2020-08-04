@@ -15,6 +15,11 @@ import { SignoutRedirectCallbackComponent } from './signout-redirect-callback.co
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { ShoesComponent } from './shoes/shoes.component';
 import { ApparelComponent } from './apparel/apparel.component';
+import { ThankYouComponent } from './thank-you/thank-you.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PastOrdersComponent } from './past-orders/past-orders.component';
+import { PastOrderDetailComponent } from './past-orders/past-order-detail/past-order-detail.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 const routes: Routes = [];
 
@@ -38,11 +43,15 @@ const routes: Routes = [];
       { path: 'cart', component: CartComponent },
       { path: 'shipping-and-payment', component: ShippingAndPaymentComponent },
       { path: 'review-and-order', component: ReviewAndOrderComponent },
+      { path: 'past-orders', component: PastOrdersComponent },
+      { path: 'past-orders/:id', component: PastOrderDetailComponent },
       { path: 'signin-callback', component: SigninRedirectCallbackComponent },
       { path: 'signout-callback', component: SignoutRedirectCallbackComponent },
       { path: 'new-user', component: UserRegistrationComponent },
+      { path: 'thank-you', component: ThankYouComponent },
+      { path: 'error-page', component: ErrorPageComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: '**', redirectTo: 'home', pathMatch: 'full' }
+      { path: '**', component: PageNotFoundComponent }
     ])
   ],
   exports: [

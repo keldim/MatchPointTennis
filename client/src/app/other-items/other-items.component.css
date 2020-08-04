@@ -20,8 +20,22 @@
   padding-left: 0;
 }
 
+.filter-type {
+  font-size: 16px;
+  border-top: solid 1px black;
+  padding-top: 10px;
+}
+
+.filter-type:hover {
+  cursor: pointer;
+}
+
 .filter-choice:hover {
   cursor: pointer;
   color: white;
   background-color: darkgray;
+}
+
+.filter-choice input:hover {
+  cursor: pointer;
 }

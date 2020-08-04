@@ -1,0 +1,74 @@
+<div class="container" *ngIf="pastOrder != null">
+  <div class="mb-4">
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-muted">Order Detail</span>
+      <span class="badge badge-secondary badge-pill previous-page" (click)="backToPastOrders()">
+          Back to past orders
+      </span>
+    </h4>
+    <ul class="list-group mb-3">
+      <li *ngFor="let racquet of pastOrder['racquets']"
+        class="list-group-item d-flex justify-content-between lh-condensed">
+        <div>
+          <h6 class="my-0">{{ racquet.name }}</h6>
+          <small class="text-muted">
+            Main Item - ${{ racquet.price }}<br>
+            Grip Size: {{ racquet.gripSize }}<br>
+            String: {{ racquet.racquetString }}<br>
+            <span *ngIf="racquet.racquetString != 'Unstrung'">Tension: {{ racquet.tension }}</span>
+          </small>
+        </div>
+        <span class="text-muted">${{ calculatePriceForRacquet(racquet.racquetString, racquet.price) }} x
+          {{ racquet.quantity }} =
+          ${{ calculateTotalForItem(calculatePriceForRacquet(racquet.racquetString, racquet.price), racquet.quantity) }}</span>
+      </li>
+      <li *ngFor="let shoe of pastOrder['shoes']" class="list-group-item d-flex justify-content-between lh-condensed">
+        <div>
+          <h6 class="my-0">{{ shoe.name }}</h6>
+          <small class="text-muted">
+            Size: {{ shoe.size }}
+          </small>
+        </div>
+        <span class="text-muted">${{ shoe.price }} x {{ shoe.quantity }} =
+          ${{ calculateTotalForItem(shoe.price, shoe.quantity) }}</span>
+      </li>
+      <li *ngFor="let apparelItem of pastOrder['apparel']"
+        class="list-group-item d-flex justify-content-between lh-condensed">
+        <div>
+          <h6 class="my-0">{{ apparelItem.name }}</h6>
+          <small class="text-muted">
+            Size: {{ apparelItem.size }}<br>
+            Color: {{ apparelItem.color }}
+          </small>
+        </div>
+        <span class="text-muted">${{ apparelItem.price }} x {{ apparelItem.quantity }} =
+          ${{ calculateTotalForItem(apparelItem.price, apparelItem.quantity) }}</span>
+      </li>
+      <li *ngFor="let item of pastOrder['items']" class="list-group-item d-flex justify-content-between lh-condensed">
+        <div>
+          <h6 class="my-0">{{ item.name }}</h6>
+        </div>
+        <span class="text-muted">${{ item.price }} x {{ item.quantity }} =
+          ${{ calculateTotalForItem(item.price, item.quantity) }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <span>Subtotal</span>
+        <span class="text-muted">${{ showSubtotal() }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <span>Tax</span>
+        <span class="text-muted">$0</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <span>Shipping</span>
+        <span class="text-muted"
+          *ngIf="this.calculateSubtotal() > 0.00 && this.calculateSubtotal() < 50.00 ">$5.75</span>
+        <span class="text-muted"
+          *ngIf="this.calculateSubtotal() >= 50.00 || this.calculateSubtotal() == 0.00">$0.00</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <span>Grand Total (USD)</span>
+        <strong>${{ showGrandTotal() }}</strong>
+      </li>
+    </ul>
+  </div>
