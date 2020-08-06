@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 
 
@@ -25,7 +26,7 @@ export class UserRegistrationComponent implements OnInit {
   successAlert: boolean = false;
   failAlert: boolean = false;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService) {
 
   }
 
@@ -37,7 +38,7 @@ export class UserRegistrationComponent implements OnInit {
     console.log(header1);
 
     // this.http.post('http://localhost:8080/openid-connect-server-webapp/username-duplicate', {}, { headers: header1 }).subscribe
-    this.http.get('http://mitre-id-server.eba-qjffpfif.us-east-2.elasticbeanstalk.com/username-duplicate', { headers: header1 }).subscribe((response: boolean) => {
+    this.http.get(this.authService.getAuthorityURL() + 'username-duplicate', { headers: header1 }).subscribe((response: boolean) => {
       // http://new-mitreid-env.eba-ppwpqerk.us-east-2.elasticbeanstalk.com/username-duplicate
       if (response === true) {
         console.log("reached");
@@ -57,7 +58,7 @@ export class UserRegistrationComponent implements OnInit {
         console.log(header2);
 
         // this.http.post('http://localhost:8080/openid-connect-server-webapp/add-user', {}, { headers: header2 }).subscribe
-        this.http.get('http://mitre-id-server.eba-qjffpfif.us-east-2.elasticbeanstalk.com/add-user', { headers: header2 }).subscribe(resp => {
+        this.http.get(this.authService.getAuthorityURL() + 'add-user', { headers: header2 }).subscribe(resp => {
           // http://new-mitreid-env.eba-ppwpqerk.us-east-2.elasticbeanstalk.com/add-user
           console.log(resp);
         });

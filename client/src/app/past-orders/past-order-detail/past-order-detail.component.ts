@@ -7,6 +7,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-past-order-detail',
@@ -17,7 +18,7 @@ export class PastOrderDetailComponent implements OnInit {
 
   pastOrder: Object;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private _authService: AuthService, private router: Router) {
+  constructor(private route: ActivatedRoute, private http: HttpClient, private _authService: AuthService, private router: Router, private backendService: BackendService) {
   }
 
   ngOnInit() {
@@ -28,8 +29,7 @@ export class PastOrderDetailComponent implements OnInit {
         'Authorization': `Bearer ` + accessToken
       });
       console.log("sending request for past order");
-      this.http.post(`http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/registered-user/past-order/${pastOrderId}`, {}, { headers: headers }).subscribe(
-        // http://localhost:5000/
+      this.http.post(`${this.backendService.getBackendURL()}registered-user/past-order/${pastOrderId}`, {}, { headers: headers }).subscribe(
         (pastOrderReceived: Object) => this.pastOrder = pastOrderReceived,
         (err: any) => console.log(err),
         () => console.log("past order successfully loaded")

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { BackendService } from '../services/backend.service';
 
 function expiredMonthYear(c: AbstractControl): { [key: string]: boolean } | null {
   let today = new Date();
@@ -28,7 +29,7 @@ export class ShippingAndPaymentComponent implements OnInit {
   shoppingAndPaymentInfo: Object;
   stateList = StateList.states;
 
-  constructor(private storageService: StorageService, private router: Router, private fb: FormBuilder, private http: HttpClient) {
+  constructor(private storageService: StorageService, private router: Router, private fb: FormBuilder, private http: HttpClient, private backendService: BackendService) {
 
   }
 
@@ -74,8 +75,7 @@ export class ShippingAndPaymentComponent implements OnInit {
 
 
   getShoppingAndPaymentInfo() {
-    return this.http.get('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/form-input/ephemeral-data');
-    // http://localhost:5000/
+    return this.http.get(this.backendService.getBackendURL() + 'form-input/ephemeral-data');
   }
 
 
@@ -100,7 +100,7 @@ export class ShippingAndPaymentComponent implements OnInit {
     });
     console.log(headers);
 
-    this.http.post('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/form-input/data', {}, { headers: headers }).subscribe(resp => {
+    this.http.post(this.backendService.getBackendURL() + 'form-input/data', {}, { headers: headers }).subscribe(resp => {
       console.log(resp);
       this.router.navigate(['/review-and-order']);
     });
@@ -109,13 +109,13 @@ export class ShippingAndPaymentComponent implements OnInit {
   @HostListener('window:beforeunload', ['$event'])
   canLeavePage($event: any) {
     console.log("beforeunload reached");
-    this.http.post('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/form-input/clean-up', {}).subscribe(resp => {
+    this.http.post(this.backendService.getBackendURL() + 'form-input/clean-up', {}).subscribe(resp => {
       console.log(resp);
     });
   }
 
   cancelAndCleanUp() {
-    this.http.post('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/form-input/cancel', {}).subscribe(resp => {
+    this.http.post(this.backendService.getBackendURL() + 'form-input/cancel', {}).subscribe(resp => {
       console.log(resp);
     });
     this.router.navigate(['/cart']);

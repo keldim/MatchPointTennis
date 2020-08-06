@@ -39,8 +39,8 @@ public class CorsConfig {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowCredentials(true);
-		config.addAllowedOrigin("http://match-point-tennis-client.s3-website.us-east-2.amazonaws.com");
-//		http://localhost:4200
+		config.addAllowedOrigin("http://localhost:4200");
+//		http://match-point-tennis-client.s3-website.us-east-2.amazonaws.com
 		config.addAllowedHeader("*");
 		config.addAllowedMethod("*");
 

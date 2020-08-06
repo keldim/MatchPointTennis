@@ -9,7 +9,10 @@ import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
   providedIn: 'root'
 })
 export class AuthService {
-  // authenticated = false;
+
+  private authorityURL = "http://localhost:8080/openid-connect-server-webapp/"
+  private frontendURL = "http://localhost:4200/"
+
   private _userManager: UserManager;
   private _user : User;
   private _loginChangedSubject = new Subject<boolean>();
@@ -19,22 +22,12 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     const config = {
-      authority: 'http://mitre-id-server.eba-qjffpfif.us-east-2.elasticbeanstalk.com/',
-      // http://localhost:8080/openid-connect-server-webapp/
-      // http://new-mitreid-env.eba-ppwpqerk.us-east-2.elasticbeanstalk.com/
+      authority: this.authorityURL,
       client_id: 'matchpointtennis',
-      redirect_uri: 'http://match-point-tennis-client.s3-website.us-east-2.amazonaws.com/signin-callback',
-      // http://campania-pizza-client.s3-website.us-east-2.amazonaws.com/assets/oidc-login-redirect.html
-      // http://localhost:4200/signin-callback
+      redirect_uri: this.frontendURL + 'signin-callback',
       scope: 'openid',
       response_type: 'id_token token',
-      // projects-api profile
-      // prompt: 'none',
-      post_logout_redirect_uri: 'http://match-point-tennis-client.s3-website.us-east-2.amazonaws.com/signout-callback'
-      // http://campania-pizza-client.s3-website.us-east-2.amazonaws.com/?postLogout=true
-      // http://localhost:4200/
-      // http://localhost:4200/signout-callback
-      // userStore: new WebStorageStateStore({ store: window.localStorage })
+      post_logout_redirect_uri: this.frontendURL + 'signout-callback'
     };
 
     this._userManager = new UserManager(config);
@@ -82,5 +75,9 @@ export class AuthService {
         return null;
       }
     });
+  }
+
+  getAuthorityURL() {
+    return this.authorityURL;
   }
 }

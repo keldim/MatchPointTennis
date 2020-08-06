@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { BackendService } from '../services/backend.service';
 
 @Component({
   selector: 'app-review-and-order',
@@ -21,7 +22,8 @@ export class ReviewAndOrderComponent implements OnInit {
   isLoggedIn = false;
   loading = false;
 
-  constructor(private storageService: StorageService, private fb: FormBuilder, private http: HttpClient, private router: Router, private zone: NgZone, private _authService: AuthService) {
+  constructor(private storageService: StorageService, private fb: FormBuilder, private http: HttpClient, private router: Router,
+    private zone: NgZone, private _authService: AuthService, private backendService: BackendService) {
     this.storageService.watchRacquets().subscribe(selectedRacquets => {
       this.selectedRacquets = selectedRacquets;
     });
@@ -54,8 +56,7 @@ export class ReviewAndOrderComponent implements OnInit {
   }
 
   getShoppingAndPaymentInfo() {
-    return this.http.get('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/form-input/ephemeral-data');
-    // http://localhost:5000/
+    return this.http.get(this.backendService.getBackendURL() + 'form-input/ephemeral-data');
   }
 
   calculatePriceForRacquet(string, mainItem) {
@@ -152,7 +153,7 @@ export class ReviewAndOrderComponent implements OnInit {
   }
 
   cancelAndCleanUp() {
-    this.http.post('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/form-input/cancel', {}).subscribe(resp => {
+    this.http.post(this.backendService.getBackendURL() + 'form-input/cancel', {}).subscribe(resp => {
       console.log(resp);
     });
     this.router.navigate(['/cart']);
@@ -169,12 +170,10 @@ export class ReviewAndOrderComponent implements OnInit {
       if (status === 200) {
         let token = response.id;
         this.chargeCard(token);
-
-        this.zone.run(() => {
-          this.router.navigate(['/thank-you']);
-        });
       } else {
-        console.log(response.error.message);
+        this.zone.run(() => {
+          this.router.navigate(['/error-page']);
+        });
       }
     });
   }
@@ -208,14 +207,20 @@ export class ReviewAndOrderComponent implements OnInit {
 
         console.log(headers);
 
-        this.http.post('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/registered-user/charge', {}, { headers: headers }).subscribe(resp => {
+        this.http.post(this.backendService.getBackendURL() + 'registered-user/charge', {}, { headers: headers }).subscribe(resp => {
           console.log(resp);
           if (resp == null) {
-            this.router.navigate(['/error-page']);
+            this.zone.run(() => {
+              this.router.navigate(['/error-page']);
+            });
+          } else {
+            this.zone.run(() => {
+              this.router.navigate(['/thank-you']);
+            });
           }
         });
 
-        this.http.post('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/form-input/cancel', {}).subscribe(resp => {
+        this.http.post(this.backendService.getBackendURL() + 'form-input/cancel', {}).subscribe(resp => {
           console.log(resp);
         });
         this.storageService.clear();
@@ -249,14 +254,20 @@ export class ReviewAndOrderComponent implements OnInit {
       });
       console.log(headers);
 
-      this.http.post('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/unregistered-user/charge', {}, { headers: headers }).subscribe(resp => {
+      this.http.post(this.backendService.getBackendURL() + 'unregistered-user/charge', {}, { headers: headers }).subscribe(resp => {
         console.log(resp);
         if (resp == null) {
-          this.router.navigate(['/error-page']);
+          this.zone.run(() => {
+            this.router.navigate(['/error-page']);
+          });
+        } else {
+          this.zone.run(() => {
+            this.router.navigate(['/thank-you']);
+          });
         }
       });
 
-      this.http.post('http://match-point-tennis-server.eba-8q6mbktj.us-east-2.elasticbeanstalk.com/form-input/cancel', {}).subscribe(resp => {
+      this.http.post(this.backendService.getBackendURL() + 'form-input/cancel', {}).subscribe(resp => {
         console.log(resp);
       });
       this.storageService.clear();
