@@ -143,32 +143,25 @@ public class TestPastOrderRepository {
 		
 	}
 
-//	@After
-//	public void cleanup() {
-//		this.entityManager.clear();
-//		this.entityManager.flush();
-//		System.out.println("called!!!!!!!!!!");
+//	@Test
+//	public void testFindAll() {
+//		this.entityManager.persist(pastOrder1);
+//		Iterable<PastOrder> pastOrders = repo.findAll();
+//
+//		int count = 0;
+//		for (PastOrder pastOrder : pastOrders) {
+//			assertEquals("3887  Yorkie Lane", pastOrder.getAddress1());
+//			assertEquals("Babolat Pure Drive", pastOrder.getRacquets().get(0).getName());
+//			assertEquals("Nike Vapor", pastOrder.getShoes().get(0).getName());
+//			assertEquals("Nike Blood Orange Shirt", pastOrder.getApparel().get(0).getName());
+//			assertEquals("Wilson Ball Can", pastOrder.getItems().get(0).getName());
+//			count++;
+//		}
+//		assertEquals(1, count);
 //	}
 
 	@Test
-	public void testFindAll() {
-		this.entityManager.persist(pastOrder1);
-		Iterable<PastOrder> pastOrders = repo.findAll();
-
-		int count = 0;
-		for (PastOrder pastOrder : pastOrders) {
-			assertEquals("3887  Yorkie Lane", pastOrder.getAddress1());
-			assertEquals("Babolat Pure Drive", pastOrder.getRacquets().get(0).getName());
-			assertEquals("Nike Vapor", pastOrder.getShoes().get(0).getName());
-			assertEquals("Nike Blood Orange Shirt", pastOrder.getApparel().get(0).getName());
-			assertEquals("Wilson Ball Can", pastOrder.getItems().get(0).getName());
-			count++;
-		}
-		assertEquals(1, count);
-	}
-
-	@Test
-	public void testFindById() {
+	public void should_find_past_order_by_id() {
 		this.entityManager.persist(pastOrder1);
 		this.entityManager.persist(pastOrder2);
 		this.entityManager.persist(pastOrder3);
@@ -180,5 +173,19 @@ public class TestPastOrderRepository {
 		assertEquals("Adidas Barricade", pastOrder.get().getShoes().get(0).getName());
 		assertEquals("Adidas Forest Green Shirt", pastOrder.get().getApparel().get(0).getName());
 		assertEquals("Penn Ball Can", pastOrder.get().getItems().get(0).getName());
+	}
+	
+//	only test functionalities that are actually used
+	
+	@Test
+	public void should_store_past_order() {
+		repo.save(pastOrder1);
+		Optional<PastOrder> savedItem = repo.findById(1);
+
+		assertEquals("3887  Yorkie Lane", savedItem.get().getAddress1());
+		assertEquals("Babolat Pure Drive", savedItem.get().getRacquets().get(0).getName());
+		assertEquals("Nike Vapor", savedItem.get().getShoes().get(0).getName());
+		assertEquals("Nike Blood Orange Shirt", savedItem.get().getApparel().get(0).getName());
+		assertEquals("Wilson Ball Can", savedItem.get().getItems().get(0).getName());
 	}
 }
