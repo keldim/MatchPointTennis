@@ -51,8 +51,6 @@ public class TestOpenIdUserRepository {
 	private OpenIdUser openIdUser3;
 	private PastOrder pastOrder3;
 	
-	
-	
 	public TestOpenIdUserRepository() {
 		openIdUser1 = new OpenIdUser("supersonicTaco");
 		pastOrder1 = new PastOrder();
@@ -80,8 +78,6 @@ public class TestOpenIdUserRepository {
 		assertEquals("cookieMonster", openIdUser.getUsername());
 		assertEquals("1896  Wright Court", openIdUser.getPastOrders().get(0).getAddress1());
 	}
-	
-//	only test functionalities that are actually used
 	
 	@Test
 	public void should_store_open_id_user() {

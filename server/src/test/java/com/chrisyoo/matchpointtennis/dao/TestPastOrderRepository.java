@@ -37,18 +37,7 @@ import com.chrisyoo.matchpointtennis.entity.Racquet;
 import com.chrisyoo.matchpointtennis.entity.Shoe;
 import com.chrisyoo.matchpointtennis.security.CorsConfig;
 import com.chrisyoo.matchpointtennis.security.ResourceServerConfiguration;
-//dummy for security?
-//, CorsConfig.class, ResourceServerConfiguration.class
-//@ContextConfiguration(classes= {PastOrderRepository.class, OpenIdUserRepository.class})
-//@EnableAutoConfiguration(exclude = { SecurityAutoConfiguration.class })
-//@EnableAutoConfiguration(exclude = { AutowiredAnnotationBeanPostProcessor.class })
 
-
-// need to create separate configuration for tests, fake values for oauth2 won't work, remove profiles for security configuration classes
-// mock access token
-//@ActiveProfiles("test")
-//@WithMockUser(username = "mock", password = "mock")
-//@DataJpaTest
 @RunWith(SpringRunner.class)
 @TestPropertySource(
 		  locations = "classpath:application-test.properties")
@@ -82,18 +71,9 @@ public class TestPastOrderRepository {
 	private Shoe shoe3;
 	private ApparelItem apparelItem3;
 	private Item item3;
-	
-//	private Timestamp time1;
-//	private Timestamp time2;
-//	private Timestamp time3;
 
 	public TestPastOrderRepository() {
-//		time1 = new Timestamp(System.currentTimeMillis());
-//		time2 = new Timestamp(System.currentTimeMillis() + 86400000);
-//		time3 = new Timestamp(System.currentTimeMillis() + 86400000 + 86400000);
-//		pastOrder1 = new PastOrder(time1, "3887  Yorkie Lane", "Apt. 20A", "Rincon", "Georgia", "31326", "5555", "Visa");
-//		pastOrder2 = new PastOrder(time2, "1896  Wright Court", "Apt. 15B", "Birmingham", "Alabama", "35205", "3333", "Visa");
-//		pastOrder3 = new PastOrder(time3, "2489  Illinois Avenue", "Apt. 10C", "Independence", "Oregon", "97351", "1111", "Visa");
+
 		pastOrder1 = new PastOrder();
 		pastOrder1.setAddress1("3887  Yorkie Lane");
 		racquet1 = new Racquet();
@@ -174,8 +154,6 @@ public class TestPastOrderRepository {
 		assertEquals("Adidas Forest Green Shirt", pastOrder.get().getApparel().get(0).getName());
 		assertEquals("Penn Ball Can", pastOrder.get().getItems().get(0).getName());
 	}
-	
-//	only test functionalities that are actually used
 	
 	@Test
 	public void should_store_past_order() {
