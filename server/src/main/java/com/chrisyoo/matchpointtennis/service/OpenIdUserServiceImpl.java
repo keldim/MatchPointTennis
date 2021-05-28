@@ -71,7 +71,6 @@ private OpenIdUserRepository openIdUserRepository;
 		JSONParser parser = new JSONParser();
 		JSONObject openId = (JSONObject) parser.parse(body);
 		
-		// what if there are no users at all?
 		OpenIdUser existingUser = openIdUserRepository.findByUsername((String) openId.get("sub"));
 		if (existingUser == null) {
 			OpenIdUser newOpenIdUser = new OpenIdUser((String) openId.get("sub"));

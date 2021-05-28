@@ -27,10 +27,7 @@ public class OpenIdUser {
 
 	@Column(name = "username")
 	private String username;
-
-//	fetch=FetchType.LAZY, 
-//	@JsonIgnoreProperties("openIdUser")
-//	mappedBy = "openIdUser", 
+ 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="openiduser_id")
 	private List<PastOrder> pastOrders;
@@ -74,8 +71,6 @@ public class OpenIdUser {
 		}
 
 		pastOrders.add(pastOrder);
-
-//		pastOrder.setOpenIdUser(this);
 
 	}
 

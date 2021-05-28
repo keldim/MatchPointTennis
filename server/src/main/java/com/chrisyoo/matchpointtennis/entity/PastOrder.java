@@ -31,7 +31,6 @@ public class PastOrder {
 	@Column(name="ordered_at")
 	private Timestamp ordered_at;
 	
-	// add address1, address2, city, state, zipcode, cardLastFourNumbers, cardType
 	@Column(name="address1")
 	private String address1;
 	
@@ -52,28 +51,19 @@ public class PastOrder {
 	
 	@Column(name="card_type")
 	private String cardType;
-	
-//	@ManyToOne(cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-//	@JoinColumn(name="openiduser_id")
-//	@JsonIgnoreProperties("pastOrders")
-//	private OpenIdUser openIdUser;
-	
-//	mappedBy="pastOrder", 
+	 
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="past_order_id")
 	private List<Racquet> racquets;
-	
-//	mappedBy="past_orders", 
+	 
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="past_order_id")
 	private List<Shoe> shoes;
 	
-//	mappedBy="past_orders", 
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="past_order_id")
 	private List<ApparelItem> apparel;
 	
-//	mappedBy="past_orders", 
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="past_order_id")
 	private List<Item> items;		
@@ -181,7 +171,7 @@ public class PastOrder {
 		}
 
 		racquets.add(racquet);
-//		pizza.setPastOrder(this);
+		
 	}
 	
 	public List<Shoe> getShoes() {
@@ -199,7 +189,7 @@ public class PastOrder {
 		}
 
 		shoes.add(shoe);
-//		pizza.setPastOrder(this);
+		
 	}
 
 	public List<ApparelItem> getApparel() {
@@ -217,7 +207,7 @@ public class PastOrder {
 		}
 
 		apparel.add(apparelItem);
-//		pizza.setPastOrder(this);
+		
 	}
 	
 	public List<Item> getItems() {
@@ -235,7 +225,7 @@ public class PastOrder {
 		}
 
 		items.add(item);
-//		pizza.setPastOrder(this);
+		
 	}
 	
 }

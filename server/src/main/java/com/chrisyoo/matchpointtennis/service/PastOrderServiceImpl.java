@@ -40,16 +40,12 @@ public class PastOrderServiceImpl implements PastOrderService {
 
 	@Override
 	public PastOrder findById(int theId) {
-		// "Optional"
-		// Different pattern instead of having to check for nulls
-		// Feature introduced in Java 8
 		Optional<PastOrder> result = pastOrderRepository.findById(theId);
 
 		PastOrder thePastOrder = null;
 		if (result.isPresent()) {
 			thePastOrder = result.get();
 		} else {
-			// we didn't find the past order
 			throw new RuntimeException("Did not find past order id - " + theId);
 		}
 
@@ -66,15 +62,8 @@ public class PastOrderServiceImpl implements PastOrderService {
 		pastOrderRepository.deleteById(theId);
 	}
 
-	// @Query(value = "select * from past_orders")
-	// List<Object[]> findAllPastOrder();
-
 	@Override
 	public PastOrder createPastOrder(HttpServletRequest request) throws Exception {
-		// what if there are no pizzas at all?
-		// leave amount as it is, no need to parse quantity as long
-		// with toggle, simply run the application, if the error occurs, then enter
-		// debug perspective
 		PastOrder newPastOrder = saveArraysToPastOrder(request);
 		newPastOrder = saveValuesToPastOrder(request, newPastOrder);
 		return newPastOrder;
