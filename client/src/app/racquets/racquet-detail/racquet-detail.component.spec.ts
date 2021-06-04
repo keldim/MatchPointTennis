@@ -1,25 +1,56 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RacquetList } from '../../racquets/racquet-list';
 import { RacquetDetailComponent } from './racquet-detail.component';
+import { StorageService } from 'src/app/services/storage.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
+import { LocalStorageStub } from 'src/app/services/local-storage-stub';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('RacquetDetailComponent', () => {
-  let component: RacquetDetailComponent;
   let fixture: ComponentFixture<RacquetDetailComponent>;
+  let racquets = RacquetList.racquets;
+  let mockStorageService, mockActivatedRoute, mockRouter;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ RacquetDetailComponent ]
-    })
-    .compileComponents();
-  }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RacquetDetailComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    mockStorageService = jasmine.createSpyObj(['getSelectedRacquets', 'updateRacquets', 'updateTotal', 'watchRacquets', 'watchTotal', 'getTotal', 'calculateTotal']);
+    mockRouter = jasmine.createSpyObj(['navigate']);
+    mockActivatedRoute = {
+      snapshot: { params: { id: 3 } }
+    };
+    TestBed.configureTestingModule({
+      declarations: [RacquetDetailComponent],
+      imports: [
+        FormsModule
+      ],
+      providers: [
+        { provide: StorageService, useValue: mockStorageService },
+        { provide: ActivatedRoute, useValue: mockActivatedRoute },
+        { provide: Router, useValue: mockRouter }
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
+    })
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should add the racquet to the cart when the \'Add To Cart\' button is clicked', () => {
+    // LocalStorageStub.store = {};
+    // console.log(LocalStorageStub.store);
+    // console.log(LocalStorageStub.store["selectedRacquets"]);
+    // console.log(LocalStorageStub.mockLocalStorage.getItem("selectedRacquets"));
+    mockStorageService.watchRacquets.and.returnValue(of([]));
+    mockStorageService.watchTotal.and.returnValue(of([]));
+    mockStorageService.getSelectedRacquets.and.returnValue([]);
+    mockStorageService.updateRacquets.and.returnValue(LocalStorageStub.mockLocalStorage.setItem("selectedRacquets", JSON.stringify(racquets.racquetList[2])));
+    mockStorageService.updateTotal.and.returnValue(LocalStorageStub.mockLocalStorage.setItem("total", racquets.racquetList[2].price));
+    mockRouter.navigate.and.returnValue(null);
+
+    fixture = TestBed.createComponent(RacquetDetailComponent);
+    fixture.debugElement.query(By.css("button")).triggerEventHandler('click', {});
+
+    expect(JSON.parse(LocalStorageStub.mockLocalStorage.getItem("selectedRacquets"))).toEqual(racquets.racquetList[2]);
+    expect(LocalStorageStub.mockLocalStorage.getItem("total")).toBe(racquets.racquetList[2].price);
   });
 });
