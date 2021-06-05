@@ -43,14 +43,14 @@ describe('RacquetDetailComponent', () => {
     mockStorageService.watchRacquets.and.returnValue(of([]));
     mockStorageService.watchTotal.and.returnValue(of([]));
     mockStorageService.getSelectedRacquets.and.returnValue([]);
-    mockStorageService.updateRacquets.and.returnValue(LocalStorageStub.mockLocalStorage.setItem("selectedRacquets", JSON.stringify(racquets.racquetList[2])));
+    mockStorageService.updateRacquets.and.returnValue(LocalStorageStub.mockLocalStorage.setItem("selectedRacquets", JSON.stringify(new Array(racquets.racquetList[2]))));
     mockStorageService.updateTotal.and.returnValue(LocalStorageStub.mockLocalStorage.setItem("total", racquets.racquetList[2].price));
     mockRouter.navigate.and.returnValue(null);
 
     fixture = TestBed.createComponent(RacquetDetailComponent);
     fixture.debugElement.query(By.css("button")).triggerEventHandler('click', {});
 
-    expect(JSON.parse(LocalStorageStub.mockLocalStorage.getItem("selectedRacquets"))).toEqual(racquets.racquetList[2]);
+    expect(JSON.parse(LocalStorageStub.mockLocalStorage.getItem("selectedRacquets"))[0]).toEqual(racquets.racquetList[2]);
     expect(LocalStorageStub.mockLocalStorage.getItem("total")).toBe(racquets.racquetList[2].price);
   });
 });
