@@ -36,10 +36,6 @@ describe('RacquetDetailComponent', () => {
   });
 
   it('should add the racquet to the cart when the \'Add To Cart\' button is clicked', () => {
-    // LocalStorageStub.store = {};
-    // console.log(LocalStorageStub.store);
-    // console.log(LocalStorageStub.store["selectedRacquets"]);
-    // console.log(LocalStorageStub.mockLocalStorage.getItem("selectedRacquets"));
     mockStorageService.watchRacquets.and.returnValue(of([]));
     mockStorageService.watchTotal.and.returnValue(of([]));
     mockStorageService.getSelectedRacquets.and.returnValue([]);
