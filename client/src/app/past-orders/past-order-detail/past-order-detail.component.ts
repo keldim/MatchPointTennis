@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { RacquetList } from 'src/app/racquets/racquet-list';
 import { ShoeList } from 'src/app/shoes/shoe-list';
 import { ApparelList } from 'src/app/apparel/apparel-list';
@@ -30,8 +30,20 @@ export class PastOrderDetailComponent implements OnInit {
       });
       console.log("sending request for past order");
       this.http.post(`${this.backendService.getBackendURL()}registered-user/past-order/${pastOrderId}`, {}, { headers: headers }).subscribe(
-        (pastOrderReceived: Object) => this.pastOrder = pastOrderReceived,
-        (err: any) => console.log(err),
+        (pastOrderReceived: Object) => {
+          this.pastOrder = pastOrderReceived;
+          if (this.pastOrder == null) {
+            this.router.navigate(['/error-page']);
+          } else if (this.pastOrder['address1'] == "Not Found") {
+            this.router.navigate(['/**']);
+          }
+        },
+        (err: any) => {
+          console.log(err);
+          if(err.error.error == "invalid_token") {
+            this.router.navigate(['/**']);
+          }
+        },
         () => console.log("past order successfully loaded")
       );
     });

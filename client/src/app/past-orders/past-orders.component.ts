@@ -25,7 +25,12 @@ export class PastOrdersComponent implements OnInit {
       console.log("sending request for past orders");
       this.http.post(this.backendService.getBackendURL() + 'registered-user/past-orders', {}, { headers: headers }).subscribe(
         (pastOrdersReceived: Object[]) => this.pastOrders = pastOrdersReceived,
-        (err: any) => console.log(err),
+        (err: any) => {
+          console.log(err);
+          if(err.error.error == "invalid_token") {
+            this.router.navigate(['/**']);
+          }
+        },
         () => console.log("received response from the server")
       );
       if (this.pastOrders == null) {
