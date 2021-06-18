@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Subject } from 'rxjs';
 
 
 
@@ -23,10 +24,29 @@ function passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null 
 })
 export class UserRegistrationComponent implements OnInit {
   newUserInfo: FormGroup;
+  successAlertSubject = new Subject<boolean>();
+  failAlertSubject = new Subject<boolean>();
   successAlert: boolean = false;
   failAlert: boolean = false;
 
+  emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  passwordPattern = /^(?=.*\d).{4,8}$/;
+  usernamePattern = /^[a-zA-Z]\w{3,14}$/;
+
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService) {
+
+  }
+
+  ngOnInit() {
+    this.newUserInfo = this.fb.group({
+      username: ["", [Validators.required, Validators.pattern(this.usernamePattern)]],
+      passwordGroup: this.fb.group({
+        password: ["", [Validators.required, Validators.pattern(this.passwordPattern)]],
+        passwordConfirmation: ["", Validators.required]
+      }, { validator: passwordMatcher }),
+      email: ["", [Validators.required, Validators.pattern(this.emailPattern)]],
+      enabled: "1"
+    });
 
   }
 
@@ -35,19 +55,20 @@ export class UserRegistrationComponent implements OnInit {
       'username': this.newUserInfo.controls.username.value
     });
 
-    console.log(header1);
 
     // this.http.post('http://localhost:8080/openid-connect-server-webapp/username-duplicate', {}, { headers: header1 }).subscribe
     this.http.get(this.authService.getAuthorityURL() + 'username-duplicate', { headers: header1 }).subscribe((response: boolean) => {
       // http://new-mitreid-env.eba-ppwpqerk.us-east-2.elasticbeanstalk.com/username-duplicate
       if (response === true) {
-        console.log("reached");
 
         this.failAlert = true;
+        setTimeout(() => {
+          this.failAlert = false;
+          console.log("settimeout reached 1");
+        }, 2000);
 
-        this.router.navigate(['/new-user']);
-        return;
       } else {
+
         const header2 = new HttpHeaders({
           'username': this.newUserInfo.controls.username.value,
           'password': this.newUserInfo.controls.passwordGroup.get('password').value,
@@ -55,12 +76,10 @@ export class UserRegistrationComponent implements OnInit {
           'enabled': this.newUserInfo.controls.enabled.value
         });
 
-        console.log(header2);
-
         // this.http.post('http://localhost:8080/openid-connect-server-webapp/add-user', {}, { headers: header2 }).subscribe
-        this.http.get(this.authService.getAuthorityURL() + 'add-user', { headers: header2 }).subscribe(resp => {
+        this.http.get(this.authService.getAuthorityURL() + 'add-user', { headers: header2 }).subscribe((response: boolean) => {
           // http://new-mitreid-env.eba-ppwpqerk.us-east-2.elasticbeanstalk.com/add-user
-          console.log(resp);
+          console.log(response);
         });
 
         this.newUserInfo.reset();
@@ -74,34 +93,14 @@ export class UserRegistrationComponent implements OnInit {
           enabled: "1"
         });
 
-        // this.router.navigate(['/order-online/current-order']);
         this.successAlert = true;
+        setTimeout(() => {
+          this.successAlert = false;
+          console.log("settimeout reached 2");
+        }, 2000);
+
       }
     });
-  }
-
-  emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  passwordPattern = /^(?=.*\d).{4,8}$/;
-  usernamePattern = /^[a-zA-Z]\w{3,14}$/;
-
-  ngOnInit() {
-    this.newUserInfo = this.fb.group({
-      username: ["", [Validators.required, Validators.pattern(this.usernamePattern)]],
-      passwordGroup: this.fb.group({
-        password: ["", [Validators.required, Validators.pattern(this.passwordPattern)]],
-        passwordConfirmation: ["", Validators.required]
-      }, { validator: passwordMatcher }),
-      email: ["", [Validators.required, Validators.pattern(this.emailPattern)]],
-      enabled: "1"
-    });
-  }
-
-  resetSuccessAlert() {
-    this.successAlert = false;
-  }
-
-  resetFailAlert() {
-    this.failAlert = false;
   }
 }
 
