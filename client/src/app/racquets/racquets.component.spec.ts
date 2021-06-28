@@ -1,10 +1,9 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, PatternValidator } from '@angular/forms';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { of } from 'rxjs';
-import { LocalStorageStub } from '../services/local-storage-stub';
 import { StorageService } from '../services/storage.service';
 import { RacquetList } from './racquet-list';
 

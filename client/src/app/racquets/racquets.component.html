@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="filter col-md-3 col-lg-2 border" style="background: rgb(246, 246, 245);">
-      <h3 style="font-size: 16px; padding-top: 10px;">Filters</h3>
+    <div class="filter col-md-3 col-lg-2 border filter-area">
+      <h3 class="filter-heading">Filters</h3>
       <div>
         <h3 (click)="filterExpand1 = !filterExpand1" class="filter-type">
           Brand
-          <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
-          <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
+          <img class="plus-minus-sign" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img class="plus-minus-sign" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
         </h3>
-        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand1 ? 'block' : 'none'}">
+        <ul class="filter-choices" [ngStyle]="{'display': filterExpand1 ? 'block' : 'none'}">
           <li class="filter-choice" (click)="changeCheckbox('brandFilter', 'Babolat')">
               <input type="checkbox" [(ngModel)]="brandFilter.Babolat" (ngModelChange)="performFilter()">
               Babolat
@@ -34,10 +34,10 @@
       <div>
         <h3 (click)="filterExpand2 = !filterExpand2" class="filter-type">
           Head Size
-          <img style="float: right;" *ngIf="filterExpand2 == false" src="../../assets/images/icons8-plus-math-16.png">
-          <img style="float: right;" *ngIf="filterExpand2 == true" src="../../assets/images/icons8-subtract-16.png">
+          <img class="plus-minus-sign" *ngIf="filterExpand2 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img class="plus-minus-sign" *ngIf="filterExpand2 == true" src="../../assets/images/icons8-subtract-16.png">
         </h3>
-        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand2 ? 'block' : 'none'}">
+        <ul class="filter-choices" [ngStyle]="{'display': filterExpand2 ? 'block' : 'none'}">
           <li class="filter-choice" (click)="changeCheckbox('headSizeFilter', 'range1')">
             <input type="checkbox" [(ngModel)]="headSizeFilter.range1" (ngModelChange)="performFilter()">
             90 ~ 94 sq in
@@ -67,10 +67,10 @@
       <div>
         <h3 (click)="filterExpand3 = !filterExpand3" class="filter-type">
           String Pattern
-          <img style="float: right;" *ngIf="filterExpand3 == false" src="../../assets/images/icons8-plus-math-16.png">
-          <img style="float: right;" *ngIf="filterExpand3 == true" src="../../assets/images/icons8-subtract-16.png">
+          <img class="plus-minus-sign" *ngIf="filterExpand3 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img class="plus-minus-sign" *ngIf="filterExpand3 == true" src="../../assets/images/icons8-subtract-16.png">
         </h3>
-        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand3 ? 'block' : 'none'}">
+        <ul class="filter-choices" [ngStyle]="{'display': filterExpand3 ? 'block' : 'none'}">
           <li class="filter-choice" (click)="changeCheckbox('stringPatternFilter', 'pattern1')">
             <input type="checkbox" [(ngModel)]="stringPatternFilter.pattern1" (ngModelChange)="performFilter()">
             14 x 18
@@ -100,10 +100,10 @@
       <div>
         <h3 (click)="filterExpand4 = !filterExpand4" class="filter-type">
           Length
-          <img style="float: right;" *ngIf="filterExpand4 == false" src="../../assets/images/icons8-plus-math-16.png">
-          <img style="float: right;" *ngIf="filterExpand4 == true" src="../../assets/images/icons8-subtract-16.png">
+          <img class="plus-minus-sign" *ngIf="filterExpand4 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img class="plus-minus-sign" *ngIf="filterExpand4 == true" src="../../assets/images/icons8-subtract-16.png">
         </h3>
-        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand4 ? 'block' : 'none'}">
+        <ul class="filter-choices" [ngStyle]="{'display': filterExpand4 ? 'block' : 'none'}">
           <li class="filter-choice" (click)="changeCheckbox('lengthFilter', 'length1')">
             <input type="checkbox" [(ngModel)]="lengthFilter.length1" (ngModelChange)="performFilter()">
             27 in
@@ -125,10 +125,10 @@
       <div>
         <h3 (click)="filterExpand5 = !filterExpand5" class="filter-type">
           Strung Weight
-          <img style="float: right;" *ngIf="filterExpand5 == false" src="../../assets/images/icons8-plus-math-16.png">
-          <img style="float: right;" *ngIf="filterExpand5 == true" src="../../assets/images/icons8-subtract-16.png">
+          <img class="plus-minus-sign" *ngIf="filterExpand5 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img class="plus-minus-sign" *ngIf="filterExpand5 == true" src="../../assets/images/icons8-subtract-16.png">
         </h3>
-        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand5 ? 'block' : 'none'}">
+        <ul class="filter-choices" [ngStyle]="{'display': filterExpand5 ? 'block' : 'none'}">
           <li class="filter-choice" (click)="changeCheckbox('strungWeightFilter', 'range1')">
             <input type="checkbox" [(ngModel)]="strungWeightFilter.range1" (ngModelChange)="performFilter()">
             8.0 ~ 8.9 oz
@@ -154,10 +154,10 @@
       <div>
         <h3 (click)="filterExpand6 = !filterExpand6" class="filter-type">
           Price
-          <img style="float: right;" *ngIf="filterExpand6 == false" src="../../assets/images/icons8-plus-math-16.png">
-          <img style="float: right;" *ngIf="filterExpand6 == true" src="../../assets/images/icons8-subtract-16.png">
+          <img class="plus-minus-sign" *ngIf="filterExpand6 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img class="plus-minus-sign" *ngIf="filterExpand6 == true" src="../../assets/images/icons8-subtract-16.png">
         </h3>
-        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand6 ? 'block' : 'none'}">
+        <ul class="filter-choices" [ngStyle]="{'display': filterExpand6 ? 'block' : 'none'}">
           <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range1')">
             <input type="checkbox" [(ngModel)]="priceFilter.range1" (ngModelChange)="performFilter()">
             $50 - $99.99
@@ -181,13 +181,13 @@
       <div class="row">
         <span *ngFor="let product of filteredProducts | paginate: { itemsPerPage: 16, currentPage: p }">
           <div class="col">
-            <div class="card" style="width: 12rem; text-align: center; border: none;">
+            <div class="card card-style">
               <a [routerLink]="['/racquets', product.id]">
                 <img src="{{ product.thumbURL }}">
               </a>
               <div class="card-body">
                 <p class="card-text">
-                  <a [routerLink]="['/racquets', product.id]" style="color: black;">
+                  <a class="link-text" [routerLink]="['/racquets', product.id]">
                     {{ product.name }}
                   </a>
                   <br>${{ product.price }}

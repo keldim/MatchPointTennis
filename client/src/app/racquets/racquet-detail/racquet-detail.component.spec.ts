@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { LocalStorageStub } from 'src/app/services/local-storage-stub';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 describe('RacquetDetailComponent', () => {
   let fixture: ComponentFixture<RacquetDetailComponent>;

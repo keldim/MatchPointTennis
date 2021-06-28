@@ -4,11 +4,6 @@
       <ngx-image-zoom [thumbImage]="currentRacquet.zoomThumb" [fullImage]="currentRacquet.zoomFull"></ngx-image-zoom><br>
       HOVER TO ZOOM<br><br>
       <button type="button" class="btn btn-secondary" (click)="backToRacquets()">&larr; Back to racquets</button>
-      <!-- <br><img src="" style="height: 600px; width: 350px;"> -->
-      <!-- small fixed size <div> for image list, <a> for choosing the image, fixed size <div> for thumbnail image and zoom on hover -->
-      <!-- mimic tennis express for layout and mobile-responsiveness, use pictures from tennis warehouse-->
-      <!-- if image is clicked in list, switch boolean variable to true, use ngif to switch view -->
-      <!-- cart -->
     </div>
     <div class="col right-box">
       {{ currentRacquet.name }}<br><br>
@@ -25,7 +20,7 @@
           <option>4 5/8" (#5)</option>
         </select>
         <span *ngIf="input1.invalid">
-          <br><span style="font-size: 12px; color: #b80000">
+          <br><span class="validator-message">
             Please Choose Grip Size
           </span>
         </span><br><br>
@@ -38,7 +33,7 @@
           <option>Wilson NXT 17 String Natural - $20.95</option>
         </select>
         <span *ngIf="input2.invalid">
-          <br><span style="font-size: 12px; color: #b80000">
+          <br><span class="validator-message">
             Please Choose String
           </span>
         </span><br><br>
@@ -58,7 +53,7 @@
             <option>59</option>
           </select>
           <span *ngIf="input3.invalid">
-            <br><span style="font-size: 12px; color: #b80000">
+            <br><span class="validator-message">
               Please Choose Tension
             </span>
           </span><br><br>

@@ -16,3 +16,8 @@
 .right-box {
   padding-left: 110px;
 }
+
+.validator-message {
+  font-size: 12px;
+  color: #b80000;
+}

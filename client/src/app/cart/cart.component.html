@@ -1,6 +1,6 @@
 <app-delete-modal></app-delete-modal>
 <div class="container" *ngIf="total != 0">
-  <span style="text-align: center;">
+  <span class="message-style">
     <p>
       <strong>
         *Free Shipping Over $50 / Shipping To USA Only
@@ -151,7 +151,7 @@
   </div>
 
 
-    <div class="totals-item" style="margin-top: 10px;">
+    <div class="totals-item top-space">
       <label>Subtotal</label>
       <div class="totals-value" id="cart-subtotal">${{ showSubtotal() }}</div>
     </div>
@@ -170,13 +170,11 @@
       <label>Grand Total</label>
       <div class="totals-value" id="cart-total">${{ showGrandTotal() }}</div>
     </div>
-  <!-- </div> -->
 
-      <!-- <button class="checkout">Checkout</button> -->
       <button type="button" class="btn btn-success checkout" [routerLink]="['/shipping-and-payment']">Checkout</button>
 </div>
   <span class="page-text" *ngIf="total == 0">
-    <p style="font-size: 2em;">
+    <p class="empty-text">
       Cart is empty
     </p>
   </span>

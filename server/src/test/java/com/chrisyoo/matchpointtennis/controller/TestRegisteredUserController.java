@@ -95,13 +95,19 @@ public class TestRegisteredUserController {
 
 	@Test
 	public void should_return_past_order_by_id() throws Exception {
+		String randomBearerToken = "empty eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4"
+				+ "gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+		OpenIdUser user = new OpenIdUser();
 		PastOrder result = new PastOrder();
 		result.setId(5);
 		result.setAddress1("3887  Yorkie Lane");
+		user.addPastOrder(result);
 		
+		when(openIdUserService.findByUsername(any())).thenReturn(user);
 		when(pastOrderService.findById(5)).thenReturn(result);
 		
-		mockMvc.perform(post("/registered-user/past-order/5")).andExpect(status().isOk())
+		mockMvc.perform(post("/registered-user/past-order/5").header("Authorization", randomBearerToken))
+				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.jsonPath("$.id").value(5))
 				.andExpect(MockMvcResultMatchers.jsonPath("$.address1").value("3887  Yorkie Lane"));

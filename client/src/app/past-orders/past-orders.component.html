@@ -7,14 +7,14 @@
 
 
 <div class="container" *ngIf="pastOrders != null">
-  <div *ngFor="let pastOrder of pastOrders" class="row cart-row">
+  <div *ngFor="let pastOrder of pastOrders.reverse()" class="row cart-row">
     <div class="col-6 col-sm-4">
       {{ pastOrder['ordered_at'] | date: 'mediumDate' }}<br>
       <small>date</small>
     </div>
     <div class="col-6 col-sm-4">
       {{ pastOrder['ordered_at'] | date: 'mediumTime' }}<br>
-      <small>time</small>
+      <small>time (UTC)</small>
     </div>
     <div class="col-12 col-sm-4">
       <a [routerLink]="['/past-orders', pastOrder['id']]">View Order</a><br>

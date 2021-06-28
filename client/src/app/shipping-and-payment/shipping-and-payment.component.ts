@@ -4,7 +4,6 @@ import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { BackendService } from '../services/backend.service';
 
 function expiredMonthYear(c: AbstractControl): { [key: string]: boolean } | null {
@@ -48,7 +47,6 @@ export class ShippingAndPaymentComponent implements OnInit {
       (data) => this.shoppingAndPaymentInfo = data,
       (err: any) => console.log(err),
       () => {
-        console.log("received response from the server 1");
         this.shippingAndPaymentForm = this.fb.group({
           firstName: [this.shoppingAndPaymentInfo['firstName'], [Validators.required, Validators.pattern(this.namePattern)]],
           lastName: [this.shoppingAndPaymentInfo['lastName'], [Validators.required, Validators.pattern(this.namePattern)]],
@@ -98,7 +96,6 @@ export class ShippingAndPaymentComponent implements OnInit {
       'cvc': this.shippingAndPaymentForm.controls.cvc.value
 
     });
-    console.log(headers);
 
     this.http.post(this.backendService.getBackendURL() + 'form-input/data', {}, { headers: headers }).subscribe(resp => {
       console.log(resp);
@@ -120,9 +117,5 @@ export class ShippingAndPaymentComponent implements OnInit {
     });
     this.router.navigate(['/cart']);
   }
-
-  // delete input data with 'cancel' and 'place order' buttons?
-
-  // post data to server, save data in variables, send back data for review page, clean up when order is finished?
 
 }

@@ -1,11 +1,10 @@
-import { async, ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { PastOrderDetailComponent } from './past-order-detail.component';
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { BackendService } from 'src/app/services/backend.service';
-import { of } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 
 describe('PastOrderDetailComponent', () => {

@@ -6,8 +6,6 @@
 
 .mainArea1 {
   margin-top: 121px;
-  /* 201px; */
-  /* 101px */
 }
 
 .mainArea2 {
@@ -19,17 +17,6 @@
   margin-top: 151px;
   margin-bottom: 30px;
 }
-
-.mai
-
-/* .navbar-nav li {
-  padding-top: 5px;
-  border-bottom: 5px solid transparent;
-}
-
-.navbar-nav li:hover {
-  border-bottom-color: red;
-} */
 
 .clicked-link {
   border-bottom: 5px solid red;
@@ -48,4 +35,8 @@
 }
 .dropdown>.dropdown-toggle:active {
   pointer-events: none;
+}
+
+.nav-style {
+  text-align: center;
 }

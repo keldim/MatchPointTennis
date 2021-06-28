@@ -1,10 +1,5 @@
-import { Component, NgZone, OnInit } from '@angular/core';
-import { RacquetList } from 'src/app/racquets/racquet-list';
-import { ShoeList } from 'src/app/shoes/shoe-list';
-import { ApparelList } from 'src/app/apparel/apparel-list';
-import { ItemList } from 'src/app/other-items/item-list';
+import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from 'src/app/services/backend.service';
@@ -23,12 +18,11 @@ export class PastOrderDetailComponent implements OnInit {
 
   ngOnInit() {
     let pastOrderId: number = parseInt(this.route.snapshot.params['id']);
-    console.log(pastOrderId);
     this._authService.getAccessToken().then(accessToken => {
       const headers = new HttpHeaders({
         'Authorization': `Bearer ` + accessToken
       });
-      console.log("sending request for past order");
+
       this.http.post(`${this.backendService.getBackendURL()}registered-user/past-order/${pastOrderId}`, {}, { headers: headers }).subscribe(
         (pastOrderReceived: Object) => {
           this.pastOrder = pastOrderReceived;

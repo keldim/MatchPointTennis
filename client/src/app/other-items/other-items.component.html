@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="filter col-md-3 col-lg-2 border" style="background: rgb(246, 246, 245);">
-      <h3 style="font-size: 16px; padding-top: 10px;">Filters</h3>
+    <div class="filter col-md-3 col-lg-2 border filter-area">
+      <h3 class="filter-heading">Filters</h3>
       <div>
         <h3 (click)="filterExpand1 = !filterExpand1" class="filter-type">
           Type
-          <img style="float: right;" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
-          <img style="float: right;" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
+          <img class="plus-minus-sign" *ngIf="filterExpand1 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img class="plus-minus-sign" *ngIf="filterExpand1 == true" src="../../assets/images/icons8-subtract-16.png">
         </h3>
-        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand1 ? 'block' : 'none'}">
+        <ul class="filter-choices" [ngStyle]="{'display': filterExpand1 ? 'block' : 'none'}">
           <li class="filter-choice" (click)="changeCheckbox('typeFilter', 'balls')">
             <input type="checkbox" [(ngModel)]="typeFilter.balls" (ngModelChange)="performFilter()">
             Tennis Balls
@@ -34,10 +34,10 @@
       <div>
         <h3 (click)="filterExpand2 = !filterExpand2" class="filter-type">
           Price
-          <img style="float: right;" *ngIf="filterExpand2 == false" src="../../assets/images/icons8-plus-math-16.png">
-          <img style="float: right;" *ngIf="filterExpand2 == true" src="../../assets/images/icons8-subtract-16.png">
+          <img class="plus-minus-sign" *ngIf="filterExpand2 == false" src="../../assets/images/icons8-plus-math-16.png">
+          <img class="plus-minus-sign" *ngIf="filterExpand2 == true" src="../../assets/images/icons8-subtract-16.png">
         </h3>
-        <ul style="list-style: none; padding-left: 10px;" [ngStyle]="{'display': filterExpand2 ? 'block' : 'none'}">
+        <ul class="filter-choices" [ngStyle]="{'display': filterExpand2 ? 'block' : 'none'}">
           <li class="filter-choice" (click)="changeCheckbox('priceFilter', 'range1')">
             <input type="checkbox" [(ngModel)]="priceFilter.range1" (ngModelChange)="performFilter()">
             $0 - $9.99
@@ -85,13 +85,13 @@
       <div class="row">
         <span *ngFor="let product of filteredProducts | paginate: { itemsPerPage: 16, currentPage: p }">
           <div class="col">
-            <div class="card" style="width: 12rem; text-align: center; border: none;">
+            <div class="card card-style">
               <a [routerLink]="['/items', product.id]">
-                <img src="{{ product.thumbURL }}" style="max-width: 100%; max-height: 100%;">
+                <img class="link-style" src="{{ product.thumbURL }}">
               </a>
               <div class="card-body">
                 <p class="card-text">
-                  <a [routerLink]="['/items', product.id]" style="color: black;">
+                  <a class="link-text" [routerLink]="['/items', product.id]">
                     {{ product.name }}
                   </a>
                   <br>${{ product.price }}

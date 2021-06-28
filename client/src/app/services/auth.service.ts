@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { UserManager, User, WebStorageStateStore } from 'oidc-client';
-import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
+import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
+import { UserManager, User } from 'oidc-client';
 
 @Injectable({
   providedIn: 'root'

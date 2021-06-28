@@ -26,7 +26,6 @@ export class OtherItemsDetailComponent implements OnInit {
 
   ngOnInit() {
     let itemId: number = parseInt(this.route.snapshot.params['id']);
-    console.log(itemId);
     this.currentItem  = this.items.itemList[itemId - 1];
     this.quantity = "1";
   }

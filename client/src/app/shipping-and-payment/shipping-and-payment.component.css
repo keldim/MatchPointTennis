@@ -5,3 +5,9 @@
 .right-button {
   margin-left: 2px;
 }
+
+.validator-message {
+  font-size: 12px;
+  color: #b80000;
+  margin-left: 10px;
+}

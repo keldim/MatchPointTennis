@@ -29,7 +29,6 @@ export class ApparelDetailComponent implements OnInit {
 
   ngOnInit() {
     let apparelId: number = parseInt(this.route.snapshot.params['id']);
-    console.log(apparelId);
     if (this.isMen()) {
       this.currentApparel  = this.menApparel.apparelList[apparelId - 1];
     } else {

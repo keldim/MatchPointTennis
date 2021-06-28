@@ -17,7 +17,7 @@
           <option *ngFor="let sizeChoice of currentApparel.size">{{ sizeChoice }}</option>
         </select>
         <span *ngIf="input1.invalid">
-          <br><span style="font-size: 12px; color: #b80000">
+          <br><span class="validator-message">
             Please Choose Size
           </span>
         </span><br><br>
@@ -27,7 +27,7 @@
           <option *ngFor="let colorChoice of currentApparel.color">{{ colorChoice }}</option>
         </select>
         <span *ngIf="input2.invalid">
-          <br><span style="font-size: 12px; color: #b80000">
+          <br><span class="validator-message">
             Please Choose Color
           </span>
         </span><br><br>

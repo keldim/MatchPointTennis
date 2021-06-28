@@ -1,11 +1,10 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { of } from 'rxjs';
-import { LocalStorageStub } from 'src/app/services/local-storage-stub';
 import { StorageService } from 'src/app/services/storage.service';
 import { ShoeList } from './shoe-list';
 import { ShoesComponent } from './shoes.component';

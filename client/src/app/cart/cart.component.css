@@ -29,7 +29,6 @@
   float: right;
   clear: both;
   width: 100%;
-  /* margin-bottom: 10px; */
 }
 
 .totals-item label {
@@ -52,19 +51,8 @@
   float: right;
   margin-top: 10px;
   margin-bottom: 30px;
-  /* border: 0;
-  margin-top: 20px;
-  padding: 6px 25px;
-  background-color: #6b6;
-  color: #fff;
-  font-size: 25px;
-  border-radius: 3px; */
 }
 
-/* .checkout:hover {
-  background-color: #494;
-} */
-/* 350px */
 @media screen and (max-width: 425px) {
   .totals-item label {
     width: 60%;
@@ -72,4 +60,17 @@
   .totals-value {
     width: 40%;
   }
+}
+
+
+.message-style {
+  text-align: center;
+}
+
+.top-space {
+  margin-top: 10px;
+}
+
+.empty-text {
+  font-size: 2em;
 }

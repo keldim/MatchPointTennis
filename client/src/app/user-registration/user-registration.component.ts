@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { Subject } from 'rxjs';
 
 
 
@@ -24,8 +23,6 @@ function passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null 
 })
 export class UserRegistrationComponent implements OnInit {
   newUserInfo: FormGroup;
-  successAlertSubject = new Subject<boolean>();
-  failAlertSubject = new Subject<boolean>();
   successAlert: boolean = false;
   failAlert: boolean = false;
 
@@ -64,7 +61,6 @@ export class UserRegistrationComponent implements OnInit {
         this.failAlert = true;
         setTimeout(() => {
           this.failAlert = false;
-          console.log("settimeout reached 1");
         }, 2000);
 
       } else {
@@ -79,7 +75,7 @@ export class UserRegistrationComponent implements OnInit {
         // this.http.post('http://localhost:8080/openid-connect-server-webapp/add-user', {}, { headers: header2 }).subscribe
         this.http.get(this.authService.getAuthorityURL() + 'add-user', { headers: header2 }).subscribe((response: boolean) => {
           // http://new-mitreid-env.eba-ppwpqerk.us-east-2.elasticbeanstalk.com/add-user
-          console.log(response);
+          console.log("add user successful: " + response);
         });
 
         this.newUserInfo.reset();
@@ -96,7 +92,6 @@ export class UserRegistrationComponent implements OnInit {
         this.successAlert = true;
         setTimeout(() => {
           this.successAlert = false;
-          console.log("settimeout reached 2");
         }, 2000);
 
       }

@@ -48,7 +48,7 @@ export class ReviewAndOrderComponent implements OnInit {
     this.getShoppingAndPaymentInfo().subscribe(
       (data) => this.shoppingAndPaymentInfo = data,
       (err: any) => console.log(err),
-      () => console.log("received response from the server 2")
+      () => console.log()
     );
     this._authService.isLoggedIn().then(loggedIn => {
       this.isLoggedIn = loggedIn;
@@ -119,9 +119,9 @@ export class ReviewAndOrderComponent implements OnInit {
       return "";
     }
 
-    let amex_regex = new RegExp('^3[47][0-9]{0,}$'); //34, 37
-    let visa_regex = new RegExp('^4[0-9]{0,}$'); //4
-    let mastercard_regex = new RegExp('^(5[1-5]|222[1-9]|22[3-9]|2[3-6]|27[01]|2720)[0-9]{0,}$'); //2221-2720, 51-55
+    let amex_regex = new RegExp('^3[47][0-9]{0,}$');
+    let visa_regex = new RegExp('^4[0-9]{0,}$');
+    let mastercard_regex = new RegExp('^(5[1-5]|222[1-9]|22[3-9]|2[3-6]|27[01]|2720)[0-9]{0,}$');
     let discover_regex = new RegExp('^(6011|65|64[4-9]|62212[6-9]|6221[3-9]|622[2-8]|6229[01]|62292[0-5])[0-9]{0,}$');
 
     var type = "unknown";
@@ -181,7 +181,6 @@ export class ReviewAndOrderComponent implements OnInit {
   chargeCard(token: string) {
     if (this.isLoggedIn) {
       this._authService.getAccessToken().then(accessToken => {
-        console.log(accessToken);
 
         const headers = new HttpHeaders({
           'Authorization': `Bearer ` + accessToken,
@@ -205,10 +204,8 @@ export class ReviewAndOrderComponent implements OnInit {
           'cardType': this.getCreditCardType(this.shoppingAndPaymentInfo['cardNumber'])
         });
 
-        console.log(headers);
 
         this.http.post(this.backendService.getBackendURL() + 'registered-user/charge', {}, { headers: headers }).subscribe(resp => {
-          console.log(resp);
           if (resp == null) {
             this.zone.run(() => {
               this.router.navigate(['/error-page']);
@@ -248,14 +245,9 @@ export class ReviewAndOrderComponent implements OnInit {
 
 
 
-        // clear shoppingandpaymentinfo after placing order?
-
-
       });
-      console.log(headers);
 
       this.http.post(this.backendService.getBackendURL() + 'unregistered-user/charge', {}, { headers: headers }).subscribe(resp => {
-        console.log(resp);
         if (resp == null) {
           this.zone.run(() => {
             this.router.navigate(['/error-page']);

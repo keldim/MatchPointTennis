@@ -1,16 +1,15 @@
-import { async, ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgZone, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BackendService } from 'src/app/services/backend.service';
 import { of } from 'rxjs';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StorageService } from '../services/storage.service';
 import { By } from '@angular/platform-browser';
 
 import { ReviewAndOrderComponent } from './review-and-order.component';
-import { LocalStorageStub } from '../services/local-storage-stub';
 
 describe('ReviewAndOrderComponent', () => {
   let component: ReviewAndOrderComponent;
