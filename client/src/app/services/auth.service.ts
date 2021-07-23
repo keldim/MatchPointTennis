@@ -8,8 +8,10 @@ import { UserManager, User } from 'oidc-client';
 })
 export class AuthService {
 
-  private authorityURL = "http://localhost:8080/openid-connect-server-webapp/"
-  private frontendURL = "http://localhost:4200/"
+  // http://localhost:8080/openid-connect-server-webapp/
+  // http://localhost:4200/
+  private authorityURL = "https://mitreid-backend.com/"
+  private frontendURL = "https://www.cy-match-point-tennis.com/"
 
   private _userManager: UserManager;
   private _user : User;
@@ -21,12 +23,13 @@ export class AuthService {
   constructor(private http: HttpClient) {
     const config = {
       authority: this.authorityURL,
-      client_id: 'matchpointtennis',
+      client_id: '',
       redirect_uri: this.frontendURL + 'signin-callback',
       scope: 'openid',
       response_type: 'id_token token',
       post_logout_redirect_uri: this.frontendURL + 'signout-callback'
     };
+    // matchpointtennis
 
     this._userManager = new UserManager(config);
     this._userManager.events.addAccessTokenExpired(_ => {

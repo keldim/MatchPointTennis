@@ -40,10 +40,10 @@ public class CorsConfig {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowCredentials(true);
-		config.addAllowedOrigin("http://localhost:4200");
-//		http://match-point-tennis-client.s3-website.us-east-2.amazonaws.com
-		config.addAllowedHeader("*");
+		config.addAllowedOrigin("https://www.cy-match-point-tennis.com");
 		config.addAllowedMethod("*");
+		config.addAllowedHeader("*");
+//		http://localhost:4200
 
 		source.registerCorsConfiguration("/**", config);
 		FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));

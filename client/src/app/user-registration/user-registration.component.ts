@@ -61,7 +61,7 @@ export class UserRegistrationComponent implements OnInit {
         this.failAlert = true;
         setTimeout(() => {
           this.failAlert = false;
-        }, 2000);
+        }, 3000);
 
       } else {
 
@@ -92,7 +92,7 @@ export class UserRegistrationComponent implements OnInit {
         this.successAlert = true;
         setTimeout(() => {
           this.successAlert = false;
-        }, 2000);
+        }, 3000);
 
       }
     });

@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class BackendService {
-
-  private backendURL = "http://localhost:5000/";
+  // http://localhost:5000/
+  private backendURL = "https://match-point-tennis-backend.com/";
 
   constructor() { }
 
