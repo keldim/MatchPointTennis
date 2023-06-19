@@ -14,7 +14,7 @@
     </div>
     <div class="col-6 col-sm-4">
       {{ pastOrder['ordered_at'] | date: 'mediumTime' }}<br>
-      <small>time (UTC)</small>
+      <small>time (ET)</small>
     </div>
     <div class="col-12 col-sm-4">
       <a [routerLink]="['/past-orders', pastOrder['id']]">View Order</a><br>
