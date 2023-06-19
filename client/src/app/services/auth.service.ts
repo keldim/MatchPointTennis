@@ -23,7 +23,7 @@ export class AuthService {
   constructor(private http: HttpClient) {
     const config = {
       authority: this.authorityURL,
-      client_id: '',
+      client_id: '0a45ad9f-bd96-4f75-a57e-7dccf90a53ef',
       redirect_uri: this.frontendURL + 'signin-callback',
       scope: 'openid',
       response_type: 'id_token token',
